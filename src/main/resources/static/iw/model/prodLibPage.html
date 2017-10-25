@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="/iw/org/welcome.html">首页</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">设计产品库管理</li>
+			</ul>
+		</div>
+		
+		<div class="top-actions">
+			<button type="button" class="btn btn-primary " onclick="location.href='prodLibDetail.html';">
+				<span class="glyphicon glyphicon-plus"></span> <span>创建</span>
+			</button>
+			<button type="button" class="btn btn-default " onclick="">
+				<span class="glyphicon"></span> 批量导入
+			</button>
+		</div>
+		<div class="form-group form-inline search-box" style="zoom: 1; overflow: hidden; display: block;">
+			<input type="text" class="form-control" id="nameLike" placeholder="请输入产品名称"/>
+			<button type="button" class="btn btn-primary " onclick="$$('offset').value=0;_commit();ProdLibPaginate();">
+				<span class="glyphicon glyphicon-search"></span> 查询
+			</button>
+			<button type="button" class="btn btn-default " onclick="window.location.reload(true)">
+				<span class="glyphicon glyphicon-refresh"></span> 重置
+			</button>
+		</div>
+		
+		
+		
+		
+		
+		<table class="table table-hover  table-condensed">
+			<thead>
+				<tr class="">
+					<th width="15px;">#</th>
+					<th>序号</th>
+					<th>名称</th>
+					<th>简称</th>
+					<th>产品代号/型号</th>
+					<th>状态</th>					
+					<th>NSN大小类</th>
+					<th>NSN识别号</th>					
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody name="myProdLibPageTemplate" style="display: none;">
+				<tr>
+					<td><button type="button" class="btn btn-default showdetail " onclick="showOrHideTable(this)"  data-id="" name="RN" function="RNValueTo">
+							<span class="glyphicon glyphicon-plus"></span> 
+						</button>
+			        </td>
+			        <input name="no" type="hidden"/>
+			        <td><span name="RN"></span></td>
+			        <td><span name="name"></span></td>
+			        <td><span name="ename"></span></td>
+					<td><span name="prodCode"></span></td>					
+					<td><span name="status"></span></td>					
+					<td><span name="nsnCates"></span></td>
+					<td><span name="nsnshibie"></span></td>
+					<td>
+					    <button class="btn btn-primary btn-xs" onclick="href(this)">
+							<span class="glyphicon glyphicon-edit"></span>修改
+						</button>
+						 <button class="btn btn-primary btn-xs" onclick="location.href='/iw/icert/itemDetail.html?bizId=1';">
+							<span class="glyphicon glyphicon-edit"></span> 去认证
+						</button>
+					</td>
+				</tr>				
+				<tr data-id="" name="RN" function="RNValueTo" class="detail">
+					<td colspan="8">
+						<table class="table">
+							<tr><th width="15%">产品代号</th><td width="35%"><span name="grpCode"></td><th width="15%">产品类型</th><td width="35%"><span name="prodCodeTyp"></td></tr>
+							<tr><th>所属机构</th><td><span name="orgName"></td><th>类型</th><td><span name="typ"></td></tr>
+							<tr><th>密级</th><td><span name="scretLvl"></td><th>产品版本代号</th><td><span name="verCode"></td></tr>
+							<tr><th>集团编码</th><td><span name="grpCode"></td><th>集团分类名称</th><td><span name="grpCate"></td></tr>
+							<tr><th>产品规格</th><td><span name="spec"></td><th>计量单位</th><td><span name="unit"></td></tr>
+							<tr><th>采用标准</th><td><span name="standard"></td><th>发布日期</th><td><span name="newat"></td></tr>
+							<tr><th>简介</th><td><span name="descr"></td><th>主要参数描述</th><td><span name="features"></td></tr>
+						</table>
+					</td>
+				</tr>				
+			</tbody>
+		</table>
+			<input type="hidden" name="prodLibTotal" id="prodLibTotal" value=0>
+			<input type="hidden" name="offset" id="offset" value=0>
+			<input type="hidden" name="limit" id="limit" value=5>
+			<div class="row-fluid"> 
+				<div id="prodLibPage-nav" style="padding: 18px;"></div> 
+			</div>
+	</div>
+	<script type="text/javascript" src="/iw/js/model/prodLibPage.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<h1 id="logo">
+<a href="/iw/">武器装备保障平台</a>
+</h1>
+<div class="logotitle">武器装备保障平台  <div class="subtitle"><span id="corpName"></span>认证审批管理后台</div></div>
+<div class="topNav">
+	 欢迎你 <span id="loginName">manage</span> [<a href="#" onclick="logout()"> 注销</a>]
+</div>
+<script>
+$("#corpName").text($.cookie("corpName"));
+
+$("#loginName").text($.cookie("loginName"));
+
+function logout() {
+	$.ajax({
+		type: "post",
+		//http://localhost:81/ils/three/logout/2FirU7AKR6VrA-AlT8gkxg2FirU7AKR6VrA-AlT8gkxg/sys
+		url: apphost() + "/ils/org/logout/" + $.cookie("sid") + appsys(),
+		async: false,
+		dataType: "json",
+		success: function (jsonData) {
+			console.log(jsonData);
+			if (!right(jsonData)) return;
+			$.removeCookie('token', {path: "/"});
+			location.href = "login.html"; 
+			
+		}
+	});
+}
+</script>
+

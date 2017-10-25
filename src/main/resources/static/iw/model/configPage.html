@@ -1,0 +1,330 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/myUtil.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+<script type="text/javascript" src="/iw/js/myUtil.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/model/config.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="/iw/org/welcome.html">首页</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">型号配置列表</li>
+			</ul>
+		</div>
+
+		<div class="body">
+		    <div class="top-actions">
+		    	<button class="btn btn-primary" onclick="emptyVal()" data-target="#nodeModal" data-toggle="modal">
+					<span class="glyphicon glyphicon-plus"></span> 创建配置
+				</button>
+		    </div>		   
+			
+			<table id="" class="table table-hover table-condensed">			  
+				<thead>
+					<tr class="">
+					    <th>型号名称</th>
+						<th>型号配置名称</th>
+						<th>技术状态标识</th>
+						<th>状态</th>
+						<th>SNS编码</th>
+						<th>节点类型</th>
+						<th>设计机构</th>
+						<th>是否必选</th>
+						<th>下级是否单选</th>
+						<th>发布日期</th>
+						<th>技术资料</th>	
+						<th>操作</th>					
+					</tr>
+				</thead>
+				<tbody>
+					<tr name="myConfigPageTemplate"  id="configPageId" style="display: none;">
+					   
+					    <input name="id" type="hidden"/>
+					    <input name="name" type="hidden"/>
+					    <input name="modelId" type="hidden"/>
+					    <input name="modelName" type="hidden"/>
+					    <td><span name="modelName"></span></td>
+					    <td><span name="name"></span></td>
+					    <td><span name="techStatus"></span></td>
+					    <td><span name="status"></span></td>
+					    <td><span name="sns"></span></td>
+					    <td><span name="typ"></span></td>
+					    <td><span name="designOrgName"></span></td>
+					    <td><span name="mustChoosed" function="mustChoosedValueTo"></span></td>
+					    <td><span name="childrenSingled" function="mustChoosedValueTo"></td>					    
+					    <td><span name="newat"></span></td>
+					    <td><a href="#">1.doc</a> <a href="#">2.doc</a> <a href="#">3.doc</a></td>
+					    <td>
+					        <button  class="btn btn-primary btn-xs" data-target="#nodeModal" data-toggle="modal" onclick="configDetail(this)" ><span class="glyphicon glyphicon-edit"></span>修改</button>
+					    	<button  class="btn btn-primary btn-xs"  onclick="href(this)" roles="three.hisRoles"><span class="glyphicon glyphicon-edit"></span>BOM管理</button>
+							<button  class="btn btn-primary btn-xs"  onclick="hrefbomPage(this)" roles="three.hisRoles"><span class="glyphicon glyphicon-tree-conifer icon-tree-conifer icon-large"></span>BOM展示</button>							
+					    </td>
+					</tr>
+				</tbody>
+			</table>
+			<input type="hidden" name="configTotal" id="configTotal" value=0>
+			<input type="hidden" name="configOffset" id="configOffset" value=0>
+			<input type="hidden" name="configLimit" id="configLimit" value=5>
+			<div class="row-fluid"> 
+				<div id="configPage-nav" style="padding: 18px;"></div> 
+			</div>
+			
+			
+		</div>
+	</div>
+
+  <div id="nodeModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="">&times;</button>
+					 创建||修改 配置				
+				</div>
+				<div class="modal-body">
+					<table class="table tableform  table-condensed">
+						<tr>
+							<th>型号：<span class="must">*</span></th>
+							<td colspan="3">
+								<div class="input-group ">
+								    <input type="hidden" name="configDetail.modelId" id="modelId" onchange="javascript:abc()" value=""/>
+								    <input type="text" class="form-control" name="configDetail.modelName" value="" id="modelName" readonly /> 
+								    <span class="input-group-addon" data-target="#modelModal" data-toggle="modal"  onclick="$$('modelOffset').value=0;_modelCommit();modelPaginate();" > ... </span>
+								</div>	   
+							</td>
+						</tr>
+						<tr>
+							<th>型号配置名称：<span class="must">*</span></th>
+							<td><input type="text" id="name" name="configDetail.name" value="" class="form-control" /></td>
+							<th>SNS编码：</th>
+							<td><input type="text" id="sns" name="configDetail.sns" value="" class="form-control" />
+						    </td>
+						</tr>
+						<tr>
+							<th>节点类型：<span class="must">*</span></th>
+							<td>
+								<div style="display:inline;border:1px solid #ccc;padding:3px;">
+								<input type="radio" name="configDetail.typ" value="产品" /> 产品
+								<input type="radio" name="configDetail.typ" value="材料" /> 材料
+								<input type="radio" name="configDetail.typ" value="ICI" /> ICI
+								<input type="radio" name="configDetail.typ" value="VCI" /> VCI
+								<input type="radio" name="configDetail.typ" value="L_VCI" /> L_VCI
+								</div> 
+							</td>
+							<th>状态：<span class="must">*</span></th>
+							<td>							
+							<input type="radio"  name="configDetail.status" value="有效" /> 有效 
+							<input type="radio"  name="configDetail.status" value="失效" /> 失效 							
+							</td>
+							
+						</tr>
+						<tr>
+						    <th>设计机构：</th>
+							<td>
+								<div class="input-group ">
+									    <input type="hidden" name="configDetail.designOrgId" id="orgId" onchange="javascript:abc()" value=""/>
+									    <input type="text" class="form-control" name="configDetail.designOrgName" value="" id="corpName" readonly /> <span class="input-group-addon" data-target="#itemnamesModal" data-toggle="modal"  onclick="$$('offset').value=0;_commit();paginate();" data-toggle="modal"> ... </span>
+								</div>	    
+						    </td>
+						    <th>标识：</th>
+							<td><input type="checkbox"  name="configDetail.mustChoosed" id="mustChoosed" value="必选" class="" /> 必选
+							    <input type="checkbox"  name="configDetail.forSaled" id="forSaled" value="销售可见" class="" /> 销售可见
+							    <input type="checkbox"  name="configDetail.childrenSingled" id="childrenSingled" value="下级节点" class="" /> 下级节点
+							</td>
+							
+						</tr>
+						<tr>
+							 <th>技术状态标识：<span class="must">*</span></th>
+							<td colspan="3">
+								<input type="radio"  name="configDetail.techStatus" value="D" /> D
+							    <input type="radio"  name="configDetail.techStatus" value="S" /> S	
+							</td>
+							
+						</tr>
+						<tr>
+							<th>简介：</th>
+							<td colspan="3"><textarea class="form-control" style="width:100%;height:100px;" id="descr" name="configDetail.descr"></textarea></td>
+						</tr>										
+					</table>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading"><span class="icon-th"></span> 技术资料</div>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>附件</th>
+								<th>说明</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><span name="idNo">1</span></td>
+								<td><span name="name"><a href="#">aaa.doc</a></span></td>
+								<td>comment...</td>
+								<td>
+									<button type="button" class="btn btn-primary" data-target="#fileModal" onclick="" data-toggle="modal">
+										<span class="icon-upload"></span> 上传
+									</button>
+									<button type="button" class="btn btn-danger" onclick="">
+										<span class="icon-remove"></span> 删除
+									</button>
+				
+								</td>
+							</tr>
+							<tr>
+								<td><span name="idNo">2</span></td>
+								<td><span name="name"></span></td>
+								<td><span name="corpName"></span></td>
+								<td>
+									<button type="button" class="btn btn-primary" data-target="#fileModal" onclick="" data-toggle="modal">
+										<span class="icon-upload"></span> 上传
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="makeConfig()">确定</button>
+					<button type="button" class="btn btn-default" onclick="" data-dismiss="modal">取消并关闭</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	
+	<div id="itemnamesModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					选择机构					
+				</div>
+				<div class="modal-header form-inline">
+					<div class="form-group">
+						<label for="" class="">机构名称：</label> <input type="text" name="" id="findCorpName" class="form-control" value="" />
+					</div>
+					<button class="btn btn-default " onclick="$$('offset').value=0;_commit();paginate();">
+						<span class="glyphicon glyphicon-search"></span> 查询
+					</button>
+				</div>
+				<div class="modal-body">
+					<table class="table" name="nones">
+						<thead>
+							<tr>
+								<td></td>							
+								<td>机构代码</td>
+								<td>机构名称</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="orgPageTemplate" style="display: none;">
+								<th style="width:50px;"><input type="radio" name="1" /></th>
+								<td id="id" style="display: none;"><span name="id"></span></td>
+								<td id="code"><span name="code"></span></td>
+								<td id="name"><span name="name"></span></td>
+							</tr>
+						</tbody>
+					 </table>
+					<input type="hidden" name="total" id="total" value=0>
+					<input type="hidden" name="offset" id="offset" value=0>
+				    <input type="hidden" name="limit" id="limit" value=3>
+				    <div class="row-fluid"> 
+						<div id="page-nav" style="padding: 18px;"></div> 
+					</div>
+
+				</div>
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="corpChoice()">选择</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="">关闭</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div id="modelModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					选择型号					
+				</div>
+							
+				<div class="modal-body">
+				    <table class="table" style="width:500px;margin-bottom:5px;">
+						<tr>
+							<th>型号名称：</th><td><input type="text" name="" id="nameLike" class="form-control" value="" /> <button class="btn btn-primary " onclick="$$('modelOffset').value=0;_modelCommit();modelPaginate();">
+									<span class="glyphicon glyphicon-search"></span> 查询
+								</button></td>											
+						</tr>						
+					</table>	
+					<table class="table" name="nones">
+						<thead>
+							<tr>
+								<td>#</td>							
+								<td>型号名称</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="myModelPageTemplate" style="display: none;">
+								<th style="width:50px;"><input type="radio" name="1" /></th>
+								<td id="id" style="display: none;"><span name="id"></span></td>
+								<td id="code"><span name="name"></span></td>
+							</tr>
+						</tbody>
+					 </table>
+					<input type="hidden" name="modelTotal" id="modelTotal" value=0>
+					<input type="hidden" name="modelOffset" id="modelOffset" value=0>
+				    <input type="hidden" name="modelLimit" id="modelLimit" value=3>
+				    <div class="row-fluid"> 
+						<div id="modelPage-nav" style="padding: 18px;"></div> 
+					</div>
+
+				</div>
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="modelChoice()">选择</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="hint"></div>
+<script type="text/javascript" src="/iw/js/model/configPage.js"></script>
+</body>
+</html>

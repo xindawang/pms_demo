@@ -1,0 +1,378 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/myUtil.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+<script type="text/javascript" src="/iw/js/ajaxfileupload.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">供货管理</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">市场管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">新建供货项目</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<ul class="nav nav-tabs" id="myproj">
+				<li class="active"><a href="#basic">基本资 料</a>
+				<li><a href="#material">技术资料</a></li>
+				<li><a href="#approval">项目文件资料</a></li>
+				<li><a href="#export">出口合同</a></li>
+				<li><a href="#inside">内部合同</a></li>
+				<li><a href="#qa">问题&答复</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="basic">
+					<div class="includeHtml" data-url="../tpl/projDetail.html" data-callback="callback()" >
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-heading">项目进度</div>
+						<div class="panel-body">
+							<table id="process" class="">
+								<tr>
+									<td name="projStatusStyle" colspan="2"></td>
+									<td name="projStatusStyle" colspan="2"></td>
+									<td name="projStatusStyle" colspan="2"></td>
+									<td name="projStatusStyle" colspan="2"></td>
+									<td name="projStatusStyle" colspan="2"></td>
+									<td name="projStatusStyle" colspan="2"></td>
+									<td name="projStatusStyle" colspan="2"></td>
+									<td name="projStatusStyle" colspan="2"></td>
+									<td></td>
+								</tr>
+								<tr class="content">
+									<td><span  name="projStatus">立项</span></td>
+									<td>>></td>
+									<td><span  name="projStatus">谈判</span></td>
+									<td>>></td>
+									<td><span  name="projStatus">出口合同签订</span></td>
+									<td>>></td>
+									<td><span  name="projStatus">工厂验收</span></td>
+									<td>>></td>
+									<td><span  name="projStatus">阵地验收</span></td>
+									<td>>></td>
+									<td><span  name="projStatus">发运</span></td>
+									<td>>></td>
+									<td><span  name="projStatus">对外交验</span></td>
+									<td>>></td>
+									<td><span  name="projStatus">资料交付</span></td>
+									<td>>></td>
+									<td><span  name="projStatus">合同完成</span></td>
+								</tr>
+							</table>
+		
+		
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane" id="material">
+					<div class="top-actions">
+						<button type="button" class="btn btn-primary" onclick="" id="materialBtn" data-target="#fileModal" data-toggle="modal" >
+							<span class="glyphicon glyphicon-plus"></span><span name="" function="">增加</span>
+						</button>
+					</div>
+					<table class="table table-hover  table-condensed ">
+						<thead>
+							<tr>
+								<th width="50px">序号</th>
+								<th width="100px">名称</th>
+								<th width="200px">上传人</th>
+								<th width="100px">上传时间</th>
+								<th>备注</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="materialPageTemplate" style="display: none;">
+								<td name="RN"></td>
+								<td><a href="javascript:void" onclick="downMaterial(this)">
+									<span name="origName"></span>
+									<input type="hidden" name="id"/>
+									<input type="hidden" name="corpName"/>
+								</a></td>
+								<td><span name="custName" function="projCustNameValueTo"></span>
+								</td>
+								<td name="upat"></td>
+								<td name="descr"></td>
+								<td><button type="button" class="btn btn-danger" onclick="delMaterial(this)">
+										<input type="hidden" name="id"/>	
+										<span class="glyphicon glyphicon-remove"></span> 删除
+									</button></td>
+
+							</tr>
+						</tbody>
+					</table>
+					<input type="hidden" name="materialTotal" id="materialTotal" value=0> 
+					<input type="hidden" name="materialOffset" id="materialOffset" value=0> 
+					<input type="hidden" name="materialLimit" id="materialLimit" value=2>
+					<div class="row-fluid">
+						<div id="materialPage-nav" style="padding: 18px;"></div>
+					</div>
+					
+					<!-- 关联型号资料 -->
+					<table class="table table-hover  table-condensed " style="margin-top:10px;">
+						<thead>
+							<tr>
+								<th colspan="6">关联型号资料</th>
+							</tr>
+							<tr>
+								<th width="50px">序号</th>
+								<th width="100px">名称</th>
+								<th width="200px">上传人</th>
+								<th width="100px">上传时间</th>
+								<th>备注</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>技术规格书</td>
+								<td>张三 / 支持部 /华腾公司</td>
+								<td>2017/1/1 12：45</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>技术规格书</td>
+								<td>张三 / 支持部 /华腾公司</td>
+								<td>2017/1/1 12：45</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+
+
+				</div>
+				<div class="tab-pane" id="approval">
+					<div class="top-actions">
+						<button type="button" class="btn btn-primary" onclick="" id="approvalBtn" data-target="#fileModal" data-toggle="modal" >
+							<span class="glyphicon glyphicon-plus"></span><span name="" function="">增加</span>
+						</button>
+					</div>
+					<table class="table table-hover  table-condensed ">
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>名称</th>
+								<th>上传人</th>
+								<th>上传时间</th>
+								<th>备注</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="materialPageTemplate" style="display: none;">
+								<td name="RN"></td>
+								<td><a href="javascript:void" onclick="downMaterial(this)">
+									<span name="origName"></span>
+									<input type="hidden" name="id"/>
+								</a></td>
+								<td><span name="custName" function="projCustNameValueTo"></span>
+									<input type="hidden" name="corpName"/>
+								</td>
+								<td name="upat"></td>
+								<td name="descr"></td>
+								<td><button type="button" class="btn btn-danger" onclick="delMaterial(this)">
+										<input type="hidden" name="id"/>	
+										<span class="glyphicon glyphicon-remove"></span> 删除
+									</button></td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- ....... -->
+					<input type="hidden" name="mateTotal" id="mateTotal" value=0> 
+					<input type="hidden" name="mateOffset" id="mateOffset" value=0> 
+					<input type="hidden" name="mateLimit" id="mateLimit" value=2>
+					<div class="row-fluid">
+						<div id="matePage-nav" style="padding: 18px;"></div>
+					</div>
+					
+				</div>
+				<div class="tab-pane" id="export">
+				    <div class="top-actions">
+						<button type="button" class="btn btn-primary" onclick="locaOutContract()" >
+							<span class="glyphicon glyphicon-plus"></span> 增加出口合同
+						</button>
+					</div>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>合同号</th>
+								<th>客户</th>
+								<th>项目经理</th>
+								<th>签订时间</th>
+								<th>说明</th>
+								<th>状态</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="contractPageTemplate" style="display: none;">
+								<td name="RN"></td>
+								<td><a href="/iw/supply/sales/outContractDetail.html?id=#{id}&&cate=1"  name="id"><span name="contractNum"></span></a></td>
+								<td name="aParty"></td>
+								<td name="aManager"></td>
+								<td name="signAt"></td>
+								<td name="descr"></td>
+								<td name="status"></td>
+								
+							</tr>
+						</tbody>
+					</table>
+					<input type="hidden" name="contractTotal" id="contractTotal" value=0> 
+					<input type="hidden" name="contractOffset" id="contractOffset" value=0> 
+					<input type="hidden" name="contractLimit" id="contractLimit" value=2>
+					<div class="row-fluid">
+						<div id="contractPage-nav" style="padding: 18px;"></div>
+					</div>
+				</div>
+				<div class="tab-pane" id="inside">					 
+					<table class="table">
+						<thead>
+							<tr>
+								<th colspan="11">内容合同列表</th>								
+							</tr>
+							<tr>
+								<th>序号</th>
+								<th>出口合同编号</th>
+								<th>出口合同名称</th>
+								<th>内部合同编号</th>
+								<th>内部合同名称</th>
+								<th>供货方</th>
+								<th>项目经理</th>
+								<th>签订时间</th>
+								<th>说明</th>
+								<th>状态</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td></td>
+								<td></td>
+								<td><a href="#">内部合同1</a></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>履约中</td>								
+							</tr>
+						</tbody>
+					</table>
+				
+				</div>
+				<div class="tab-pane" id="qa">
+					<div class="top-actions">
+						<button type="button" class="btn btn-primary" onclick="locationQuestionDetail()">
+							<span class="glyphicon glyphicon-plus"></span> 创建问题
+						</button>
+					</div>
+
+					<div class="form-group form-inline search-box" style="zoom: 1; overflow: hidden; display: block;">
+						<label>
+							<input type="radio" name="type" value="全部" checked="checked"> 全部
+						</label>
+						<label>
+							<input type="radio" name="type" value="问题"> 问题
+						</label>
+						<label>
+							<input type="radio" name="type" value="答复"> 答复
+						</label>
+						<input type="text" class="form-control" style="" id="nameLike" />
+						<button type="button" class="btn btn-primary" onclick="$$('offset').value=0;_questionCommit();paginate();">
+							<span class="glyphicon glyphicon-search"></span> 搜索
+						</button>
+					</div>
+
+					<!-- list -->
+					<table class="table table-hover  table-condensed ">
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>问题</th>
+								<th>提出方</th>
+								<th>提出时间</th>
+								<th>状态</th>
+								<th>答复人</th>
+								<th>答复时间</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="questionPageTemplate" style="display: none;">
+								<input type="hidden" name="ID"/>
+								<input type="hidden" name="PROJID"/>
+								<input type="hidden" name="NO"/>
+								<td><span name="RN"></span></td>
+								<td><a name="ID" href="qaShow.html?questionId=#{ID}"><span name="NAME"></span></a></td>
+								<td><span name="ASKPARTY"></span></td>
+								<td><span name="ASKAT"></span></td>
+								<td><span name="STATUS"></span></td>
+								<td><span name="replierName"></span></td>
+								<td><span name="replierNewat"></span></td>
+								<td><button type="button" class="btn btn-primary" onclick="locationQuestion(this)">
+										<span class="icon-edit"></span> 编辑
+										<input type="hidden" name="NO"/>
+									</button>
+									<button type="button" class="btn btn-primary" onclick="toAnswerShow(this)">
+										<span class="icon-edit"></span> 答复
+										<input type="hidden" name="NO"/>
+									</button>									
+								</td>
+							</tr>
+						</tbody>
+
+					</table>
+					<input type="hidden" name="total" id="total" value=0> 
+					<input type="hidden" name="offset" id="offset" value=0> 
+					<input type="hidden" name="limit" id="limit" value=2>
+					<div class="row-fluid">
+						<div id="page-nav" style="padding: 18px;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<div class="hint"></div>
+	</div>
+	<div class="includeHtml" data-url="../tpl/modelModal.html"></div>
+	<div class="includeHtml" data-url="../tpl/outContractModal.html"></div>
+    <div class="includeHtml" data-url="../tpl/innerContractModal.html"></div>
+    <div class="includeHtml" data-url="../tpl/userModal.html"></div>
+    <div class="includeHtml" data-url="../tpl/fileModal.html"></div>
+	<script type="text/javascript" src="/iw/js/supply/util.js"></script>
+	<script type="text/javascript" src="/iw/js/supply/market/projDetail.js"></script>
+</body>
+</html>

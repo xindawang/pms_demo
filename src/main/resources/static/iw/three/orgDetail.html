@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home "></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">公共管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active">创建企业</li>
+			</ul>
+		</div>
+		<!-- Main content -->
+		<div class="body">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="glyphicon glyphicon-plus"> </span> 企业基本信息
+				</div>
+				<div class="panel-body">
+					<input id="id" type="hidden" name="corp.id" value=0 class="form-control input-sm" />
+
+					<table class="table">
+						<tr>
+							<th width="15%">编码：</th>
+							<td width="35%"><input id="code" type="text" name="corp.code" disabled class="form-control input-sm" /></td>
+							<th width="15%">名称：</th>
+							<td width="35%"><input id="name" type="text" name="corp.name" class="form-control input-sm" /></td>
+						</tr>
+						<tr>
+							<th>简称：</th>
+							<td><input id="shortName" type="text" name="corp.shortName" class="form-control input-sm" /></td>
+							<th>统一社会信用代码：</th>
+							<td><input id="bizCode" type="text" name="corp.bizCode" class="form-control input-sm" /></td>
+						</tr>
+						<!--
+						<tr>
+							<th>级别：</th>
+							<td><select name="corp.lvl" id="lvl" disabled class="form-control input-sm">
+									<option value="1">级别1</option>
+									<option value="2">级别2</option>
+									<option value="3">级别3</option>
+							</select></td>
+							<th>所属机构代码：</th>
+							<td><input id="parentId" type="text" name="corp.parentId" class="form-control input-sm" value="....." disabled /></td>
+						</tr>
+						-->
+						<tr>
+							<th>状态：</th>
+							<td><select name="corp.status" id="status" class="form-control input-sm">
+									<option value="正常">正常</option>
+									<option value="初始">初始</option>
+									<option value="已禁用">已禁用</option>
+							</select></td>
+							<th></th>
+							<td></td>
+						</tr>
+						<tr>
+							<th>简介：</th>
+							<td colspan="3"><textarea rows="3" id="descr" name="corp.descr" cols="50" class="form-control input-sm" style="width:95%"></textarea></td>
+						</tr>
+					</table>
+
+				</div>
+				<div class="panel-heading">
+					<span class="glyphicon glyphicon-plus"> </span> 企业联系信息
+				</div>
+				<div class="panel-body">
+					<table class="table">
+						<tr>
+							<th width="15%">国家：</th>
+							<td width="35%"><select name="corp.country" id="country" class="form-control input-sm">
+								<option value="中国">中国 </option>
+								<option value="蒙古">蒙古 </option>
+								<option value="朝鲜">朝鲜 </option>
+								<option value="老挝">老挝 </option>
+								<option value="柬埔寨">柬埔寨 </option>
+								<option value="缅甸">缅甸 </option>
+								<option value="泰国">泰国 </option>
+								<option value="马来西亚">马来西亚 </option>
+								<option value="文莱">文莱 </option>
+								<option value="印度尼西亚">印度尼西亚 </option>
+								<option value="尼泊尔">尼泊尔 </option>
+								<option value="不丹">不丹 </option>
+								<option value="孟加拉国">孟加拉国 </option>
+								<option value="巴基斯坦">巴基斯坦 </option>
+								<option value="斯里兰卡">斯里兰卡 </option>
+								<option value="马尔代夫">马尔代夫 </option>
+								<option value="阿富汗">阿富汗 </option>
+								<option value="伊拉克">伊拉克 </option>
+								<option value="伊朗">伊朗 </option>
+								<option value="叙利亚">叙利亚 </option>
+								<option value="约旦">约旦 </option>
+								<option value="黎巴嫩">黎巴嫩 </option>
+								<option value="巴勒斯坦">巴勒斯坦 </option>
+								<option value="沙特阿拉伯">沙特阿拉伯 </option>
+								<option value="巴林">巴林 </option>
+								<option value="卡塔尔">卡塔尔 </option>
+								<option value="科威特">科威特 </option>
+								<option value="阿拉伯联合酋长国">阿拉伯联合酋长国 </option>
+								<option value="阿曼">阿曼 </option>
+								<option value="也门">也门 </option>
+								<option value="格鲁吉亚">格鲁吉亚 </option>
+								<option value="亚美尼亚">亚美尼亚 </option>
+								<option value="阿塞拜疆">阿塞拜疆 </option>
+								<option value="土耳其">土耳其 </option>
+								<option value="塞浦路斯">塞浦路斯 </option>
+								<option value="埃及">埃及 </option>
+								<option value="利比亚">利比亚 </option>
+								<option value="苏丹">苏丹 </option>
+								<option value="突尼斯">突尼斯 </option>
+								<option value="阿尔及利亚">阿尔及利亚 </option>
+								<option value="摩洛哥">摩洛哥 </option>
+								<option value="亚速尔群岛">亚速尔群岛 </option>
+								<option value="马德拉群岛">马德拉群岛 </option>
+								<option value="埃塞俄比亚">埃塞俄比亚 </option>
+								<option value="厄立特里亚">厄立特里亚 </option>
+								<option value="索马里">索马里 </option>
+								<option value="吉布提">吉布提 </option>
+								<option value="肯尼亚">肯尼亚 </option>
+								<option value="坦桑尼亚">坦桑尼亚 </option>
+								<option value="乌干达">乌干达 </option>
+								<option value="卢旺达">卢旺达 </option>
+								<option value="布隆迪">布隆迪 </option>
+								<option value="塞舌尔">塞舌尔 </option>
+								<option value="乍得">乍得 </option>
+								<option value="中非">中非 </option>
+								<option value="喀麦隆">喀麦隆 </option>
+								<option value="赤道几内亚">赤道几内亚 </option>
+								<option value="加蓬">加蓬 </option>
+								<option value="刚果共和国">刚果共和国 </option>
+								<option value="刚果民主共和国">刚果民主共和国 </option>
+								<option value="圣多美及普林西比">圣多美及普林西比 </option>
+								<option value="毛里塔尼亚">毛里塔尼亚 </option>
+								<option value="塞内加尔">塞内加尔 </option>
+								<option value="冈比亚">冈比亚 </option>
+								<option value="马里">马里 </option>
+								<option value="布基纳法索">布基纳法索 </option>
+								<option value="几内亚">几内亚 </option>
+								<option value="几内亚比绍">几内亚比绍 </option>
+								<option value="佛得角">佛得角 </option>
+								<option value="塞拉利昂">塞拉利昂 </option>
+								<option value="利比里亚">利比里亚 </option>
+								<option value="科特迪瓦">科特迪瓦 </option>
+								<option value="加纳">加纳 </option>
+								<option value="多哥">多哥 </option>
+								<option value="贝宁">贝宁 </option>
+								<option value="尼日尔">尼日尔 </option>
+								<option value="加那利群岛">加那利群岛 </option>
+								<option value="赞比亚">赞比亚 </option>
+								<option value="安哥拉">安哥拉 </option>
+								<option value="津巴布韦">津巴布韦 </option>
+								<option value="马拉维">马拉维 </option>
+								<option value="莫桑比克">莫桑比克 </option>
+								<option value="博茨瓦纳">博茨瓦纳 </option>
+								<option value="纳米比亚">纳米比亚 </option>
+								<option value="南非">南非 </option>
+								<option value="斯威士兰">斯威士兰 </option>
+								<option value="莱索托">莱索托 </option>
+								<option value="马达加斯加">马达加斯加 </option>
+								<option value="科摩罗">科摩罗 </option>
+								<option value="毛里求斯">毛里求斯 </option>
+							</select></td>
+							<th width="15%">省/直辖市/自治区：</th>
+							<td width="35%"><select name="corp.province" id="province" class="form-control input-sm">
+									<option value="北京">北京</option>
+									<option value="天津">天津</option>
+									<option value="上海">上海</option>
+									<option value="重庆">重庆</option>
+									<option value="河北">河北</option>
+									<option value="山西">山西</option>
+									<option value="辽宁">辽宁</option>
+									<option value="吉林">吉林</option>
+									<option value="黑龙江">黑龙江</option>
+									<option value="江苏">江苏</option>
+									<option value="浙江">浙江</option>
+									<option value="安徽">安徽</option>
+									<option value="福建">福建</option>
+									<option value="江西">江西</option>
+									<option value="山东">山东</option>
+									<option value="河南">河南</option>
+									<option value="湖北">湖北</option>
+									<option value="湖南">湖南</option>
+									<option value="广东">广东</option>
+									<option value="海南">海南</option>
+									<option value="四川">四川</option>
+									<option value="贵州">贵州</option>
+									<option value="云南">云南</option>
+									<option value="陕西">陕西</option>
+									<option value="甘肃">甘肃</option>
+									<option value="青海">青海</option>
+									<option value="广西">广西</option>
+									<option value="内蒙">内蒙古</option>
+									<option value="西藏">西藏</option>
+									<option value="宁夏">宁夏</option>
+									<option value="新疆">新疆</option>
+									<option value="台湾">台湾</option>
+									<option value="香港">香港</option>
+									<option value="澳门">澳门</option>
+							</select></td>
+						</tr>
+						<tr>
+							<th>地址：</th>
+							<td><input id="addr" type="text" name="corp.addr" class="form-control input-sm" /></td>
+							<th>邮编：</th>
+							<td><input id="zip" type="text" name="corp.zip" class="form-control input-sm" /></td>
+						</tr>
+						<tr>
+							<th>联系人：</th>
+							<td><input id="contactor" type="text" name="corp.contactor" class="form-control input-sm" /></td>
+							<th>联系电话：</th>
+							<td><input id="contactorPhones" type="text" name="corp.contactorPhones" class="form-control input-sm" /></td>
+						</tr>
+						<tr>
+							<th>传真：</th>
+							<td><input id="faxes" type="text" name="corp.faxes" class="form-control input-sm" /></td>
+							<th>电子邮件：</th>
+							<td><input id="email" type="text" name="corp.email" class="form-control input-sm" /></td>
+						</tr>
+					</table>
+				</div>
+				<div class="panel-footer" style="text-align:center;">
+					<button type="button" onclick="makeCorp()" class="btn btn-primary" ><span class="glyphicon glyphicon-ok"></span> 保存</button>
+					<button type="button" class="btn btn-default" onclick="history.back(-1)"><span class="glyphicon glyphicon-remove"></span> 取消</button>				
+				</div>														
+
+			</div>
+
+
+		</div>
+	</div>
+	<div class="hint"></div>
+	<script type="text/javascript" src="/iw/js/three/orgdetail.js"></script>
+</body>
+</html>

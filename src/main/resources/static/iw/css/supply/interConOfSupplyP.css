@@ -1,0 +1,70 @@
+.myTable{
+	border:1px solid #dddddd;
+}
+.tableForInformation{
+	width: 1300px;	
+	margin-left:20px;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.table tbody tr th{
+	background-color:#f5f5f5;
+}
+
+.tableForInnerCon{
+	width: 1600px;	
+	margin-left:20px;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.tableForInnerCon tbody tr td{
+	/* height: 55px; */
+	text-align:center;
+}
+
+.tableForInnerCon tbody tr th{
+	text-align:center;	
+}
+
+.project{
+	height:100px;
+	margin-left:20px;
+	margin-top:10px;
+	margin-bottom:10px;
+	/* background-color:#f5f5f5; */
+}
+.myLi{
+	height:25px;
+	margin-left:20px;
+	margin-top:30px;
+}
+.myLiText{
+	height:40px;
+	margin-left:20px;
+	margin-top:3px;
+}
+.myLi li{
+	width: 150px;
+	height:25px;
+	float:left;
+	margin-left:5px;
+	border:1px solid #dddddd
+}
+
+.grayText{
+	background-color:#f5f5f5;
+}
+
+.blueText{
+	background-color:#3388CB;
+}
+
+.myLiText li{
+	width: 150px;
+	height:25px;
+	float:left;
+	margin-left:5px;
+	text-align:right;
+}

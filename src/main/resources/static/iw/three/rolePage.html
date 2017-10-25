@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/underscore-min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.min.css"  />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css"/>
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home "></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">公共管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active">角色管理</li>
+			</ul>
+		</div>
+		<!-- Main content -->
+		<div class="body">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="glyphicon glyphicon-search"> </span> 角色查询
+				</div>
+				
+					 <table class="table formtable">
+						<tr>
+							<th>角色名称：</th>
+							<td style="width:280px;"><input type="text"  class="form-control"  id="roleName"/></td>		
+							<td>
+							<button class="btn btn-primary" onclick="$$('offset').value=0;_commit();paginate();">
+								<span class="glyphicon glyphicon-search"></span> 查询
+							</button>
+							<button class="btn btn-default" onclick="window.location.reload(true)">
+							<span class="glyphicon glyphicon-refresh"></span> 重置
+							</button>
+							</td>					
+						</tr>
+						<tr>
+							
+						</tr>
+					  </table>
+				
+		    </div>
+		    <div class="operator">
+		    	<button class="btn btn-primary "  data-target="#detailForm" data-toggle="modal" roles="three.hisRoles">
+						<span class="glyphicon glyphicon-plus"></span> 新建
+				</button>
+		    </div>
+		    <table id="roleAll" class="table table-hover table-striped table-condensed">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>名称</th>
+								<th>描述</th>
+								<th>状态</th>
+								<th class="center">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="rolePageTemplate" style="display: none;">
+								<td><span name="id"></span></td>
+								<td><span name="name"></span></td>
+								<td><span name="descr"></span></td>
+								<td><span class="enabled" name="enabled" id="enableds" function=roleStatusValueTo></span></td>
+								<td class="center">								
+									<button  class="btn btn-primary btn-xs"  data-target="#roleUsersForm" data-toggle="modal" onclick="custsOfRole(this)" roles="three.hisRoles"><span class="glyphicon glyphicon-user"></span> 角色用户</button>
+									<button  class="btn btn-primary btn-xs"  data-target="#rolePermForm" data-toggle="modal"  onclick="rolePerms(this)" roles="three.hisRoles"><span class="glyphicon glyphicon-edit"></span> 设置权限</button>
+									<button  class="btn btn-primary btn-xs"  data-target="#detailForm" data-toggle="modal" onclick="roleDetail(this)" roles="three.hisRoles"><span class="glyphicon glyphicon-edit"></span> 编辑</button>
+									<button  class="btn btn-danger btn-xs"  onclick="modifyEnabled(this)" name="enabled"  function=roleStatusButton roles="three.hisRoles"></button>									
+							    </td>
+							</tr>
+						</tbody>
+					</table>
+		  </div> 
+	</div>
+	
+	<div class="modal fade" id="detailForm" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal"  aria-hidden="true">&times;</button>
+					新增/编辑 角色				
+				</div>
+				
+					<input type="hidden" name="role.id" id="id"/>
+					<input type="hidden" name="role.enabled" id="enabled"/>
+					<table class="table formtable">
+						<tr>
+							<th style="width:150px;">角色名称:</th>
+							<td><input type="text" name="role.name" id="name" value="" class="form-control input-text " required="true" /></td>
+						</tr>
+						<tr>
+							<th style="width:150px;">角色描述:</th>
+							<td><input type="text" name="role.descr" value="" id="descr" class="form-control input-text"  /></td>
+						</tr>							
+					</table>				
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="makeRole()"><span class="glyphicon glyphicon-ok"></span>保存</button>
+					<button type="button" class="btn btn-default"  data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>关闭</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="rolePermForm" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="btn btn-primary" onclick="makeRolePerms(this);">保存</button>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<span id="currRoleName"></span>角色权限					
+				</div>
+				<div class="modal-body">
+					<div class="panel panel-default" id="grpPermForClone" style="display: none;">
+					    <div class="panel-heading" name="grpName"></div>
+					    <div class="panel-body">
+					    	<ul class="list" name="xxx">
+								<li name="xxxTemplate" style="display: none;">
+									<label><input type="checkbox" name="idSelected" value="" function="idSelectedValueTo" /><span name="name"></span></label>
+								</li>
+						    </ul>
+					    </div>						
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="makeRolePerms(this);">保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="roleUsersForm" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="window.location.reload(true)">&times;</button>
+					角色用户					
+				</div>
+				<div class="modal-body">
+					<table class="table table-hover" name="custsOfRole">
+						<thead>
+							<tr class="active">								
+								<th>机构/部门</th>
+								<th>用户名</th>					
+								<th>身份证号</th>					
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="custsOfRoleTemplate" style="display: none;">								
+								<td><span name="corpName"></span></td>
+								<td><span name="custName"></span></td>
+								<td><span name="idNo"></span></td>
+							</tr>							
+						</tbody>
+					</table>				
+				</div>
+				
+			</div>
+		</div>
+	</div>		
+	<div class="hint"></div>
+	
+</body>
+<script type="text/javascript" src="/iw/js/three/rolePage.js"></script>
+<script type="text/javascript" src="/iw/js/rolePerms.js"></script>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+</html>

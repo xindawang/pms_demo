@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/myUtil.js"></script>
+<script type="text/javascript" src="/iw/js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">供货管理</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">市场管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">创建问题</li>
+				
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="top-actions">
+				<button type="button" id="quesCommit" class="btn btn-primary " value="已提交"  onclick="makeQuestion(this)">
+					<span class="icon-ok"></span> 提交
+				</button>
+				<button type="button" class="btn btn-primary " id="quesSave" value="草稿" onclick="makeQuestion(this)">
+					<span class="icon-save"></span> 保存草稿
+				</button>
+				<button type="button" class="btn btn-default " onclick="location.href='projDetail.html#qa'">
+					<span class="icon-return"></span> 返回项目详情
+				</button>
+			</div>
+			
+			<div class="panel panel-primary" style="margin-bottom:5px;">
+				<div class="panel-heading">****项目 的问题</div>
+			</div>
+			
+
+			<ul id="questionTab" class="nav nav-tabs" role="tablist">
+				<li  class="active"><a  data-toggle="tab" href="#basic">基本信息</a></li>
+				<li ><a  data-toggle="tab"  href="#relationProduct">相关产品</a></li>
+				<li ><a  data-toggle="tab" href="#answer">指定答复人</a></li>
+			</ul>
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="basic">
+					<table class="table tableform">
+						<tr>
+							<th>提出方：</th>
+							<td><input type="text" class="form-control" id="askParty" name="question.askParty"/></td>
+						</tr>
+						<tr>
+							<th>提出人：</th>
+							<td><input type="text" class="form-control" id="asker" name="question.asker" /></td>
+						</tr>
+						<tr>
+							<th>电话：</th>
+							<td><input type="text" class="form-control" id="phone" name="question.phone"/></td>
+						</tr>
+						<tr>
+							<th>传真：</th>
+							<td><input type="text" class="form-control" id="fax" name="question.fax"/></td>
+						</tr>
+						<tr>
+							<th>邮件地址：</th>
+							<td><input type="text" class="form-control" id="email" name="question.email"/></td>
+						</tr>
+						<tr>
+							<th>征询时间：</th>
+							<td><input type="text" class="form-control" id="askAt" name="question.askAt"/></td>
+						</tr>
+						<tr>
+							<th>简述</th>
+							<td><input type="text" class="form-control" id="name" name="question.name"/></td>
+						</tr>
+						<tr>
+							<th>问题描述</th>
+							<td><textarea style="width:100%;height:100px;" class="form-control" id="descr" name="question.descr"></textarea></td>
+						</tr>
+						<tr>
+							<th>问题附件：</th>
+							<td>
+								<table class="table  table-hover  table-condensed">
+									<thead>
+										<tr>
+											<th>附件</th>
+											<th>说明</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody id="appendMaterialTemplate">
+										<tr name="materialTemplate" style="display: none;">
+											<td><a href="javascript:void" onclick="downMaterial(this)">
+												<span name="origName"></span>
+												<input type="hidden" name="id"/>
+											</a></td>
+											<td><span name="descr"></span></td>
+											<td>
+											<button type="button" class="btn btn-danger " onclick="delMaterial(this)">
+												<span class="icon-remove"></span> 删除
+												<input type="hidden" name="id"/>			
+											</button>
+											</td>											
+										</tr>										
+									</tbody>
+									<tbody>
+										<tr>
+											<td></td>
+											<td></td>
+											<td>
+											<button type="button" class="btn btn-primary " onclick=""  data-target="#fileModal" data-toggle="modal">
+												<span class="icon-upload"></span> 上传
+											</button>											
+											</td>											
+										</tr>
+								   </tbody>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div id="relationProduct" class="tab-pane">
+					<div class="top-actions">
+						<button type="button" class="btn btn-primary " onclick="prodLibPage();prodLibPaginate();" data-target="#productModal" data-toggle="modal" >
+							<span class="icon-plus"></span> 增加
+						</button>					
+					</div>
+				    <table class="table table-hover  table-condensed">
+						<thead>							
+							<tr class="">
+								<th width="">NSN</th>
+								<th width="">名称</th>								
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="projLibTemplate" id="clone" style="display: none;">
+								<td name="no" style="display: none;"></td>								
+								<td name="nsn"></td>								
+								<td name="name"></td>
+								<td><button type="button" class="btn btn-danger"  data-target="#projModal" data-toggle="modal" onclick="deleteProdLib(this)">删除</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="answer" class="tab-pane">
+					<div class="top-actions">
+						<button type="button" class="btn btn-primary" onclick="clikCust()" data-target="#answerModal" data-toggle="modal"><span class="icon-plus"></span> 指定答复人</button>
+					</div>
+					<table class="table">
+						<thead >
+							<tr>
+								<th>答复人</th>
+								<th>附加信息</th>								
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="replierTemplate" style="display: none;">
+								<td  style="display: none;"><span name="replierId"></span></td>
+								<td ><span name="name"></span></td>
+								<td ><span name="descr"></span></td>
+							</tr>
+							<tr name="replierClone"></tr>
+						</tbody>				
+					
+					</table>
+				</div>
+				
+			</div>
+			
+
+		</div>
+	</div>
+	
+	<div id="answerModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header modal-primary">
+					指定答复人
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+
+				<div class="modal-body" >
+					<table class="table tableform">
+						<tr>
+							<th>答复人：</th>
+							<td>
+								<div class="input-group ">
+										<input type="hidden" name="" id="createrId" onchange="" value=""/>
+										<input type="text" class="form-control" name="configDetail.prodLibName" value="" id="custName" readonly />
+										<span class="input-group-addon" data-target="#userModal" data-toggle="modal"  onclick="$$('custOffset').value=0;_custCommit();custPaginate();" data-toggle="modal"> ... </span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>附加信息：</th>
+							<td>
+								<textarea rows="" cols="" style="width:100%;height:80px;" id="descrs"></textarea>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="saveReplier()">
+						<span class="icon-save"></span> 保存
+					</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+					</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div  class="hint"></div>
+	<div class="includeHtml" data-url="../tpl/userModal.html"></div>
+	<div class="includeHtml" data-url="../tpl/fileModal.html"></div>
+	<div class="includeHtml" data-url="../tpl/productModal.html"></div>
+	<script type="text/javascript" src="/iw/js/supply/market/userModal.js"></script>    
+	<script type="text/javascript" src="/iw/js/supply/market/questionDetail.js"></script>    
+	<script type="text/javascript" src="/iw/js/supply/util.js"></script> 
+</body>
+</html>

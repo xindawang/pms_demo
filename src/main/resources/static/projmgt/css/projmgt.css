@@ -1,0 +1,107 @@
+
+html {
+	height: 100%;
+	overflow: auto !important;
+}
+
+#top {
+	position:relative !important;
+	width: 100%;
+	height: 100px;
+	background: url("/iw/images/top_bg.png") repeat-x;
+}
+
+#left {
+	position:relative !important;
+	top: auto !important;
+	float: left;
+}
+
+.content {
+	margin-left: 205px;
+	border-top: #fff solid 1px;
+	padding-bottom: 30px;
+	overflow:hidden;
+}
+
+/* 输入文本框样式 */
+.atext {
+	height: 100%;
+	width: 100%;
+	border: none;
+	zoom: 1;
+	outline: medium;
+}
+
+.page-nav {
+	float: left;
+}
+
+button.jump {
+	color: #666;
+	font-size: 12px;
+	line-height: 20px;
+	font-weight: normal;
+	text-align: center;
+	border: 1px solid #BBB;
+	min-width: 14px;
+	border-radius: 3px;
+	margin-left: 5px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	background: #efefef; /* Old browsers */
+	background: -moz-linear-gradient(top, #ffffff 0%, #efefef 100%);
+	/* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff),
+		color-stop(100%, #efefef)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ffffff 0%, #efefef 100%);
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ffffff 0%, #efefef 100%);
+	/* Opera11.10+ */
+	background: -ms-linear-gradient(top, #ffffff 0%, #efefef 100%);
+	/* IE10+ */
+	background: linear-gradient(top, #ffffff 0%, #efefef 100%); /* W3C */
+}
+
+input.page {
+	width: 20px;
+	text-align: center;
+	margin: 0 5px 0 5px;
+}
+
+select.selectbox {
+	margin-left: 1%;
+	margin-right: 2%;
+	height: 80%;
+	width: 20%;
+}
+
+#createNewPlan {
+	position: relative;
+	left: 500px;
+	margin: 20px;
+}
+
+.btn-primary.disabled, .btn-primary[disabled], fieldset[disabled] .btn-primary,
+	.btn-primary.disabled:hover, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary:hover,
+	.btn-primary.disabled:focus, .btn-primary[disabled]:focus, fieldset[disabled] .btn-primary:focus,
+	.btn-primary.disabled:active, .btn-primary[disabled]:active, fieldset[disabled] .btn-primary:active,
+	.btn-primary.disabled.active, .btn-primary[disabled].active, fieldset[disabled] .btn-primary.active
+	{
+	background-color: darkgray;
+	}
+
+
+.table td,.table thead th {
+	text-align: center;
+}	
+
+.tree-node {
+	text-align: left;
+}	
+
+.indent {
+	display:inline !important;
+	width:14px;
+	height:16px;
+	line-height:16px;
+}

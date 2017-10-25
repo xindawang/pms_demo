@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+
+<!--[if lte IE 6]>
+<script  type="text/JavaScript" src="/iw/js/json2.js"></script>
+<![endif]-->
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home "></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">公共管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active">日志</li>
+			</ul>
+		</div>
+		<!-- Main content -->
+		<div class="body">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="glyphicon glyphicon-search"> </span> 日志查询
+				</div>
+				<div class="panel-body">
+					<table class="table formtable">
+						<tr>
+							<th>操作者：</th>
+							<td><input type="text" id="loginNames" class="form-control" /></td>
+							<th>动作：</th>
+							<td><input type="text" id="logAction" class="form-control" /></td>
+						</tr>
+						<tr>
+							<th>领域：</th>
+							<td colspan="3"><input type="text" id="logDomain" class="form-control" /></td>
+						</tr>
+						<tr>
+							<td colspan="4" class="oper">
+								<button class="btn btn-primary " onclick="$$('offset').value=0;_commit();paginate();">
+									<span class="glyphicon glyphicon-search"></span> 查询
+								</button>
+								<button class="btn btn-default" onclick="window.location.reload(true)"><span class="glyphicon glyphicon-refresh"></span> 重置</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<table class="table table-hover table-striped table-condensed" name="logPage">
+				<thead>
+					<tr>
+
+						<th>操作者</th>
+						<th>时间</th>
+						<th>IP地址</th>
+						<th>领域</th>
+						<th>动作</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr name="logPageTemplate" style="display: none;">
+						<input type="hidden" value="" name="id" />
+						<input type="hidden" name="infoBefore" />
+						<input type="hidden" name="infoAfter" />
+						<td><span name="loginName"></span></td>
+						<td><span name="newat"></span></td>
+						<td><span name="loginIp"></span></td>
+						<td><span name="domain"></span></td>
+						<td><span name="action"></span></td>
+						<td>
+							<button class="btn btn-primary btn-xs" data-target="#detailForm" data-toggle="modal" onclick="log(this)">
+								<span class="glyphicon glyphicon-list"></span> 详细
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<input type="hidden" name="total" id="total" value=0> <input type="hidden" name="offset" id="offset" value=0> <input type="hidden" name="limit" id="limit" value=10>
+			<div class="row-fluid">
+				<div id="page-nav" style="padding: 18px;"></div>
+			</div>
+
+		</div>
+
+		<div class="modal fade" id="detailForm" tabindex="-1" role="dialog" aria-hidden='true'>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">						
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						查看<span id="currLoginName">****</span>动作详情
+					</div>
+					<div class="modal-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="col-2">动作前：</th>
+									<th class="col-2">动作后：</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><textarea id="currInfoBefore" class="form-control" style="width:100%;height:150px;" id="infoBefore" name="infoBefore">								
+								    </textarea></td>
+									<td><textarea id="currInfoAfter" class="form-control" style="width:100%;height:150px;" id="infoAfter" name="infoAfter">									
+								    </textarea></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+<script type="text/javascript" src="/iw/js/three/logPage.js"></script>
+</html>
+

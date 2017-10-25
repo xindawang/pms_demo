@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+    <title>武器装备保障平台</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/projmgt/js/common/env.js"></script>
+    <script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script>
+var paramList = window.location.search.substring(1).split('&');
+var category
+var sourceId
+for (i in paramList) {
+    var param = paramList[i]
+    param = param.split('=')
+    if (param[0] == 'category')
+    	category = param[1]
+    if(param[0] == 'sourceId')
+    	sourceId = param[1]	    	
+}	
+
+$(function () {
+//初始化计划模板列表
+$('#universalSchedule').append('<option value=' + 0 + '>' + '创建空计划' + '</option>')  
+$.ajax({
+    type: 'GET',
+    url: '/ih/universal-schedules',
+    data: {
+        pageSize: 0,
+        page: 0
+    },
+    dataType: 'json',
+    success: function (msg) {
+        for (var i in msg.list) {
+            var univScheduleId = msg.list[i].id
+            var univScheduleName = msg.list[i].name              
+            $('#universalSchedule').append('<option value=' + univScheduleId + '>' + univScheduleName + '</option>')
+        }
+
+    }
+})
+
+$('#addSchedule').click(function(){
+	var univScheduleId =$('#universalSchedule').val()
+	if(univScheduleId==0){
+		window.location = "/projmgt/plan/compilation/createPlan.html?category=" +category+"&sourceId="+sourceId
+	}else {
+        window.location = "/projmgt/plan/compilation/createPlan.html?univScheduleId=" + univScheduleId+"&category=" +category+"&sourceId="+sourceId
+    }
+})
+})
+</script>
+
+</head>
+<body>
+<div id="top" class="top"></div>
+
+<div id="left" class="left"></div>
+
+<div class="content">
+    <div class="content-header">
+        <ul class="breadcrumb">
+            <li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+            <li class="split">&gt;</li>
+            <li><a href="#">项目管理</a></li>
+            <li class="split">&gt;</li>
+            <li class="active">新增计划</li>
+        </ul>
+    </div>
+	<form class="form-horizontal panel-body" id="addPlanByModelForm" method="post" role="form">
+		<div class="container-fluid">
+			<div class="form-group">
+				<label class="col-md-2 control-label">计划模板</label>
+				<div class="col-md-5">
+					<select id="universalSchedule" class="form-control" multiple style="overflow-y: scroll; height: 200px; width: 100%">
+					</select>
+				</div>			
+			</div>
+			<div class="form-group">
+				<div class="col-md-2 col-md-offset-3">
+                        <button id="addSchedule" class="btn btn-primary" type="button">创建新计划</button>
+				</div>			
+			</div>			
+		</div>
+	</form>
+	
+
+   
+
+</div>
+</body>
+</html>

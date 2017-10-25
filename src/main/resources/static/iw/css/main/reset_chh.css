@@ -1,0 +1,19 @@
+@charset "utf-8";
+/* CSS Document */
+
+html, body, div, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, cite, code, del, em, img, q, small, strong, sub, sup, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, tr, td,input,select{margin:0; padding:0;line-height:normal; height:auto;font-family:Microsoft Yahei, Arial, Helvetica, sans-serif; color:#717171; font-size:16px;}
+header, footer, article, section, nav, menu, hgroup {display: block;clear: all; margin:0; padding:0; border:none;}
+body{ font: normal 16px Microsoft Yahei, Arial, Helvetica, sans-serif; background:#fff;}
+table{border-collapse:collapse; border-spacing:0;}
+ol,ul{list-style:none;}
+img{border:0 none;}
+input{padding:0; outline:none;}
+a{ text-decoration:none;color:#717171;}
+.f_left{ float:left; display:inline;}
+.f_right{ float:right;}
+.t_left{ text-align:left;}
+.t_center{ text-align:center;}
+.t_right{ text-align:right;}
+.clear{ clear:both;}
+a{blr:expression(this.onFocus=this.blur())}
+a{outline:none;}

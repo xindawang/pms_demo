@@ -1,0 +1,42 @@
+<!-- 外部合同下的询价单列表 -->
+<table class="table">
+	<thead>
+		<tr>
+			<th>出口询价单号</th>
+			<th>询价方</th>
+			<th>询价方联系人</th>
+			<th>供货商</th>
+			<th>项目经理</th>
+			<th>询价时间</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody name="inquiryPageTemplate" style="display:none;">
+		<tr>
+			<td ><a name="id" href='outInquiryDetail.html?id=#{id}'> <span name="no"></span></a></td>
+			<td name="aParty"></td>
+			<td name="aManager"></td>
+			<td name="corpName"></td>
+			<td name="name"></td>
+			<td name="newat"></td>
+			<td>
+				<button type="button" class="btn btn-primary " onclick="location.href='innerInquiryDetail.html?outInquiryId=#{outInquiryId}'" name="outInquiryId">
+					<span class="icon-plan"></span> 查看内部询价单
+				</button>
+				<button type="button" class="btn btn-primary " onclick="location.href='outQuoteNew.html?id=#{id}'" name="id">
+					<span class="icon-plan"></span> 报价
+				</button>
+				<button type="button" class="btn btn-primary " onclick="" data-target="#createInnerSalesListModal" data-toggle="modal">
+					<span class="icon-plan"></span> 从内部报价单生成
+				</button>
+				
+			</td>
+		</tr>
+	</tbody>
+</table>
+	<input type="hidden" name="total" id="total" value=0>
+	<input type="hidden" name="inquiryOffset" id="inquiryOffset" value=0>
+	<input type="hidden" name="inquiryLimit" id="inquiryLimit" value=10>
+	<div class="row-fluid"> 
+		<div id="inquiryPage-nav" style="padding: 18px;"></div> 
+	</div>

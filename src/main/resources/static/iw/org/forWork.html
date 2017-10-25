@@ -1,0 +1,236 @@
+<div class="panel panel-default" style="width: 70%;">
+
+	<div class="tab-content" style="padding-top: 20px;">
+		<div role="tabpanel" class="tab-pane active" id="nsn">
+			<div class="form-group form-inline search-box"
+				style="zoom: 1; overflow: hidden; display: block;">
+				<input type="text" class="form-control" id="nameLike" placeholder="请输入传递人、标题"/>
+				<button type="button" class="btn btn-primary "
+					onclick="$$('offset').value=0;_commit();paginate();">
+					<span class="glyphicon glyphicon-search"></span> 搜索
+				</button>
+			</div>
+			<div class="form-group form-inline" style="margin-bottom: 0;">
+				<label>类别：</label> <label> <input type="checkbox"
+					name="idSelected" value="代办类别" /> 代办类别
+				</label> <label> <input type="checkbox" name="idSelected"
+					value="代办类别" /> 代办类别
+				</label> <label> <input type="checkbox" name="idSelected"
+					value="代办类别" /> 代办类别
+				</label> <label> <input type="checkbox" name="idSelected"
+					value="代办类别" /> 代办类别
+				</label>
+			</div>
+		</div>
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th width="50px">序号</th>
+				<th>代办类别</th>
+				<th>标题</th>
+				<th>传递人</th>
+				<th>传递时间</th>
+				<th width="200px">操作</th>
+			</tr>
+		</thead>
+		<tbody name="clone">
+			<tr>
+				<td>1</td>
+				<td>A类别</td>
+				<td>A类别</td>
+				<td>张三</td>
+				<td>2017/05/30</td>
+				<td>
+					<button type="button" class="btn btn-primary" onclick="">
+						<span class="icon-plus"></span> 转发
+					</button>
+					<button type="button" class="btn btn-primary" onclick="">
+						<span class="icon-plus"></span> 删除
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>A类别</td>
+				<td>A类别</td>
+				<td>张三</td>
+				<td>2017/05/30</td>
+				<td>
+					<button type="button" class="btn btn-primary" onclick="">
+						<span class="icon-plus"></span> 转发
+					</button>
+					<button type="button" class="btn btn-primary" onclick="">
+						<span class="icon-plus"></span> 删除
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>A类别</td>
+				<td>A类别</td>
+				<td>张三</td>
+				<td>2017/05/30</td>
+				<td>
+					<button type="button" class="btn btn-primary" onclick="">
+						<span class="icon-plus"></span> 转发
+					</button>
+					<button type="button" class="btn btn-primary" onclick="">
+						<span class="icon-plus"></span> 删除
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<input type="hidden" name="total" id="total" value=0> <input type="hidden" name="offset" id="offset" value=0> <input type="hidden" name="limit" id="limit" value=10>
+			<div class="row-fluid">
+				<div id="page-nav" style="padding: 18px;"></div>
+			</div>
+	
+	<div class="panel panel-default" style="padding-top: 20px;">
+	<div class="panel-heading">我的合同<span style="float: right;">共有2个项目</span></div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th width="50px">序号</th>
+				<th>项目编号</th>
+				<th>项目名称</th>
+				<th>项目代号</th>
+				<th>国家</th>
+				<th>成交情况</th>
+				<th>当前状态</th>
+				<th width="200px">操作</th>
+			</tr>
+		</thead>
+		<tbody name="clone">
+			<tr>
+				<td>1</td>
+				<td>123456</td>
+				<td>导弹项目</td>
+				<td>FD-2000</td>
+				<td>中国</td>
+				<td>正在谈判</td>
+				<td>正常</td>
+				<td>
+					<button type="button" class="btn btn-primary" onclick="">
+						<span class="icon-plus"></span> 转发
+					</button>
+					<button type="button" class="btn btn-primary" onclick="">
+						<span class="icon-plus"></span> 删除
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>123456</td>
+				<td>导弹项目</td>
+				<td>FD-2000</td>
+				<td>中国</td>
+				<td>正在谈判</td>
+				<td>正常</td>
+				<td>
+					<button type="button" class="btn btn-primary" onclick="">
+						<span class="icon-plus"></span> 转发
+					</button>
+					<button type="button" class="btn btn-primary" onclick="">
+						<span class="icon-plus"></span> 删除
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>123456</td>
+				<td>导弹项目</td>
+				<td>FD-2000</td>
+				<td>中国</td>
+				<td>正在谈判</td>
+				<td>正常</td>
+				<td>
+					<button type="button" class="btn btn-primary" onclick="">
+						<span class="icon-plus"></span> 转发
+					</button>
+					<button type="button" class="btn btn-primary" onclick="">
+						<span class="icon-plus"></span> 删除
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+		
+		
+	<div class="panel panel-default" style="padding-top: 20px;">
+	<div class="panel-heading">我的合同<span style="float: right;">共有2个项目</span></div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th width="50px">序号</th>
+				<th>项目编号</th>
+				<th>项目名称</th>
+				<th>项目代号</th>
+				<th>国家</th>
+				<th>成交情况</th>
+				<th>当前状态</th>
+				<th width="200px">操作</th>
+			</tr>
+		</thead>
+		<tbody name="clone">
+			<tr>
+				<td>1</td>
+				<td>123456</td>
+				<td>导弹项目</td>
+				<td>FD-2000</td>
+				<td>中国</td>
+				<td>正在谈判</td>
+				<td>正常</td>
+				<td>
+					<button type="button" class="btn btn-primary" onclick="">
+						<span class="icon-plus"></span> 转发
+					</button>
+					<button type="button" class="btn btn-primary" onclick="">
+						<span class="icon-plus"></span> 删除
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>123456</td>
+				<td>导弹项目</td>
+				<td>FD-2000</td>
+				<td>中国</td>
+				<td>正在谈判</td>
+				<td>正常</td>
+				<td>
+					<button type="button" class="btn btn-primary" onclick="">
+						<span class="icon-plus"></span> 转发
+					</button>
+					<button type="button" class="btn btn-primary" onclick="">
+						<span class="icon-plus"></span> 删除
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>123456</td>
+				<td>导弹项目</td>
+				<td>FD-2000</td>
+				<td>中国</td>
+				<td>正在谈判</td>
+				<td>正常</td>
+				<td>
+					<button type="button" class="btn btn-primary" onclick="">
+						<span class="icon-plus"></span> 转发
+					</button>
+					<button type="button" class="btn btn-primary" onclick="">
+						<span class="icon-plus"></span> 删除
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>	
+</div>
+
+
+

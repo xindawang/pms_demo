@@ -1,0 +1,327 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+<script type="text/javascript" src="/iw/js/myUtil.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/model/bomDetail.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="/iw/org/welcome.html">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="/iw/model/modelPage.html">型号库管理</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="javaScript:history.back(-1)">型号配置列表</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">BOM管理</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<!-- 
+			<div class="top-actions" >
+				<button type="button" class="btn btn-primary " data-target="#nodeModal" data-toggle="modal" ><span class="icon-edit icon-large"></span>编辑当前节点</button>
+				
+			</div>
+			 -->
+			<table class="table table-hover  table-condensed">
+				<thead>
+					<tr>
+						<td colspan="12" style="height:30px;line-height:30px;padding-left:5px;font-weight:700;">
+						<span name="bomName">节点名称***</span> 的下级节点 
+						 </td>
+					</tr>
+				</thead>
+				<thead>
+					<tr class="">
+						<th>#</th>
+						<th>型号名称</th>
+						<th>型号配置名称</th>
+						<th>NSN</th>
+						<th>零件号</th>
+						<th>名称</th>
+						<th>节点名</th>
+						<th>单位</th>
+						<th>顺序号</th>
+						<th>日期</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr  name="childrenTemplate" style="display: none" >
+						<td><input type="checkbox" name="id" value="" /></td>
+						<td name="parentId" style="display: none"></td>
+						<td  name="modelName">型号名</td>
+						<td name="configName">型号配置表名</td>
+						<td name="NSN">1104 235689756</td>
+						<td name="partNo">2326565</td>
+						<td  name="prodLibName">产品名</td>
+                        <td name="name">节点名</td>
+						<td name="unit">个</td>
+						<td name="seqNo">1</td>
+						<td name="upat">2017/05/02</td>
+						<td>
+						    <button type="button" class="btn btn-primary " data-target="#nodeModal" data-toggle="modal" onclick="configDetail(this)" >
+								<span class="icon-edit icon-large"></span> 修改
+							</button>
+							<button type="button" class="btn btn-primary " name="para" onclick="bomDetail(this)">
+								<span class="glyphicon glyphicon-tree-conifer icon-tree-conifer icon-large"></span> BOM管理
+							</button>
+							<button type="button" class="btn btn-danger " onclick="delConfig(this);">
+								<span class="icon-trash icon-large"></span> 删除
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<!-- 追加子节点 -->
+			<div id="actions" class="panel panel-action">
+				<button id="btn-add" type="button" class="btn btn-primary " data-target="#nodeModal" data-toggle="modal" onclick="emptyVal()">
+					<span class="icon-plus"></span> 追加下级节点
+				</button>
+				<button type="button" class="btn btn-danger " onclick="delConfigCheck()">
+					<span class="icon-trash"></span> 删除
+				</button>
+				<button type="button" class="btn btn-danger " onclick="delAllConfigCheck()" value="全部删除">
+					<span class="icon-trash"></span> 全部删除
+				</button>
+
+			</div>
+		</div>
+
+	</div>
+	
+	<div id="nodeModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					          追加 : <span name="bomName"></span>的子节点	
+				</div>
+				<div class="modal-body">
+					<table class="table tableform  table-condensed">
+						<tr>
+							<th>节点名称：<span class="must">*</span></th>
+							<td><input type="text"  name="configDetail.name" id="name" value="" class="form-control" /></td>
+							<th>SNS编码：</th>
+							<td><input type="text"  name="configDetail.sns"  id="sns" value="" class="form-control" />
+						    </td>
+						</tr>
+						<tr>
+							<th>节点类型：<span class="must">*</span></th>
+							<td>
+								<input type="radio" name="configDetail.typ" value="产品" /> 产品								
+								&nbsp;&nbsp;&nbsp;虚拟
+								<div style="display:inline;border:1px solid #ccc;padding:3px;">
+								<input type="radio" name="configDetail.typ" value="ICI" /> ICI
+								<input type="radio" name="configDetail.typ" value="VCI" /> VCI
+								<input type="radio" name="configDetail.typ" value="L-VCI" /> L-VCI
+								</div> 
+							</td>
+							<th>状态：<span class="must">*</span></th>
+							<td>							
+							<input type="radio"  name="configDetail.status" value="有效"  /> 有效 
+							<input type="radio"  name="configDetail.status" value="失效"  /> 无效 							
+							</td>
+							
+						</tr>						
+						<tbody id="product-tr">
+							<tr>
+								<th>产品名称：<span class="must">*</span></th>
+								<td>
+									<div class="input-group ">
+										<input type="hidden" name="configDetail.prodLibNo" id="prodLibNo" onchange="javascript:abc()" value=""/>
+										<input type="text" class="form-control" name="configDetail.prodLibName" value="" id="prodLibName" readonly /> <span class="input-group-addon" data-target="#productModal" data-toggle="modal"  onclick="$$('prodLibOffset').value=0;_prodLibCommit();prodLibPaginate();" data-toggle="modal"> ... </span>
+									</div>	
+								</td>
+							</tr>							
+							<tr>
+								<th>产品代号：</th>
+								<td><input type="text"  name="configDetail.prodCode" id="prodCode" value="" class="form-control" readonly/></td>
+								<th>NSN：</th>
+								<td><input type="text"  name="configDetail.nsn" id="nsn" value="" class="form-control" readonly/></td>
+							</tr>	
+							<tr>
+								<th>计量单位：</th>
+							    <td colspan="3" id="unit">
+								<label class="radio-inline"><input type="radio" value="件" name="unit">件</label>
+								<label class="radio-inline"><input type="radio" value="个" name="unit">个</label>
+								<label class="radio-inline"><input type="radio" value="台" name="unit">台</label>
+								<label class="radio-inline"><input type="radio" value="发" name="unit">发</label>
+								<label class="radio-inline"><input type="radio" value="艘" name="unit">艘</label>
+								<label class="radio-inline"><input type="radio" value="卷" name="unit">卷</label>
+								<label class="radio-inline"><input type="radio" value="套" name="unit">套</label>
+								<label class="radio-inline"><input type="radio" value="门" name="unit">门</label>
+								<label class="radio-inline"><input type="radio" value="包" name="unit">包</label>
+								<label class="radio-inline"><input type="radio" value="桶" name="unit">桶</label>
+								<label class="radio-inline"><input type="radio" value="自定义" name="unit">自定义</label>
+								<input type="text" style="width: 80px;" class="form-control" value="" name="custom">
+							</td>
+							</tr>	
+						</tbody>
+						<tr>
+						    <th>设计机构：<span class="must">*</span></th>
+							<td><div class="input-group ">
+									    <input type="hidden" name="configDetail.designOrgId" id="orgId" onchange="javascript:abc()" value=""/>
+									    <input type="text" class="form-control" name="configDetail.designOrgName" value="" id="corpName" readonly /> <span class="input-group-addon" data-target="#itemnamesModal" data-toggle="modal"  onclick="$$('offset').value=0;_commit();paginate();" data-toggle="modal"> ... </span>
+								</div>	
+						    </td>
+						    <th>标识：</th>
+							<td><input type="checkbox"  name="mustChoosed" id="mustChoosed" value="必选" class="" /> 必选
+							    <input type="checkbox"  name="forSaled" id="forSaled" value="销售可见" class="" /> 销售可见
+							    <input type="checkbox"  name="childrenSingled" id="childrenSingled" value="下级节点" class="" /> 下级单选
+							</td>
+							
+						</tr>
+						<tr>
+							 <th>顺序号：<span class="must">*</span></th>
+							<td colspan="3"><input type="text" class="form-control" name="configDetail.seqNo" id="seqNo" value="" /></td>
+							
+						</tr>
+						<tr>
+							<th>简介：</th>
+							<td colspan="3"><textarea class="form-control" name="configDetail.descr" id="descr" style="width:100%;height:100px;"></textarea></td>
+						</tr>	
+									
+					</table>
+				</div>
+
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="makeConfig()">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消并关闭</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+<div id="productModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					选择产品					
+				</div>
+				<div class="modal-header">
+					<table>
+						<tr>
+							<td>产品名称 </td>
+							<td><input type="text" name="" value="" class="form-control"   /> </td>
+							<td><button type="button" class="btn btn-primary" onclick="">搜索</button> </td>
+						</tr>
+					</table>
+				</div>
+				
+				<div class="modal-body">
+					<table class="table" name="nones">
+						<thead>
+							<tr>
+								<td></td>							
+								<td>产品名称</td>
+								<td>产品简称</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="myProdLibPageTemplate" style="display: none;">
+								<th style="width:50px;"><input type="radio" name="1" /></th>
+								<td id="prodLibNos" style="display: none;"><span name="no"></span></td>
+								<td id="prodLibNames"><span name="name"></span></td>
+								<td id="prodLibEname"><span name="ename"></span></td>
+								<td style="display: none;"><span name="nsn"></span></td>
+								<td style="display: none;"><span name="prodCode"></span></td>
+							</tr>
+						</tbody>
+					 </table>
+					<input type="hidden" name="prodLibTotal" id="prodLibTotal" value=0>
+					<input type="hidden" name="prodLibOffset" id="prodLibOffset" value=0>
+				    <input type="hidden" name="prodLibLimit" id="prodLibLimit" value=3>
+				    <div class="row-fluid"> 
+						<div id="prodLibPage-nav" style="padding: 18px;"></div> 
+					</div>
+				</div>
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="prodLibChoice()">选择</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消并关闭</button>
+				</div>
+			</div>
+		</div>
+</div>
+	<div id="itemnamesModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					选择机构					
+				</div>
+				<div class="modal-header form-inline">
+					<div class="form-group">
+						<label for="" class="">机构名称：</label> <input type="text" name="" id="findCorpName" class="form-control" value="" />
+					</div>
+					<button class="btn btn-default " onclick="$$('offset').value=0;_commit();paginate();">
+						<span class="glyphicon glyphicon-search"></span> 查询
+					</button>
+				</div>
+				<div class="modal-body">
+					<table class="table" name="nones">
+						<thead>
+							<tr>
+								<td></td>							
+								<td>机构代码</td>
+								<td>机构名称</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="orgPageTemplate" style="display: none;">
+								<th style="width:50px;"><input type="radio" name="1" /></th>
+								<td id="corpId" style="display: none;"><span name="id"></span></td>
+								<td id="corpCode"><span name="code"></span></td>
+								<td id="corpNames"><span name="name"></span></td>
+							</tr>
+						</tbody>
+					 </table>
+					<input type="hidden" name="total" id="total" value=0>
+					<input type="hidden" name="offset" id="offset" value=0>
+				    <input type="hidden" name="limit" id="limit" value=3>
+				    <div class="row-fluid"> 
+						<div id="page-nav" style="padding: 18px;"></div> 
+					</div>
+
+				</div>
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="corpChoice()">选择</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="hint"></div>
+	<script type="text/javascript" src="/iw/js/model/bomDetail.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+.modal-dialog {
+    width: 600px !important;
+}
+.modal-content {
+	width:580px;
+}
+
+.modal .form-control {
+    display: inline;
+    height: 24px;
+    line-height: 24px;
+    padding: 3px 5px;
+    width: 250px;
+}
+
+#matingModal .modal-dialog {
+    width: 800px !important;
+}
+#matingModal .modal-content {
+	width:780px;
+}

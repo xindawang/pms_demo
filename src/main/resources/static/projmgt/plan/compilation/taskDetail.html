@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>武器装备保障平台</title>
+<meta charset="UTF-8">
+<script type="text/javascript" src="/projmgt/js/common/env.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/projmgt/js/common/treeTable.js"></script>
+<script type="text/javascript" src="/projmgt/js/common/dateTimePicker.js"></script>
+<script type="text/javascript" src="/projmgt/js/common/suggest.js"></script>
+<script type="text/javascript" src="/projmgt/js/plan/compilation/taskDetail.js"></script>
+
+
+</head>
+<body>
+	<div id="top" class="top"></div>
+
+	<div id="left" class="left"></div>
+
+	<div class="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="/iw/org/welcome.html">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">项目管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active">任务详情</li>
+			</ul>
+		</div>
+
+		<div class="table-box">
+			<div class="content-header">
+				<button class="btn btn-primary " id="edit">
+					<span>编辑</span>
+				</button>
+				<button class="btn btn-primary " id="save" disabled="disabled">
+					<span>保存</span>
+				</button>
+			</div>
+
+			<form class="form-horizontal panel-body" id="taskDetailForm" method="post">
+				<div class="container-fluid">
+					<div class="form-group">
+						<label class="col-md-1 control-label"><span style="color:red">*</span>名称</label>
+						<div class="col-md-3">
+							<input id="taskName" name="name" class="form-control edit" disabled="disabled" placeholder="任务名称" />
+						</div>
+						<label class="col-md-1 control-label">完成形式</label>
+						<div class="col-md-3">
+							<input id="form" name="form" class="form-control edit" disabled="disabled" placeholder="任务完成形式" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label"><span style="color:red">*</span>开始时间</label>
+						<div class="col-md-3">
+							<input id="startTime" name="startTime" class="form-control form_datetime edit" readOnly disabled="disabled" />
+						</div>
+						<div class="col-md-3 col-md-offset-1">
+							<input id="milestone" type="checkbox" class="edit" disabled="disabled" /><label>里程碑任务</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label"><span style="color:red">*</span>结束时间</label>
+						<div class="col-md-3">
+							<input id="endTime" name="endTime" class="form-control form_datetime edit" readOnly disabled="disabled">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label"><span style="color:red">*</span>密级</label>
+						<div class="col-md-3">
+							<select id="securityLevel" name="securityLevel" class="form-control edit" disabled="disabled">
+								<option value="0">--请选择--</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label"><span style="color:red">*</span>优先级</label>
+						<div class="col-md-3">
+							<input id="priority" name="priority" placeholder="0-99(数字越大优先级越高)" class="form-control edit" disabled="disabled">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label">状态</label>
+						<div class="col-md-3">
+							<input id="status" name="status" class="form-control" disabled="disabled">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label"><span style="color:red">*</span>责任人</label>
+						<div class="col-md-3 input-group">
+							<input id="responsible" class="form-control edit" disabled="disabled"
+								data-toggle="modal" data-target="#responsibleModal"
+								style="background: #efefef" readOnly="readonly">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label">说明</label>
+						<div class="col-md-7">
+							<textarea id="state" name="state" class="form-control edit" style="overflow-y: scroll;resize: none" disabled="disabled" rows="3"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label">任务库</label>
+						<div class="col-md-3">
+							<input id="universalTaskBase" class="form-control" readonly/>
+						</div>
+					</div>
+					<div class="form-group">
+					<label class="col-md-1 control-label">任务模板</label>
+						<div class="col-md-3">
+							<input id="universalTask" class="form-control" readonly/>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		
+				<!-- 选择责任人模态框（Modal） -->
+		<div class="modal fade" id="responsibleModal"
+			tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" style="width:1400px !important;">		<!-- 强行改变宽度以防覆盖 -->
+				<div class="modal-content" style="margin-left:300px;">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h5 class="modal-title" id="myModalLabel">请选择：</h5>
+					</div>
+					<div class="modal-body" style="height:40px">
+						<div class="form-group">
+							<div class="col-md-2">
+								<div class="dropdown">
+								<a id="chooseButton" role="button" data-toggle="dropdown"
+									class="btn btn-primary" >
+									选择单位名称 <span class="caret"></span>
+								</a>
+								<ul id="choose" class="dropdown-menu multi-level" role="menu"
+									aria-labelledby="dropdownMenu">
+									
+								</ul>
+							</div>
+							</div>
+							<div class="col-md-3" style="margin-left:30px">
+								<input id="respCorp" placeholder="请选择单位" name="respCorp" class="form-control" disabled="disabled" style="height:30px;background:#ffffff">
+							</div>
+							<div class="col-md-2" style="margin-left:120px">
+								<select id="respPerson" name="respPerson" class="form-control" style="height:30px;width:150px">
+								</select>
+							</div>
+						</div>
+					</div>				
+
+					<div class="modal-footer">
+						<button id="confirm" type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal -->
+		</div>
+		
+		<div class="table-box">
+			<div class="content-header">
+				<span>任务数据</span>
+				<button id="addDataElement" type="button" class="btn btn-primary" disabled="disabled">增加数据元素</button>
+				<button id="addDataElementList" type="button" class="btn btn-primary" disabled="disabled">批量增加数据元素</button>
+			</div>
+
+			<div id="dataTable" class="body">
+				<table  class="table table-hover  table-condensed">
+				</table>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>

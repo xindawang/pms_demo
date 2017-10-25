@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.iothust.dao.mapper.ScheduleMapper">
+
+    <select id="getById" resultMap="schedule">
+        SELECT
+            s.*,
+            c.id    AS user_id,
+            c.name  AS user_name,
+            c.corpid,
+            st.*,
+            ts.name AS parent_name,
+            ic.name AS corp_name
+        FROM
+            schedule s
+            LEFT JOIN iot_cust c ON s.responsible = c.id
+            LEFT JOIN
+            schedule_task st
+                ON s.task = st.task_id
+            LEFT JOIN schedule ts ON st.schedule_id = ts.id
+            LEFT JOIN iot_corp ic
+                ON ic.id = c.corpid
+        WHERE
+            s.id = #{id}
+    </select>
+
+    <select id="getByProcessInstanceId" resultMap="schedule">
+        SELECT
+            s.*,
+            c.id    AS user_id,
+            c.name  AS
+                       user_name,
+            t.*,
+            ts.name AS parent_name
+        FROM
+            schedule s
+            LEFT JOIN iot_cust c ON s.responsible = c.id
+            LEFT JOIN
+            schedule_task
+            t ON s.task = t.task_id
+            LEFT JOIN schedule ts ON t.schedule_id = ts.id
+        WHERE
+            s.processInstance_id = #{processInstanceId}
+    </select>
+
+    <select id="getAll" resultMap="schedule">
+        SELECT
+            s.*,
+            c.id   AS user_id,
+            c.name AS user_name,
+            t.*
+        FROM
+            schedule s
+            LEFT JOIN iot_cust c ON s.responsible = c.id
+            LEFT JOIN schedule_task t ON s.task = t.task_id
+        ORDER BY S.ID
+    </select>
+
+    <select id="getByConditions" resultMap="schedule">
+        select s.*, c.id as user_id, c.name as user_name, t.*
+        from
+        schedule s
+        left join iot_cust c on s.responsible=c.id
+        left join schedule_task t on s.task=t.task_id
+        <where>
+            <if test="status!=null">
+                s.status=#{status}
+            </if>
+            <if test="keyword!=null">
+                AND s.${type} Like concat(#{keyword},'%')
+            </if>
+            <if test="start!=null">
+                AND s.create_time>=#{start,jdbcType=DATE}
+            </if>
+            <if test="end!=null">
+                AND s.create_time&lt;=#{end,jdbcType=DATE}
+            </if>
+        </where>
+        ORDER BY S.ID
+    </select>
+
+    <select id="getByName" resultType="ScheduleEntity">
+        SELECT *
+        FROM
+            schedule
+        WHERE
+            name = #{name}
+    </select>
+
+    <select id="getByCode" resultType="ScheduleEntity">
+        SELECT *
+        FROM
+            schedule
+        WHERE
+            code = #{code}
+    </select>
+
+    <select id="getReUnique" resultType="ScheduleEntity">
+        select *
+        from schedule
+        where (name=#{se.name} or code=#{se.code} or
+        task=#{se.taskId,jdbcType=BIGINT})
+        <if test="se.id!=null">
+            and id!=#{se.id,jdbcType=BIGINT}
+        </if>
+    </select>
+
+    <insert id="add">
+        <selectKey keyProperty="se.id" resultType="long" order="BEFORE">
+            select schedule_pk_seq.nextval
+            from dual
+        </selectKey>
+        insert into
+        schedule(id,code,name,state,start_time,end_time,security_level,priority,responsible,type,task,partner,resolved,status,processinstance_id,category,source_id)
+        values(#{se.id},#{se.code,jdbcType=VARCHAR},#{se.name},#{se.state,jdbcType=VARCHAR},#{se.startTime},#{se.endTime},#{se.securityLevel,jdbcType=INTEGER},#{se.priority,jdbcType=INTEGER},
+        #{se.responsibleId,jdbcType=BIGINT},#{se.type,jdbcType=VARCHAR},#{se.taskId,jdbcType=BIGINT},#{se.partner,jdbcType=VARCHAR},
+        <if test="se.taskId == null">
+            '否'
+        </if>
+        <if test="se.taskId != null">
+            '是'
+        </if>
+        ,#{se.status},#{se.processInstanceId, jdbcType=VARCHAR},#{se.category, jdbcType=VARCHAR},#{se.sourceId,jdbcType=BIGINT})
+    </insert>
+
+    <update id="update">
+        UPDATE schedule
+        SET
+            code               = #{se.code,jdbcType=VARCHAR},
+            name               = #{se.name},
+            state              = #{se.state,jdbcType=VARCHAR},
+            start_time         = #{se.startTime},
+            end_time           = #{se.endTime},
+            security_level     = #{se.securityLevel,jdbcType=INTEGER},
+            priority           = #{se.priority,jdbcType=INTEGER},
+            responsible        = #{se.responsibleId,jdbcType=BIGINT},
+            type               = #{se.type,jdbcType=VARCHAR},
+            partner            = #{se.partner,jdbcType=VARCHAR},
+            status             = #{se.status},
+            processinstance_id = #{se.processInstanceId,jdbcType=VARCHAR},
+            progress           = #{se.progress,jdbcType=FLOAT},
+            approve_time       = #{se.approveTime,jdbcType=DATE},
+            finish_time        = #{se.finishTime,jdbcType=DATE},
+            update_time        = sysdate
+        WHERE id = #{se.id}
+    </update>
+
+    <delete id="delScheduleTaskBySId">
+        DELETE FROM schedule_task
+        WHERE schedule_id = #{scheduleId}
+    </delete>
+
+    <delete id="delScheduleById">
+        DELETE FROM schedule
+        WHERE id = #{id}
+    </delete>
+
+    <select id="getByFilters" parameterType="map" resultMap="schedule">
+        SELECT
+            s.*,
+            c.id   AS user_id,
+            c.name AS user_name,
+            t.*
+        FROM
+        schedule s
+        LEFT JOIN iot_cust c ON s.responsible = c.id
+        LEFT JOIN schedule_task t ON s.task = t.task_id
+        <where>
+            <if test="filters.status != null">
+                s.STATUS = #{filters.status}
+            </if>
+            <if test="filters.state != null">
+                AND s.STATE LIKE concat(#{filters.state},'%')
+            </if>
+            <if test="filters.code != null">
+                AND s.CODE LIKE concat(#{filters.code},'%')
+            </if>
+            <if test="filters.name != null">
+                AND s.NAME LIKE concat(#{filters.name},'%')
+            </if>
+            <if test="filters.start != null">
+                AND s.CREATE_TIME >= #{filters.start, jdbcType=DATE}
+            </if>
+            <if test="filters.end!=null">
+                AND s.create_time&lt;=#{filters.end,jdbcType=DATE}
+            </if>
+            <if test="filters.category != null">
+                AND s.category = #{filters.category, jdbcType=VARCHAR}
+            </if>
+            <if test="filters.sourceId != null">
+                AND s.source_id = #{filters.sourceId}
+            </if>
+            <if test="filters.userId != null">
+                AND s.responsible = #{filters.userId}
+            </if>
+        </where>
+        ORDER BY
+        s.ID
+    </select>
+
+    <resultMap id="schedule" type="ScheduleEntity">
+        <id property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <result property="state" column="state"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="createTime" column="create_time"/>
+        <result property="securityLevel" column="security_level"/>
+        <result property="priority" column="priority"/>
+        <result property="type" column="type"/>
+        <result property="partner" column="partner"/>
+        <result property="resolved" column="resolved"/>
+        <result property="status" column="status"/>
+        <result property="taskId" column="task_id"/>
+        <result property="responsibleId" column="user_id"/>
+        <result property="processInstanceId" column="processinstance_id"/>
+        <result property="progress" column="progress"/>
+        <result property="approveTime" column="approve_time"/>
+        <result property="finishTime" column="finish_time"/>
+        <result property="category" column="category"/>
+        <result property="sourceId" column="source_id" />
+        <association property="responsible" javaType="UserEntity">
+            <id property="id" column="user_id"/>
+            <result property="name" column="user_name"/>
+            <result property="corpId" column="corpId"/>
+            <association property="corp" javaType="CorpEntity">
+                <id property="id" column="corpid"/>
+                <result property="name" column="corp_name"/>
+            </association>
+        </association>
+        <association property="task" javaType="TaskEntity">
+            <id property="id" column="task_id"/>
+            <result property="name" column="task_name"/>
+            <association property="schedule" javaType="ScheduleEntity">
+                <result property="name" column="parent_name"/>
+            </association>
+        </association>
+    </resultMap>
+</mapper>

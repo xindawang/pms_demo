@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="/iw/org/welcome.html">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="/iw/model/modelPage.html">型号管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">节点搜索</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="form-group form-inline search-box" style="zoom: 1; overflow: hidden; display: block;">				    
+			    <input type="text" class="form-control" id="nameLike" />
+				<button type="button" class="btn btn-primary " onclick="_commit()">
+					<span class="glyphicon glyphicon-search"></span> 搜索
+				</button>
+				<button type="button" class="btn btn-default " onclick="window.location.reload(true)">
+					<span class="glyphicon glyphicon-refresh"></span> 重置
+				</button>
+			</div>
+			<table id="" class="table table-hover table-condensed">
+				<thead>
+					<tr class="">
+						<th>型号名称</th>
+						<th>型号配置名称</th>
+						<th>节点名称</th>
+						<th>节点类型</th>
+						<th>NSN</th>
+						<th>产品名称</th>
+						<th>代号类型</th>
+						<th>产品代号</th>
+						<th>产品必选</th>
+						<th>销售可见</th>
+						<th>下级节点单选</th>
+						<th>状态</th>
+						<th>顺序号</th>
+						<th>单位</th>
+					</tr>
+				</thead>
+				
+				<tbody name="searchNodePageTemplate" style="display: none;">
+					<tr>
+				        <td><span name="modelName"></span></td>
+				        <td><span name="configName"></span></td>
+						<!-- <td><a name="parentId"  function="bomDetailByName" href="/iw/model/bomDetail.html?id="><span name="name"></span></a></td> -->
+						<td><span name="name"></span></td>					
+						<td><span name="typ"></span></td>					
+						<td><span name="NSN"></span></td>
+						<td><span name="prodLibName"></span></td>
+						<td><span name="prodCodeTyp"></span></td>
+				        <td><span name="prodLibProdCode"></span></td>
+						<td><span name="mustChoosed" function="changeValueTo"></span></td>					
+						<td><span name="forSaled" function="changeValueTo"></span></td>					
+						<td><span name="childrenSingled" function="changeValueTo"></span></td>
+						<td><span name="status"></span></td>
+						<td><span name="seqNo"></span></td>					
+						<td><span name="unit"></span></td>
+					</tr>
+				</tbody>
+			</table>
+			<input type="hidden" name="total" id="total" value=0>
+			<input type="hidden" name="offset" id="offset" value=0>
+			<input type="hidden" name="limit" id="limit" value=8>
+			<div class="row-fluid"> 
+				<div id="page-nav" style="padding: 18px;"></div> 
+			</div>
+		</div>
+	</div>
+<script type="text/javascript" src="/iw/js/model/nodeQueryPage.js"></script>
+</body>
+</html>

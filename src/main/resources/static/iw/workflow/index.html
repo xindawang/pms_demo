@@ -1,0 +1,390 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#"> 流程管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual">流程定义</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<div style="height: 160px;border:solid 1px #cccccc;overflow-y:scroll;cursor:pointer;margin-bottom:10px;">
+				<h1 style="width: 100%; text-align: center; height: 150px; line-height: 150px;">流程图</h1>
+			</div>
+
+			<ul class="nav nav-tabs" id="myproj">
+				<li class="active"><a href="#flow" data-toggle="tab">流程定义</a>
+				<li class=""><a href="#task" style="padding-left:20px;padding-right:20px;" data-toggle="tab">任务设置</a>
+				<li class=""><a href="#history" style="padding-left:20px;padding-right:20px;" data-toggle="tab">流程历史版本</a>
+				<li class=""><a href="#current" style="padding-left:20px;padding-right:20px;" data-toggle="tab">当前版本实例列表</a>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active " id="flow">
+					<table class="table tableform">
+						<tr>
+							<th>流程名称：</th>
+							<td><input type="text" class="form-control"></td>
+							<th>业务表名称：</th>
+							<td><input type="text" class="form-control"></td>
+						</tr>
+						<tr>
+							<th>定义历史表：</th>
+							<td><input type="text" class="form-control" readonly></td>
+							<th>是否在新版本上运行：</th>
+							<td><input type="checkbox" class=""> 是/否</td>
+						</tr>
+						<tr>
+							<th>业务表bizNo字段名：</th>
+							<td><input type="text" class="form-control"></td>
+							<th>业务表的流程实例Id字段名：</th>
+							<td><input type="text" class="form-control"></td>
+						</tr>
+						<tr>
+							<th>客户表：</th>
+							<td><input type="text" class="form-control"></td>
+							<th>客户表id字段名称：</th>
+							<td><input type="text" class="form-control"></td>
+						</tr>
+						
+						<tr>
+							<th>客户表name字段名称：</th>
+							<td><input type="text" class="form-control"></td>
+							<th>流程状态字段名：</th>
+							<td ><input type="text" class="form-control"></td>							
+						</tr>
+						<tr>
+							<th>描述：</th>
+							<td colspan="3"><input style="width: 100%;" class="form-control" /></td>
+						</tr>
+						
+
+						<tr>
+							<th>创建时间：</th>
+							<td><input type="date" class="form-control" readonly></td>
+							<th>更新时间：</th>
+							<td><input type="date" class="form-control" readonly></td>
+						</tr>
+						
+						<tfoot>
+							<tr>
+								<td colspan="4" style="text-align:center; padding-top:10px;padding-bottom:10px;">
+									<button class="btn  btn-primary btn-workflow" >
+										 &nbsp;&nbsp;保&nbsp;&nbsp;存 &nbsp;
+									</button>
+								</td>
+							</tr>
+						</tfoot>
+
+
+					</table>
+					
+				</div>
+				<div class="tab-pane" id="task">
+					<table class="table tableform">
+						<tr>
+							<th>节点名称：</th>
+							<td><input type="text" class="form-control" readonly></td>
+							<th>节点类型：</th>
+							<td><input type="text" class="form-control" readonly></td>
+						</tr>
+						<tr>
+							<th>流程名称：</th>
+							<td><input type="text" class="form-control" readonly></td>
+							<th>流程历史标识：</th>
+							<td><input type="text" class="form-control" readonly></td>
+						</tr>
+						<tr>
+							<th>描述：</th>
+							<td ><input type="text" class="form-control" readonly ></td>
+							<th>WEB服务初始状态：：</th>
+							<td><select class="form-control"><option>状态1</option><option>状态2</option></select></td>
+							
+						</tr>
+						<tr>
+							<th>总完成时间：</th>
+							<td><input type="text" class="form-control" readonly></td>
+							<th>总完成次数：</th>
+							<td><input type="text" class="form-control" readonly></td>
+						</tr>
+						<tr>
+							<th>估计完成时间：</th>
+							<td ><input type="text" class="form-control"> 天 </td>
+							<th>任务等级：</th>
+							<td>
+							<select class="form-control"><option>1级</option><option>2级</option></select>
+							
+							</td>
+						</tr>
+						<tr>
+							<th>指定人SQL：</th>
+							<td ><textarea rows="" cols="" style="width: 100%; height: 100px;overflow-x:hidden;overflow-y:auto;" class="form-control"></textarea></td>
+                            <th>指定人：</th>
+							<td >
+								<div class="input-group ">
+								    <input type="hidden" value="" id="corpId" name="modelDetail.orgId">
+								    <input type="text" readonly="" style="width:230px;" id="corpName" value="" name="modelDetail.corpName" class="form-control">
+								    <span onclick="$('#userlist').toggle();" class="input-group-addon icon-chevron-down"></span>
+								</div>
+								<div id="userlist" style="z-index:99999;width:250px;display:none;">
+									<table  class="table" style="width:250px;">
+										<tr>
+											<td width="40px;"><input type="checkbox" /></td><td>user1</td>
+										</tr>
+										<tr>
+											<td width="40px;"><input type="checkbox" /></td><td>user1</td>
+										</tr>
+										<tr>
+											<td width="40px;"><input type="checkbox" /></td><td>user1</td>
+										</tr>
+									</table>
+								</div>
+								
+							</td>
+						</tr>
+						<tr>
+							<th>前置脚本：</th>
+							<td ><textarea rows="" cols="" style="width: 100%; height: 100px;overflow-x:hidden;overflow-y:auto;" class="form-control"></textarea></td>
+							<th>后置脚本：</th>
+							<td ><textarea rows="" cols="" style="width: 100%; height: 100px;overflow-x:hidden;overflow-y:auto;" class="form-control"></textarea></td>
+						</tr>
+						<tr>
+							<th>条件脚本：</th>
+							<td colspan="3"><input type="text" class="form-control" style="width:100%" ></td>
+						</tr>
+						<th>查询Web任务脚本：</th>
+							<td colspan="3" >
+								<textarea rows="" cols="" style="width: 100%; height: 110px;overflow-x:hidden;overflow-y:auto; float:left" class="form-control"></textarea>								
+							</td>
+						<tfoot>
+							<tr>
+								<td colspan="4" style="text-align:center; padding-top:10px;padding-bottom:10px;">
+									<button class="btn  btn-primary btn-workflow" >
+										 &nbsp;&nbsp;保&nbsp;&nbsp;存 &nbsp;
+									</button>
+								</td>
+							</tr>
+						</tfoot>
+						
+					</table>
+				</div>
+				
+				<div class="tab-pane" id="history">
+					<table class="table">
+						<thead>
+							<tr>
+								<th colspan="6">流程历史版本列表：</th>
+							</tr>
+						</thead>
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>流程版本号</th>
+								<th>流程名称</th>
+								<th>提交人</th>
+								<th>更新时间</th>
+								<th style="width:60px;">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>
+									<button class="btn btn-primary showdetail" data-id="1">
+										<span class="icon-plus"></span> 明细
+									</button>
+								</td>
+							</tr>
+							
+							
+							<tr data-id="1" class="detail">
+								<td colspan="6">
+									<table class="table tableform">
+										<tr>
+											<th>流程名称：</th>
+											<td><input type="text" class="form-control" readonly></td>
+											<th>业务表名称：</th>
+											<td><input type="text" class="form-control" readonly></td>
+										</tr>
+										<tr>
+											<th>定义历史表：</th>
+											<td><input type="text" class="form-control" readonly></td>
+											<th>是否在新版本上运行：</th>
+											<td><input type="checkbox" class="" readonly> 是/否</td>
+										</tr>
+										<tr>
+											<th>业务表bizNo字段名：</th>
+											<td><input type="text" class="form-control" readonly></td>
+											<th>业务表的流程实例Id字段名：</th>
+											<td><input type="text" class="form-control" readonly></td>
+										</tr>
+										<tr>
+											<th>流程状态字段名：</th>
+											<td colspan="3"><input type="text" class="form-control" readonly></td>							
+										</tr>
+										<tr>
+											<th>描述：</th>
+											<td colspan="3"><input style="width: 100%;" class="form-control" readonly /></td>
+										</tr>
+										<tr>
+											<th>指定人SQL：</th>
+											<td colspan="3"><textarea rows="" cols="" style="width: 100%; height: 100px;overflow-x:hidden;overflow-y:auto;" class="form-control" readonly></textarea></td>
+				
+										</tr>
+				
+										<tr>
+											<th>创建时间：</th>
+											<td><input type="date" class="form-control" readonly></td>
+											<th>更新时间：</th>
+											<td><input type="date" class="form-control" readonly></td>
+										</tr>
+									</table>
+								</td>
+								
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+				<div class="tab-pane  " id="current">
+					<table class="table">
+						<thead>
+							<tr>
+								<th colspan="6">当前版本实例列表：</th>
+							</tr>
+						</thead>
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>流程版本号</th>
+								<th>流程名称</th>
+								<th>提交人</th>
+								<th>更新时间</th>
+								<th style="width:60px;">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>
+									<button class="btn btn-primary showdetail" data-id="1">
+										<span class="icon-plus"></span> 明细
+									</button>
+								</td>
+							</tr>
+							
+							
+							<tr data-id="1" class="detail">
+								<td colspan="6">
+									<table class="table tableform">
+										<tr>
+											<th>流程名称：</th>
+											<td><input type="text" class="form-control" readonly></td>
+											<th>业务表名称：</th>
+											<td><input type="text" class="form-control" readonly></td>
+										</tr>
+										<tr>
+											<th>定义历史表：</th>
+											<td><input type="text" class="form-control" readonly></td>
+											<th>是否在新版本上运行：</th>
+											<td><input type="checkbox" class="" readonly> 是/否</td>
+										</tr>
+										<tr>
+											<th>业务表bizNo字段名：</th>
+											<td><input type="text" class="form-control" readonly></td>
+											<th>业务表的流程实例Id字段名：</th>
+											<td><input type="text" class="form-control" readonly></td>
+										</tr>
+										<tr>
+											<th>流程状态字段名：</th>
+											<td colspan="3"><input type="text" class="form-control" readonly></td>							
+										</tr>
+										<tr>
+											<th>描述：</th>
+											<td colspan="3"><input style="width: 100%;" class="form-control" readonly /></td>
+										</tr>
+										<tr>
+											<th>指定人SQL：</th>
+											<td colspan="3"><textarea rows="" cols="" style="width: 100%; height: 100px;overflow-x:hidden;overflow-y:auto;" class="form-control" readonly></textarea></td>
+				
+										</tr>
+				
+										<tr>
+											<th>创建时间：</th>
+											<td><input type="date" class="form-control" readonly></td>
+											<th>更新时间：</th>
+											<td><input type="date" class="form-control" readonly></td>
+										</tr>
+									</table>
+								</td>
+								
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	
+<script type="text/javascript" src="/iw/js/supply/util.js"></script>
+
+</body>
+</html>

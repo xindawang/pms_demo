@@ -1,0 +1,68 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background: #ffffff;
+}
+
+.logo {
+	font-family: "微软雅黑", "Helvetica Neue", ​Helvetica, ​Arial, ​sans-serif;
+	font-size: 28px;
+	font-weight: bold;
+	cursor: default;
+	position: absolute;
+	top: 15px;
+	left: 14px;
+	line-height: 28px;
+	color: #ffffff;
+}
+
+.topNav {
+	position: absolute;
+	right: 8px;
+	top: 12px;
+	font-size: 12px;
+	line-height: 25px;
+	background: #60b0e3;
+}
+
+.topNav a {
+	text-decoration: none;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 25px;
+	margin-left: 3px;
+	margin-right: 3px;
+	color: #333;
+}
+
+.topNav a:hover {
+	text-decoration: underline;
+}
+
+.mini-layout-region-south img {
+	vertical-align: top;
+}
+
+.Note {
+	background: url(Notes_Large.png) no-repeat;
+	width: 32px;
+	height: 32px;
+}
+
+.Reports {
+	background: url(Reports_Large.png) no-repeat;
+	width: 32px;
+	height: 32px;
+}
+
+.mini-outlookbar-expand .mini-outlookbar-groupHeader {
+	background: #fcfcfc url(none);
+}
+
+.mini-outlookbar-collapse .mini-outlookbar-groupHeader {
+	background: #ebebeb url(none);
+}

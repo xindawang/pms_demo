@@ -1,0 +1,50 @@
+<div id="configModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				选择 <span id="proposalName">****型号</span> 的型号配置
+			</div>
+
+			<div class="modal-body">
+				<table class="table" style="width: 500px; margin-bottom: 5px;">
+					<tr>
+						<th>型号配置表名称：</th>
+						<td><input type="text" name="" id="modelId" class="form-control" value="" />
+							<button class="btn btn-primary " onclick="">
+								<span class="glyphicon glyphicon-search"></span> 查询
+							</button></td>
+					</tr>
+				</table>
+				<table class="table">
+					<thead>
+						<tr>
+							<td>#</td>
+							<td>型号名称</td>
+							<td>型号配置表名称</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr name="myConfigPageTemplate" style="display: none;">
+							<th style="width: 50px;"><input type="radio" id="configId" name="1" /></th>
+							<td style="display: none;"><span name="id"></span></td>
+							<td><span name="modelName"></span></td>
+							<td><span name="name"></span></td>
+						</tr>
+					</tbody>
+				</table>
+				<input type="hidden" name="total" id="total" value=0> <input type="hidden" name="configOffset" id="configOffset" value=0> <input type="hidden" name="configLimit" id="configLimit" value=3>
+				<div class="row-fluid">
+					<div id="configPage-nav" style="padding: 18px;"></div>
+				</div>
+
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" onclick="configChoice()">选择</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			</div>
+
+		</div>
+	</div>
+</div>

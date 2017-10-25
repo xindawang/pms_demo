@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/supply/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="../org/welcome.html">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="./projPage.html">供应管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">我的供货合同列表</li>
+			</ul>
+		</div>
+
+		<div class="body">
+
+			<div class="form-group form-inline search-box" style="zoom: 1; overflow: hidden; display: block;">
+				<label class="radio-inline" style="width: 80px;">
+					<input type="radio" name="searchtype" value="供货合同" checked="checked" />供货合同
+				</label>
+				<label class="radio-inline" style="width: 80px;">
+					<input type="radio" name="searchtype" value="供货项目" />供货项目
+				</label>
+				<input type="text" class="form-control" id="nameLike" placeholder="输入关键字" />
+				<button type="button" class="btn btn-primary " onclick="$$('offset').value=0;paginate();_commit();">
+					<span class="glyphicon glyphicon-search"></span> 搜索
+				</button>
+			</div>
+
+			<table class="table table-hover  table-condensed">
+				<thead>
+					<tr class="">
+						<th width="200px">供货项目</th>
+						<th width="200px">合同编号</th>
+						<th width="200px">合同名称</th>
+						<th width="80px">甲方</th>
+						<th width="100px">甲方联系人</th>
+						<th width="80px">乙方</th>
+						<th width="100px">乙方联系人</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr name="myContractPageTemplate" style="display:none">
+						<td name="projName"></td>
+						<td name="contractNo"></td>
+						<td><a href="contDetail.html?id=#{id}" name="id"><span name="name"></span></td>
+						<td name="aCorpName"></td>
+						<td name="aManagerName"></td>
+						<td name="corpName"></td>
+						<td name="managerName"></td>
+					</tr>
+					
+				</tbody>
+			</table>
+			    <input type="hidden" name="total" id="total" value=0>
+				<input type="hidden" name="offset" id="offset" value=0>
+				<input type="hidden" name="limit" id="limit" value=3>
+				<div class="row-fluid">
+					<div style="padding: 18px;" id="page-nav">				
+					</div>
+				</div>
+
+		</div>
+	</div>
+	<div class="hint"></div>
+	<script type="text/javascript" src="/iw/js/supply/contPage.js"></script>
+</body>
+</html>

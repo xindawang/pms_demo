@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>武器装备保障平台</title>
+<meta charset="UTF-8">
+<script type="text/javascript" src="/projmgt/js/common/env.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/projmgt/js/common/simplePaginationEnv.js"></script>
+<script type="text/javascript" src="/projmgt/js/common/table.js"></script>
+
+</head>
+<body>
+	<div id="top" class="top"></div>
+
+	<div id="left" class="left"></div>
+
+	<div class="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="/iw/org/welcome.html">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">项目管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active">任务模板</li>
+			</ul>
+		</div>
+		<div class="content-header">
+			<span><button id="edit" class="btn btn-primary">编辑</button>
+				<span style="margin-right: 5%"></span>
+				<button id="save" class="btn btn-primary" disabled="disabled">保存</button></span>
+		</div>
+        <div class="body">
+        <form  class="panel-body" id="formId" method="post">
+               <table class="formtable" >
+                 <tbody>
+                   <tr><th>名称</th><td><input name="name" class="form-control" value="任务名称" disabled="disabled"></td>
+                   <th>说明</th><td rowspan="2"><textarea name="state" class="form-control" style="overflow-y:scroll;width:400px;resize: none" value="说明" disabled="disabled"></textarea></td></tr>
+
+                   <tr><th>工期</th><td><input name="duration" class="form-control" value="8" disabled="disabled"></td></tr> 
+                   
+                   <tr><th>优先级</th><td><input name="priority" class="form-control" value="50" disabled="disabled"></td>
+                   <th>完成形式</th><td><input name="" class="form-control" style="width:50%" value="任务完成形式" disabled="disabled"></td></tr> 
+                   
+                   <tr><th>任务库</th><td><select class="form-control" disabled="disabled"><option>S2000M任务</option><option>S1500M任务</option></select></td>
+                   <th></th><td><input name="" type="checkbox" value="checkbox" disabled="disabled">里程碑任务</td></tr> 
+                                  
+                 </tbody>
+            </table>
+            
+
+        </form>
+        </div>
+	</div>
+</body>
+</html>

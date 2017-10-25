@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>武器装备保障平台</title>
+<meta charset="UTF-8">
+<script type="text/javascript" src="/projmgt/js/common/env.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/projmgt/js/common/simplePaginationEnv.js"></script>
+<script type="text/javascript" src="/projmgt/js/common/dateTimePicker.js"></script>
+<script type="text/javascript" src="/projmgt/js/common/treeTable.js"></script>
+<script type="text/javascript" src="/projmgt/js/plan/monitoring/task.js"></script>
+
+</head>
+<body>
+	<div id="top" class="top"></div>
+
+	<div id="left" class="left"></div>
+
+	<div class="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="/iw/org/welcome.html">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">项目管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active">任务完成情况</li>
+			</ul>
+		</div>
+
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li>任务概览</li>
+			</ul>
+		</div>
+		<form class="form-horizontal panel-body editForm" id="planDetailForm" method="post" role="form">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="row col-md-4" style="margin-left: 0px">
+						<div class=" form-group">
+							<label class="col-md-3 control-label">名称</label>
+							<div class="col-md-9 ">
+								<input id="name" name="name" placeholder="计划的名称" class="form-control edit" disabled="disabled">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">优先级</label>
+							<div class="col-md-9 ">
+								<input id="priority" name="priority" placeholder="50" class="form-control edit" disabled="disabled">
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group col-md-7">
+						<label class="col-md-2 control-label">说明</label>
+						<div class="col-md-10 ">
+							<textarea id="statement" name="statement" class="form-control edit" style="overflow-y: scroll; resize: none" rows="3" disabled="disabled"></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-1 control-label">计划开始时间</label>
+					<div class="col-md-3">
+						<input id="startTime" name="startTime" class="form-control form_datetime edit" readonly disabled="disabled">
+					</div>
+					<label class="col-md-1 control-label">实际开始时间</label>
+					<div class="col-md-3">
+						<input id="acceptTime" name="acceptTime" class="form-control form_datetime edit" readonly disabled="disabled">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-1 control-label">计划结束时间</label>
+					<div class="col-md-3">
+						<input id="endTime" name="endTime" class="form-control form_datetime edit" readonly disabled="disabled">
+					</div>
+					<label class="col-md-1 control-label">实际结束时间</label>
+					<div class="col-md-3">
+						<input id="finishTime" name="finishTime" class="form-control form_datetime edit" readonly disabled="disabled">
+					</div>
+				</div>				
+			</div>
+		</form>
+
+
+		<div class="table-box">
+			<div class="content-header">
+				<ul class="breadcrumb">
+					<li>任务数据</li>
+				</ul>
+			</div>
+
+			<div id="dataTable" class="body">
+				<table class="table table-hover  table-condensed">
+				</table>
+			</div>
+		</div>
+
+	</div>
+
+	</div>
+</body>
+</html>

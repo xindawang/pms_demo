@@ -1,0 +1,189 @@
+<ul class="nav nav-tabs" id="myproj">
+	<li class="active"><a href="#wait" data-toggle="tab">待办工作</a></li>
+	<li><a href="#completed" data-toggle="tab">已办工作 </a></li>
+	<div class="totalwork">共有<span style="color: red;">13</span>个代办工作</div>
+</ul>
+<div class="tab-content">
+	<div class="tab-pane active" id="wait">
+
+		<div class="form-group form-inline search-box" style="zoom: 1; overflow: hidden; display: block;">
+			<input type="text" class="form-control" id="nameLike" placeholder="请输入传递人、标题" />
+			<button type="button" class="btn btn-primary " onclick="$$('offset').value=0;_commit();paginate();">
+				<span class="glyphicon glyphicon-search"></span> 搜索
+			</button>
+		</div>
+		<div class="form-group form-inline" style="margin-bottom: 0;">
+			<label>待办类别：</label>
+			<label>
+				<input type="checkbox" name="idSelected" value="代办类别" /> 一般
+			</label>
+			<label>
+				<input type="checkbox" name="idSelected" value="代办类别" /> 紧急
+			</label>
+		</div>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th width="50px">序号</th>
+					<th>代办类别</th>
+					<th>标题</th>
+					<th>传递人</th>
+					<th>传递时间</th>
+					<th width="150px">操作</th>
+				</tr>
+			</thead>
+			<tbody name="clone">
+				<tr>
+					<td>1</td>
+					<td>A类别</td>
+					<td>A类别</td>
+					<td>张三</td>
+					<td>2017/05/30</td>
+					<td>
+						<button type="button" class="btn btn-primary" onclick="">
+							<span class="icon-ok"></span> 处理
+						</button>
+						<button type="button" class="btn btn-primary" onclick="">
+							<span class="icon-th"></span> 明细
+						</button>
+					</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>A类别</td>
+					<td>A类别</td>
+					<td>张三</td>
+					<td>2017/05/30</td>
+					<td>
+						<button type="button" class="btn btn-primary" onclick="">
+							<span class="icon-ok"></span> 处理
+						</button>
+						<button type="button" class="btn btn-primary" onclick="">
+							<span class="icon-th"></span> 明细
+						</button>
+					</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>A类别</td>
+					<td>A类别</td>
+					<td>张三</td>
+					<td>2017/05/30</td>
+					<td>
+						<button type="button" class="btn btn-primary" onclick="">
+							<span class="icon-ok"></span> 处理
+						</button>
+						<button type="button" class="btn btn-primary" onclick="">
+							<span class="icon-th"></span> 明细
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="row-fluid">
+			<div style="padding: 18px;" id="page-nav"
+				class="light-theme simple-pagination">
+				<ul>
+					<li class="disabled"><span class="current prev">上一页</span></li>
+					<li class="actived"><span class="current">1</span></li>
+					<li><a class="page-link" href="#page-2">2</a></li>
+					<li><a class="page-link" href="#page-3">3</a></li>
+					<li><a class="page-link" href="#page-4">4</a></li>
+					<li><a class="page-link" href="#page-5">5</a></li>
+					<li><a class="page-link" href="#page-6">6</a></li>
+					<li><a class="page-link next" href="#page-2">下一页</a></li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+	<div class="tab-pane" id="completed">
+		<div class="form-group form-inline search-box" style="zoom: 1; overflow: hidden; display: block;">
+			<input type="text" class="form-control" id="nameLike" placeholder="请输入传递人、标题" />
+			<button type="button" class="btn btn-primary " onclick="$$('offset').value=0;_commit();paginate();">
+				<span class="glyphicon glyphicon-search"></span> 搜索
+			</button>
+		</div>
+		<div class="form-group form-inline" style="margin-bottom: 0;">
+			<label>已办类别：</label>
+			<label>
+				<input type="checkbox" name="idSelected" value="代办类别" /> 一般
+			</label>
+			<label>
+				<input type="checkbox" name="idSelected" value="代办类别" /> 紧急
+			</label>
+		</div>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th width="50px">序号</th>
+					<th>已办类别</th>
+					<th>标题</th>
+					<th>传递人</th>
+					<th>传递时间</th>
+					<th width="150px">操作</th>
+				</tr>
+			</thead>
+			<tbody name="clone">
+				<tr>
+					<td>1</td>
+					<td>A类别</td>
+					<td>A类别</td>
+					<td>张三</td>
+					<td>2017/05/30</td>
+					<td>
+						
+						<button type="button" class="btn btn-primary" onclick="">
+							<span class="icon-th"></span> 明细
+						</button>
+					</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>A类别</td>
+					<td>A类别</td>
+					<td>张三</td>
+					<td>2017/05/30</td>
+					<td>
+						
+						<button type="button" class="btn btn-primary" onclick="">
+							<span class="icon-th"></span> 明细
+						</button>
+					</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>A类别</td>
+					<td>A类别</td>
+					<td>张三</td>
+					<td>2017/05/30</td>
+					<td>
+						
+						<button type="button" class="btn btn-primary" onclick="">
+							<span class="icon-th"></span> 明细
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="row-fluid">
+			<div style="padding: 18px;" id="page-nav"
+				class="light-theme simple-pagination">
+				<ul>
+					<li class="disabled"><span class="current prev">上一页</span></li>
+					<li class="actived"><span class="current">1</span></li>
+					<li><a class="page-link" href="#page-2">2</a></li>
+					<li><a class="page-link" href="#page-3">3</a></li>
+					<li><a class="page-link" href="#page-4">4</a></li>
+					<li><a class="page-link" href="#page-5">5</a></li>
+					<li><a class="page-link" href="#page-6">6</a></li>
+					<li><a class="page-link next" href="#page-2">下一页</a></li>
+				</ul>
+			</div>
+		</div>
+	
+	</div>
+
+</div>

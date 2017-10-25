@@ -1,0 +1,175 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/admin/core.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li class="active">权限管理</li>
+			</ul>
+		</div>
+		<!-- Main content -->
+		<div class="body">
+			<table class="table formtable table-condensed">
+				<tr>
+					<th>权限名称：</th>
+					<td><input type="text" name="nameLike" id="nameLike" class="form-control " value="" /></td>
+					<th>域名：</th>
+					<td><input type="text" name="domainLike" id="domainLike" class="form-control " value="" /></td>
+				</tr>
+				<tr>
+					<th>方法名：</th>
+					<td><input type="text" name="actionLike" id="actionLike" class="form-control " value="" /></td>
+					<th>组名：</th>
+					<td><input type="text" name="grpNameLike" id="grpNameLike" class="form-control " value="" /></td>
+				</tr>
+				<tr>
+					<td colspan="4" style="text-align:center;">
+						<button class="btn btn-primary" onclick="_commit()">
+							<span class="glyphicon glyphicon-search"></span> 查询
+						</button>
+						<button class="btn btn-default" onclick="window.location.reload(true)">
+							<span class="glyphicon glyphicon-repeat"></span> 重置
+						</button>
+					</td>
+				</tr>
+			</table>
+			
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<button class="btn btn-primary " data-target="#detailForm" data-toggle="modal" onclick="clean()">
+						<span class="glyphicon glyphicon-plus"></span> 新建
+					</button>
+				</div>
+				<div class="panel-body">
+					<table class="table table-hover table-striped table-condensed table-border" name="allPerm">
+						<thead>
+							<tr class="active">
+								<th>ID</th>
+								<th>域名</th>
+								<th>方法名</th>
+								<th>组名</th>
+								<th>权限名称</th>
+								<th>描述</th>
+								<th>状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="allPermTemplate" style="display: none;">
+								<td><span name="id"></span></td>
+								<td><span name="domain"></span></td>
+								<td><span name="action"></span></td>
+								<td><span name="grpName"></span></td>
+								<td><span name="name"></span></td>
+								<td><span name="descr"></span></td>
+								<td><span class="enabled" name="enabled" id="enabled" function=roleStatusValueTo></span></td>
+								<td>
+									<button class="btn btn-primary btn-xs" data-target="#detailForm" data-toggle="modal" onclick="findPerm(this)">
+										<span class="glyphicon glyphicon-edit"></span> 编辑
+									</button>
+									
+									<button class="btn btn-danger" onclick="disOrEnablePerm(this)" name="enabled" function=roleStatusButton></button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+		</div>
+
+	</div>
+
+	<div class="modal fade" id="detailForm" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					新建权限
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<form id="form1" role="form">
+						<table class="table" name="nones">
+							<tr style="display: none;">
+								<th style="width:150px;">id：<span class="must">*</span></th>
+								<td><input type="text" name="perm.id" id="id" value="" class="form-control input-sm " required="true" /></td>
+							</tr>
+							<tr>
+								<th style="width:150px;">权限名称：<span class="must">*</span></th>
+								<td><input type="text" name="perm.name" id="name" value="" class="form-control input-sm " required="true" /></td>
+							</tr>
+							<tr>
+								<th style="width:150px;">域名：<span class="must">*</span></th>
+								<td><input type="text" name="perm.domain" id="domain" value="" class="form-control input-sm " /></td>
+							</tr>
+							<tr>
+								<th style="width:150px;">方法名：<span class="must">*</span></th>
+								<td><input type="text" name="perm.action" id="action" value="" class="form-control input-sm " /></td>
+							</tr>
+							<tr>
+								<th style="width:150px;">组名：<span class="must">*</span></th>
+								<td><input type="text" name="perm.grpName" id="grpName" value="" class="form-control input-sm " /></td>
+							</tr>
+							<tr style="display: none;">
+								<th style="width:150px;">状态：<span class="must">*</span></th>
+								<td><input type="text" name="perm.enabled" id="enableds" value="" class="form-control input-sm " /></td>
+							</tr>
+							<tr>
+								<th>权限描述：</th>
+								<td><input name="perm.descr" id="descr" class="form-control input-sm "></input></td>
+							</tr>
+						</table>
+					</form>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" onclick="makePerm(this)">保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="hint"></div>
+</body>
+<!--[if lte IE 9]>
+	<script type="text/javascript" src="/iw/css/bootstrap/js/html5shiv.js"></script>
+	<script type="text/javascript" src="/iw/css/bootstrap/js/respond.min.js"></script>
+<![endif]-->
+<!--[if lte IE 6]>
+	<script type="text/javascript" src="/iw/js/bootstrap-ie.js"></script>
+	<![endif]-->
+<script type="text/javascript" src="/iw/js/admin/allPerm.js"></script>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">供货管理</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">市场管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">问题答复</li>
+				
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="top-actions">				
+				<button type="button" class="btn btn-default " onclick="location.href='projDetail.html#qa'">
+					<span class="icon-return"></span> 返回项目详情
+				</button>
+			</div>
+			<div class="panel panel-primary" style="margin-bottom:5px;">
+				<div class="panel-heading">****项目 的****问题 的答复</div>
+			</div>
+			<ul id="questionTab" class="nav nav-tabs" role="tablist">
+				<li  class="active"><a  data-toggle="tab" href="#basic">基本信息</a></li>
+				<li ><a  data-toggle="tab"  href="#relationProduct">相关产品</a></li>
+				<li ><a  data-toggle="tab" href="#answer">答复</a></li>
+			</ul>
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="basic">
+					<table class="table tableform">
+						<tr>
+							<th>提出方：</th>
+							<td>沙特阿拉伯空军</td>
+						</tr>
+						<tr>
+							<th>提出人：</th>
+							<td>ayija</td>
+						</tr>
+						<tr>
+							<th>电话：</th>
+							<td>123456</td>
+						</tr>
+						<tr>
+							<th>传真：</th>
+							<td>123456</td>
+						</tr>
+						<tr>
+							<th>邮件地址：</th>
+							<td>abc@abc.ocm</td>
+						</tr>
+						<tr>
+							<th>征询时间：</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th>简述</th>
+							<td>简述简述简述简述简述简述简述简述简述</td>
+						</tr>
+						<tr>
+							<th>问题描述</th>
+							<td><textarea style="width:100%;height:100px;" class="form-control">问题描述问题描述问题描述问题描述问题描述问题描述问题描述问题描述问题描述问题描述问题描述问题描述问题描述问题描述问题描述
+							</textarea></td>
+						</tr>
+						<tr>
+							<th>问题附件：</th>
+							<td>
+								<table class="table  table-hover  table-condensed">
+									<thead>
+										<tr>
+											<th>序号</th>
+											<th>附件</th>
+											<th>说明</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td><a href="">aaa.doc</a></td>
+											<td></td>
+																					
+										</tr>										
+										<tr>
+											<td>2</td>
+											<td><a href="">aaa.doc</a></td>
+											<td></td>
+																						
+										</tr>
+										<tr>
+											<td></td>
+											<td></td>
+											<td></td>
+																					
+										</tr>
+									</tbody>
+								
+								</table>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div id="relationProduct" class="tab-pane">					
+				    <table class="table table-hover  table-condensed">
+						<thead>							
+							<tr class="">
+								<th width="80px">序号</th>
+								<th width="">NSN</th>
+								<th width="">名称</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>								
+								<td></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="answer" class="tab-pane">					
+					<table class="table tableform">
+						<thead>
+							<tr>
+								<th colspan="2">****的答复</th>								
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th  width="15%">问题答复</td>
+								<td>答复内容答复内容答复内容答复内容答复内容答复内容答复内容答复内容答复内容</td>
+							</tr>
+							<tr>
+								<th>答复附件</th>
+								<td>
+									<table class="table">
+										<thead>
+											<tr>
+												<th width="50px">序号</th>
+												<th width="100px">附件</th>
+												<th>说明</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>1</td>
+												<td><a href="#">附件1</a></td>
+												<td></td>												
+											</tr>
+											<tr>
+												<td>1</td>
+												<td><a href="#">附件1</a></td>
+												<td></td>												
+											</tr>
+											<tr>
+												<td>1</td>
+												<td><a href="#">附件1</a></td>
+												<td></td>												
+											</tr>
+										</tbody>
+									</table>
+								
+								</td>
+							</tr>
+						</tbody>				
+					
+					</table>
+					<table class="table tableform">
+						<thead>
+							<tr>
+								<th colspan="2">****的答复</th>								
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th  width="15%">问题答复</td>
+								<td>答复内容答复内容答复内容答复内容答复内容答复内容答复内容答复内容答复内容</td>
+							</tr>
+							<tr>
+								<th>答复附件</th>
+								<td>
+									<table class="table">
+										<thead>
+											<tr>
+												<th width="50px">序号</th>
+												<th width="100px">附件</th>
+												<th>说明</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>1</td>
+												<td><a href="#">附件1</a></td>
+												<td></td>												
+											</tr>
+											<tr>
+												<td>1</td>
+												<td><a href="#">附件1</a></td>
+												<td></td>												
+											</tr>
+											<tr>
+												<td>1</td>
+												<td><a href="#">附件1</a></td>
+												<td></td>												
+											</tr>
+										</tbody>
+									</table>
+								
+								</td>
+							</tr>
+						</tbody>				
+					
+					</table>
+					
+					<table class="table tableform">
+						<thead>
+							<tr>
+								<th colspan="2">答复</th>								
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th width="15%">问题答复</td>
+								<td><textarea class="form-control" style="height:100px;width:100%;"></textarea></td>
+							</tr>
+							<tr>
+								<th>答复附件</th>
+								<td>
+									<table class="table">
+										<thead>
+											<tr>
+												<th width="50px">序号</th>
+												<th width="100px">附件</th>
+												<th>说明</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>1</td>
+												<td><a href="#">附件1</a></td>
+												<td></td>	
+												<td>
+													<button type="button" class="btn btn-default " onclick="" data-target="#fileModal" data-toggle="modal">
+														<span class="icon-upload"></span> 上传
+													</button>
+													<button type="button" class="btn btn-default " onclick="location.href='projDetail.html#qa'">
+														<span class="icon-remove"></span> 删除
+													</button>
+												</td>												
+											</tr>
+											<tr>
+												<td>2</td>
+												<td><a href="#">附件1</a></td>
+												<td></td>	
+												<td>
+													<button type="button" class="btn btn-default " onclick="" data-target="#fileModal" data-toggle="modal">
+														<span class="icon-upload"></span> 上传
+													</button>
+													<button type="button" class="btn btn-default " onclick="location.href='projDetail.html#qa'">
+														<span class="icon-remove"></span> 删除
+													</button>
+												</td>												
+											</tr>
+											<tr>
+												<td>3</td>
+												<td></td>
+												<td></td>	
+												<td>
+													<button type="button" class="btn btn-default " onclick="" data-target="#fileModal" data-toggle="modal">
+														<span class="icon-upload"></span> 上传
+													</button>													
+												</td>												
+											</tr>
+										</tbody>
+									</table>
+								
+								</td>
+							</tr>
+						</tbody>				
+					
+					</table>
+				</div>
+				
+			</div>
+			
+
+		</div>
+	</div>
+	
+	<div class="includeHtml" data-url="../tpl/fileModal.html"></div>
+	<script type="text/javascript" src="/iw/js/supply/util.js"></script>    
+</body>
+</html>

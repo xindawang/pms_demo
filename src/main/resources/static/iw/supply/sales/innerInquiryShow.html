@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">供货管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">内部询报价</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="top-actions">								
+				<button type="button" class="btn btn-default " onclick="history.go(-1);">
+					<span class="icon-reply"></span> 返回
+				</button>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<div class="right">
+						<span class="icon-collapse"></span>
+					</div>
+					**** 项目基本信息
+				</div>
+				<div class="includeHtml" data-url="../tpl/projShow.html" style="padding: 5px; display: none;"></div>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<div class="right">
+						<span class="icon-collapse"></span>
+					</div>
+					内部询价单信息
+				</div>
+				<div class="includeHtml" data-url="../tpl/innerInquiryDetail.html" style="padding: 5px;display: none;"></div>
+			</div>
+
+			
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="icon-th"></span> 相关产品列表
+				</div>
+				<table id="productTree" class="table  treelist">
+					<thead>
+						<tr class="">							
+							<th>名称</th>
+							<th>NSN</th>
+							<th>零件号</th>
+							<th>数量</th>
+							<th>单位</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="tree-node-selected" data-id="1" data-parent="0">							
+							<td>
+								<div class="tree-node tree-root-one tree node-last ">
+									<span class="tree-hit tree-collapsed"></span> <span class="tree-icon tree-folder "></span> <span class="tree-title">000001</span> <a href="bomDetail.html?id=100"><span class="tree-title">导弹</span></a>
+								</div>
+							</td>
+							<td><a href="/iw/org/itemDetail.html?id="></a>1000235688945</td>
+							<td>0001</td>
+							<td><input type="text" class="form-control xxs" value="2" /></td>
+							<td>个</td>							
+						</tr>
+						<tr data-id="3" data-parent="1" class="detail">							
+							<td>
+								<div class="tree-node tree-root-one tree node-last ">
+									<span class="tree-indent"></span> <span class="tree-hit tree-expanded"></span> <span class="tree-icon tree-folder tree-folder-open"></span> <span class="tree-title">000008</span> <span class="tree-title">引战舱</span>
+								</div>
+							</td>
+							<td><a href="/iw/org/itemDetail.html?id="></a>1000235688945</td>
+							<td>0001</td>
+							<td></td>
+							<td></td>							
+						</tr>
+						<tr data-id="31" data-parent="3" class="detail">							
+							<td>
+								<div class="tree-node tree-root-one tree node-last ">
+									<span class="tree-indent"></span> <span class="tree-inden"></span> <span class="tree-indent"></span> <span class="tree-icon tree-file"></span> <span class="tree-title">000009</span> <span class="tree-title">引信</span>
+								</div>
+							</td>
+							<td><a href="/iw/org/itemDetail.html?id="></a>1000235688945</td>
+							<td>0001</td>
+							<td><input type="text" class="form-control xxs" value="2" /></td>
+							<td>个</td>							
+						</tr>
+						<tr data-id="32" data-parent="3" class="detail">							
+							<td>
+								<div class="tree-node tree-root-one tree node-last ">
+									<span class="tree-indent"></span> <span class="tree-inden"></span> <span class="tree-indent"></span> <span class="tree-icon tree-file"></span> <span class="tree-title">000010</span> <span class="tree-title">战斗部</span>
+								</div>
+							</td>
+							<td><a href="/iw/org/itemDetail.html?id="></a>1000235688945</td>
+							<td>0001</td>
+							<td><input type="text" class="form-control xxs" value="2" /></td>
+							<td>个</td>							
+						</tr>
+
+						<tr>							
+							<td>配套附件1</td>
+							<td><a href="/iw/org/itemDetail.html?id="></a>1000235688945</td>
+							<td>0001</td>
+							<td><input type="text" class="form-control xxs" value="2" /></td>
+							<td>个</td>							
+						</tr>
+						<tr>							
+							<td>配套附件2</td>
+							<td><a href="/iw/org/itemDetail.html?id="></a>1000235688945</td>
+							<td>0001</td>
+							<td><input type="text" class="form-control xxs" value="2" /></td>
+							<td>个</td>							
+						</tr>
+
+					</tbody>
+				</table>				
+			</div>
+			<!-- 
+			<div class="top-actions">
+				<button type="button" class="btn btn-primary " onclick="location.href='innerQuoteDetail.html?id=';">
+					<span class="icon-ok"></span> 去报价
+				</button>
+			</div>
+			 -->
+			<div class="panel panel-default">
+			
+				<div class="panel-heading">
+					<span class="icon-th"></span> 内部报价单列表
+				</div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>报价单号</th>
+							<th>询价时间</th>
+							<th>状态</th>
+							<th>报价人</th>
+							<th>总价</th>
+							<th>说明</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><span name="idNo">1</span></td>
+							<td><a href="innerQuoteShow.html?id=">12345678</a></td>
+							<td>2017/10/12</td>
+							<td>接受报价</td>
+							<td>张三</td>
+							<td><span name="num">10</span></td>
+							<td><span name="num">10</span></td>
+							<td>
+								<button class="btn btn-primary btn-xs" onclick="location.href='innerContractDetail.html?pid=';">
+									<span class="glyphicon glyphicon-edit"></span>生成内部合同
+								</button>
+								<!-- 								
+								<button class="btn btn-primary btn-xs" data-target="#detailForm" data-toggle="modal" onclick="href(this)" roles="three.hisRoles">
+									<span class="glyphicon glyphicon-edit"></span>pdf
+								</button>
+                                 -->
+							</td>
+						</tr>
+						<tr>
+							<td><span name="idNo">1</span></td>
+							<td><a href="innerQuoteShow.html?id=">12345678</a></td>
+							<td>2017/10/12</td>
+							<td>已报价</td>
+							<td>李四</td>
+							<td><span name="num">10</span></td>
+							<td><span name="num">10</span></td>
+							<td>
+								<button class="btn btn-primary btn-xs" onclick="location.href='innerContractDetail.html?pid=';">
+									<span class="glyphicon glyphicon-edit"></span>生成内部合同
+								</button>								
+								
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+
+		</div>
+
+	</div>
+
+	<div id="quoteModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header modal-primary">
+					指定报价人
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+
+				<div class="modal-body">
+					<table class="table tableform">
+						<tr>
+							<th>报价人：</th>
+							<td>
+								<div class="input-group ">
+									<input type="hidden" name="" id="prodLibNo" onchange="" value="" /> <input type="text" class="form-control" name="configDetail.prodLibName" value="" id="prodLibName" readonly /> <span class="input-group-addon" data-target="#userModal" data-toggle="modal" onclick="" data-toggle="modal">
+										... </span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>附加信息：</th>
+							<td><textarea rows="" cols="" style="width: 100%; height: 80px;"></textarea></td>
+						</tr>
+					</table>
+				</div>
+
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">
+						<span class="icon-save"></span> 保存
+					</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+					</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="includeHtml" data-url="../tpl/auditModal.html"></div>
+	<div class="includeHtml" data-url="../tpl/userModal.html"></div>
+	<div class="includeHtml" data-url="../tpl/createInnerInquiryModal.html"></div>
+	<div class="includeHtml" data-url="../tpl/productModal.html"></div>
+	<script type="text/javascript" src="/iw/js/supply/util.js"></script>
+	<script type="text/javascript" src="/iw/js/tree.js"></script>
+</body>
+</html>

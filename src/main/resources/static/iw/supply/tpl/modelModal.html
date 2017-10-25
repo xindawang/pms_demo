@@ -1,0 +1,51 @@
+<div id="modelModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header modal-primary">
+				选择型号
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+
+			<div class="modal-body">
+				<div class="form-group form-inline search-box" style="zoom: 1; overflow: hidden; display: block;">
+					<input type="text" class="form-control" id="nameLike" />
+					<button type="button" class="btn btn-primary btn-xs " onclick="">
+						<span class="glyphicon glyphicon-search"></span> 搜索
+					</button>
+				</div>
+
+				<table class="table " style="width: 500px;">
+					<thead>
+						<tr>
+							<th width="30px">#</th>
+							<th>型号名称</th>							
+						</tr>
+					</thead>
+					<tbody>
+						<tr name="myModelPageTemplate" style="display: none">
+							<input name="id" type="hidden" id="modelId"/>
+							<td><input type="radio" name="id"></td>
+							<td name="name" id="modelName"></td>
+						</tr>
+					</tbody>
+				</table>
+					<input type="hidden" name="modelTotal" id="modelTotal" value=0> 
+					<input type="hidden" name="modelOffset" id="modelOffset" value=0>
+					 <input type="hidden" name="modelLimit" id="modelLimit" value=3>
+					<div class="row-fluid">
+						<div id="modelPage-nav" style="padding: 18px;"></div>
+					</div>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="modelChoice()">
+					<span class="icon-ok"></span> 选择
+				</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+				</button>
+			</div>
+
+		</div>
+	</div>
+</div>

@@ -1,0 +1,38 @@
+<!-- 业务员 -->
+<div id="salesmanModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header modal-primary">
+				<span class="icon-th"></span> 业务员
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+
+			<div class="modal-body">
+				<table class="table" style="width:400px"  >
+					<tr name="custPageTemplate" style="display: none;">
+						<td style="width:50px;">
+							<input type="radio" name="salesman" value=""/>
+							<input type="hidden" name="custId" value=""/>
+						</td>
+						<td name="name"></td>
+					</tr>
+				</table>
+				<input type="hidden" name="total" id="total" value=0>
+				<input type="hidden" name="offset" id="offset" value=0>
+				<input type="hidden" name="limit" id="limit" value=5>
+				<div class="row-fluid"> 
+					<div id="page-nav"  style="padding: 18px;"></div> 
+				</div>
+			</div>
+			
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" onclick="assignSaler();" data-dismiss="modal">
+					<span class="icon-ok"></span> 分配业务员
+				</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+				</button>
+			</div>
+		</div>
+	</div>																								
+</div>

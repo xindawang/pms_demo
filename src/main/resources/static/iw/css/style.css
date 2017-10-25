@@ -1,0 +1,209 @@
+@CHARSET "UTF-8";
+body #content .body {
+    min-height: 480px;
+    height:auto;
+}
+.top-actions{
+	margin-top:5px;
+	margin-bottom:5px;
+}
+.table-control{
+	width:100px !important;
+}
+.modal .input-group-addon {
+	display:inline-block;
+    height: 20px;
+    line-height: 20px;
+    padding: 0px 5px;
+}
+.table tr.detail {
+	display:none;
+}
+.detail .table tbody th {
+    background-color: #f5f5f5;
+}
+
+.body .table .form-control.formnumber{
+	width:50px;
+}
+ .table .form-control.money {
+	width:80px;
+	text-align:right;
+}
+.table tr.disabled {
+	background-color:#cccccc;
+}
+.table tr.disabled td {
+	background-color:#cccccc;
+}
+
+.form-inline .right {
+	margin-right:0;
+	padding-right:0;
+}
+
+
+.table.formtable th {
+    background-color:#f5f5f5;
+}
+
+#inquiryModal .modal-dialog ,
+#outInquiryListModal .modal-dialog,
+#innerInquiryListModal .modal-dialog,
+#outQuoteListModal .modal-dialog,
+#innerQuoteListModal .modal-dialog,
+#innerContractListModal .modal-dialog,
+#selectAdviceModal  .modal-dialog,
+#salesAdviceModal .modal-dialog {    
+    width: 800px !important;
+}
+
+
+/*
+* 进度条
+*/
+#process {
+	width:100%;
+	text-align:center;
+}
+#process td {
+	
+	height:40px;
+	background-color:#999999;
+}
+#process td.over {
+	background-color:blue;
+}
+
+#process tr.content td {
+	background-color:#ffffff;
+}
+
+/*
+* 搜索
+*/
+.search-box label {
+	display:inline-block;
+	min-width:60px;
+}
+
+/* modal */
+.modal .form-control.xs{
+	width: 120px;
+} 
+.tableform th {
+	padding-right:2px;
+}
+.modal .search-box .form-control{
+    height: 28px;
+    line-height: 28px;
+}
+
+.btn.btn-toggle {    
+    border:1px solid #428bca;
+    color: #ffffff;
+    outline:none;
+}
+.btn.btn-toggle:hover,.btn.btn-toggle:focus {
+	background-color: #ffffff;
+	color: #ff8040;
+	outline:none;
+}
+
+.btn.btn-save {  
+	background-color: #ffffff;
+    border:1px solid #ff8040;
+    color: #ff8040;
+    outline:none;
+}
+.btn.btn-save:hover,.btn.btn-save:focus {
+	background-color: #ff8040;
+	color: #ffffff;
+	outline:none;
+}
+
+.panel .panel-heading .icon-collapse,.panel .panel-heading .icon-collapse-top{
+	cursor: pointer;
+}
+
+.panel .right {
+	margin-right:0px;
+}
+
+table.table input.form-control.xs{
+	width: 120px;
+} 
+
+#outQuoteModal .modal-dialog{
+	width: 800px !important;
+}
+
+table.table input.form-control.xxs {
+    width: 60px;
+}
+
+/*welcome */
+.rightColumn{
+	width: 20%; 
+	float: right;
+	overflow:hidden;
+}
+.leftColumn {
+	width:79%;
+	float:left;
+}
+
+a.mywork {
+	color:red;
+	padding-left: 40px; 
+}
+a.more {
+	color:#666666;
+	float:right;
+	margin-right:5px;
+	font-size:12px;
+	line-height:23px;
+	height:23px;
+}
+.username {
+	color:red;
+	font-size:12px;
+}
+.totalwork{
+	float:right;
+	margin-right:20px;
+	height:38px;
+	line-height:38px;
+	font-size:12px;
+}
+
+table.table td.work {
+	padding-left:60px;
+}
+
+table.table td span.workNumber{
+	float:right;
+	padding-right:60px;
+}
+ table.table td.news{
+ 	padding-left:10px;
+ }
+ 
+ table.table th.categoryTitle{
+ 	font-size:14px;
+ 	color:#444444;
+ }
+ 
+ .btn.btn-lg {
+    border-radius: 6px;
+    font-size: 18px;
+    line-height: 1.33;
+    padding: 10px 16px;
+}
+
+button.btn-workflow {
+	height:35px;
+	line-height:31px;
+	font-size:14px;
+	width:100px;
+}

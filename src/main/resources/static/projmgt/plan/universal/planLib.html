@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>武器装备保障平台</title>
+<meta charset="UTF-8">
+<script type="text/javascript" src="/projmgt/js/common/env.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/projmgt/js/common/simplePaginationEnv.js"></script>
+<script type="text/javascript" src="/projmgt/js/common/table.js"></script>
+<script type="text/javascript" src="/projmgt/js/plan/universal/planLib.js"></script>
+
+</head>
+<body>
+	<div id="top" class="top"></div>
+
+	<div id="left" class="left"></div>
+
+	<div class="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="/iw/org/welcome.html">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">项目管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active">计划模板库管理</li>
+			</ul>
+		</div>
+
+
+
+
+  <div class="table-box">
+ 			<div class="content-header">
+				<button id="addTasksBase" class="btn btn-primary ">
+
+					<span>新增任务模板库</span>
+				</button></div> 
+			<div id="taskBaseTable" class="body">
+				<table class="table table-hover  table-condensed">
+				</table>						
+			</div>    
+        </div>
+
+		<div class="table-box">
+			<div class="content-header">
+				<button id="addTask" class="btn btn-primary " onclick="location.href='createTask.html'">
+
+					<span>新增任务模板</span>
+				</button>
+			</div>
+			<div id="uniTasksTable" class="body">
+				<table class="table table-hover  table-condensed">
+				</table>
+			</div>
+		</div>
+		
+
+   <div class="table-box">
+			<div class="content-header">
+				<button id="addSchedule" class="btn btn-primary ">
+					<span>新增计划模板</span>
+				</button>
+			</div>
+			<div id="schedulesTable" class="body">
+				<table class="table table-hover  table-condensed">
+				</table>
+			</div>
+		</div>
+		
+		<!-- 模态框（Modal） -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+
+							删除或转移任务模板库
+						</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<h5 class="modal-title" id="myModalLabel">
+								将此任务库所有任务转移至：（请选择转移任务库）
+							</h5>
+							<select id="uniTaskBase" class="form-control" multiple style="overflow-y:scroll;height:100px;width:300px">
+							</select>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button id="delTaskBase" type="button" class="btn btn-primary" data-dismiss="modal">
+							删除任务库及其数据
+						</button>
+						<button id="transfer" type="button" class="btn btn-primary" data-dismiss="modal">
+							转移任务并删除任务库
+						</button>
+						<button id="cancel" type="button" class="btn btn-default" data-dismiss="modal">
+							取消
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal -->
+		</div>
+	</div>
+</body>
+</html>

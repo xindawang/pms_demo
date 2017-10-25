@@ -1,0 +1,369 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">供货管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">询报价</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="top-actions">
+				<!-- 
+				<button type="button" class="btn btn-primary " onclick="location.href='outInquiryDetail.html';">
+					<span class="icon-plus"></span> 增加外方询价
+				</button>
+				<button type="button" class="btn btn-primary " onclick="location.href='innerInquiryDetail.html';">
+					<span class="icon-plus"></span> 增加内部询价
+				</button>
+				 -->
+				<button type="button" class="btn btn-default " onclick="history.go(-1);">
+					<span class="icon-reply"></span> 返回
+				</button>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<div class="right">
+						<span class="icon-collapse"></span>
+					</div>
+					**** 项目基本信息
+				</div>
+				<div class="includeHtml" data-url="../tpl/projShow.html" style="padding: 5px; display: none;"></div>
+			</div>
+
+			<ul class="nav nav-tabs" id="myproj">
+				<li class="active"><a href="#out">外方询报价</a>
+				<li><a href="#inner">内部询报价</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="out">
+					<table class="table table-hover  table-condensed">
+						<thead>
+							<tr>
+								<th width="40px">#</th>
+								<th>询/报价单号</th>
+								<th>询价方</th>
+								<th>报价方</th>
+								<th>项目经理</th>
+								<th>询/报价时间</th>
+								<th>说明</th>
+								<th>状态</th>
+								<th>外部报价</th>
+								<th>币种</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr>
+								<td>
+									<button type="button" class="btn btn-default btn-xs showdetail" data-id="1" onclick="">
+										<span class="icon-plus"></span>
+									</button>
+								</td>
+								<td><a href="outInquiryDetail.html?id=">SKFD2000-RFQ-WX-001</a></td>
+								<td><span name="corpName">沙特空军</span></td>
+								<td></td>
+								<td><span name="idNo">李四/业务部</span></td>
+								<td><span name="name">2016-5-18 12:45</span></td>
+								<td><span name="corpName">说明</span></td>
+								<td><span name="idNo">待审核</span></td>
+								
+								<td></td>
+								<td>美元</td>
+								<td>
+									
+									<button class="btn btn-primary btn-xs" onclick="location.href='innerInquiryDetail.html?oid='">
+										<span class="glyphicon glyphicon-edit"></span>生成内部询价单
+									</button>
+									<button class="btn btn-primary btn-xs" onclick="">
+										<span class="icon-key"></span>审批
+									</button>
+									<button class="btn btn-primary btn-xs" onclick="location.href='outQuoteDetail.html?id=';">
+										<span class="glyphicon glyphicon-edit"></span>报价
+									</button>
+									<button class="btn btn-danger btn-xs" onclick="">
+										<span class="glyphicon glyphicon-remove"></span>拒绝报价
+									</button>
+								</td>
+							</tr>
+							<tr data-id="1" class="detail">
+								<td></td>
+								<td><span name="name">SKFD2000-RFQ-WX-001</span></td>
+								<td></td>
+								<td><span name="corpName">华腾</span></td>
+								<td><span name="idNo">李四/业务部</span></td>
+								<td><span name="name">2016-5-18 12:45</span></td>
+								<td><span name="corpName">说明</span></td>
+								<td><span name="idNo">待报价</span></td>
+								<td>10,000,000,000</td>
+								<td>美元</td>
+								<td></td>
+							</tr>
+							<tr data-id="1" class="detail">
+								<td></td>
+								<td><span name="name">SKFD2000-RFQ-WX-001</span></td>
+								<td></td>
+								<td><span name="corpName">华腾</span></td>
+								<td><span name="idNo">李四/业务部</span></td>
+								<td><span name="name">2016-5-18 12:45</span></td>
+								<td><span name="corpName">说明</span></td>
+								<td><span name="idNo">已报价</span></td>
+								<td>10,000,000,000</td>
+								<td>美元</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>
+									<button type="button" class="btn btn-default btn-xs showdetail" data-id="2" onclick="">
+										<span class="icon-plus"></span>
+									</button>
+								</td>
+								<td><a href="outInquiryDetail.html?id=">SKFD2000-RFQ-WX-001</a></td>
+								<td><span name="corpName">沙特空军</span></td>
+								<td></td>
+								<td><span name="idNo">李四/业务部</span></td>
+								<td><span name="name">2016-5-18 12:45</span></td>
+								<td><span name="corpName">说明</span></td>
+								<td><span name="idNo">待审核</span></td>
+								<td></td>								
+								<td>美元</td>
+								<td>
+									
+									<button class="btn btn-primary btn-xs" onclick="">
+										<span class="glyphicon glyphicon-edit"></span>生成内部询价单
+									</button>
+									<button class="btn btn-primary btn-xs" onclick="">
+										<span class="icon-key"></span>审批
+									</button>
+									<button class="btn btn-primary btn-xs" onclick="location.href='outQuoteDetail.html?id=';">
+										<span class="glyphicon glyphicon-edit"></span>报价
+									</button>
+									<button class="btn btn-danger btn-xs" onclick="">
+										<span class="glyphicon glyphicon-remove"></span>拒绝报价
+									</button>
+								</td>
+							</tr>
+							<tr data-id="2" class="detail">
+								<td></td>
+								<td><span name="name">SKFD2000-RFQ-WX-001</span></td>
+								<td></td>
+								<td><span name="corpName">华腾</span></td>
+								<td><span name="idNo">李四/业务部</span></td>
+								<td><span name="name">2016-5-18 12:45</span></td>
+								<td><span name="corpName">说明</span></td>
+								<td><span name="idNo">待报价</span></td>
+								<td>10,000,000,000</td>
+								<td>美元</td>
+								<td></td>
+							</tr>
+							<tr data-id="2" class="detail">
+								<td></td>
+								<td><span name="name">SKFD2000-RFQ-WX-001</span></td>
+								<td></td>
+								<td><span name="corpName">华腾</span></td>
+								<td><span name="idNo">李四/业务部</span></td>
+								<td><span name="name">2016-5-18 12:45</span></td>
+								<td><span name="corpName">说明</span></td>
+								<td><span name="idNo">已报价</span></td>
+								<td>10,000,000,000</td>
+								<td>美元</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="row-fluid">
+						<div style="padding: 18px;" id="page-nav" class="light-theme simple-pagination">
+							<ul>
+								<li class="disabled"><span class="current prev">上一页</span></li>
+								<li class="actived"><span class="current">1</span></li>
+								<li><a class="page-link" href="#page-2">2</a></li>
+								<li><a class="page-link" href="#page-3">3</a></li>
+								<li><a class="page-link" href="#page-4">4</a></li>
+								<li><a class="page-link" href="#page-5">5</a></li>
+								<li><a class="page-link" href="#page-6">6</a></li>
+								<li><a class="page-link next" href="#page-2">下一页</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane" id="inner">
+					<table class="table table-hover  table-condensed">
+						<thead>
+							<tr>
+								<th width="40px">#</th>
+								<th>询/报价单号</th>
+								<th>询价方</th>
+								<th>报价方</th>
+								<th>项目经理</th>
+								<th>询/报价时间</th>
+								<th>说明</th>
+								<th>状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr>
+								<td>
+									<button type="button" class="btn btn-default btn-xs showdetail" data-id="1" onclick="">
+										<span class="icon-plus"></span>
+									</button>
+								</td>
+								<td><a href="innerInquiryDetail.html?id=">SKFD2000-RFQ-WX-001</a></td>
+								<td><span name="corpName">华腾</span></td>
+								<td></td>
+								<td><span name="idNo">李四/业务部</span></td>
+								<td><span name="name">2016-5-18 12:45</span></td>
+								<td><span name="corpName">说明</span></td>
+								<td><span name="idNo">待审核</span></td>
+								<td>
+									<button class="btn btn-primary btn-xs" onclick="">
+										<span class="glyphicon glyphicon-edit"></span>修改
+									</button>
+									<button class="btn btn-primary btn-xs" onclick="">
+										<span class="icon-key"></span>审批
+									</button>
+								</td>
+							</tr>
+							<tr data-id="1" class="detail">
+								<td></td>
+								<td><span name="name">SKFD2000-RFQ-WX-001</span></td>
+								<td></td>
+								<td><span name="corpName">二院</span></td>
+								<td><span name="idNo">李四/业务部</span></td>
+								<td><span name="name">2016-5-18 12:45</span></td>
+								<td><span name="corpName">说明</span></td>
+								<td><span name="idNo">待报价</span></td>
+								<td>
+									<button class="btn btn-primary btn-xs" onclick="configDetail(this)">
+										<span class="glyphicon glyphicon-edit"></span>拒绝报价
+									</button>
+									<button class="btn btn-primary btn-xs" onclick="configDetail(this)">
+										<span class="glyphicon glyphicon-edit"></span>报价
+									</button>
+								</td>
+							</tr>
+							<tr data-id="1" class="detail">
+								<td></td>
+								<td><span name="name">SKFD2000-RFQ-WX-001</span></td>
+								<td></td>
+								<td><span name="corpName">三院</span></td>
+								<td><span name="idNo">李四/业务部</span></td>
+								<td><span name="name">2016-5-18 12:45</span></td>
+								<td><span name="corpName">说明</span></td>
+								<td><span name="idNo">已报价</span></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>
+									<button type="button" class="btn btn-default btn-xs showdetail" data-id="2" onclick="">
+										<span class="icon-plus"></span>
+									</button>
+								</td>
+								<td><a href="innerInquiryDetail.html?id=">SKFD2000-RFQ-WX-002</a></td>
+								<td><span name="corpName">华腾</span></td>
+								<td></td>
+								<td><span name="idNo">李四/业务部</span></td>
+								<td><span name="name">2016-5-18 12:45</span></td>
+								<td><span name="corpName">说明</span></td>
+								<td><span name="idNo">待审核</span></td>
+								<td>
+									<button class="btn btn-primary btn-xs" onclick="">
+										<span class="glyphicon glyphicon-edit"></span>修改
+									</button>
+									<button class="btn btn-primary btn-xs" onclick="">
+										<span class="icon-key"></span>审批
+									</button>
+								</td>
+							</tr>
+							<tr data-id="2" class="detail">
+								<td></td>
+								<td><span name="name">SKFD2000-RFQ-WX-002</span></td>
+								<td></td>
+								<td><span name="corpName">二院</span></td>
+								<td><span name="idNo">李四/业务部</span></td>
+								<td><span name="name">2016-5-18 12:45</span></td>
+								<td><span name="corpName">说明</span></td>
+								<td><span name="idNo">待报价</span></td>
+								<td>
+									<button class="btn btn-primary btn-xs" onclick="configDetail(this)">
+										<span class="glyphicon glyphicon-edit"></span>拒绝报价
+									</button>
+									<button class="btn btn-primary btn-xs" onclick="configDetail(this)">
+										<span class="glyphicon glyphicon-edit"></span>报价
+									</button>
+								</td>
+							</tr>
+							<tr data-id="2" class="detail">
+								<td></td>
+								<td><span name="name">SKFD2000-RFQ-WX-002</span></td>
+								<td></td>
+								<td><span name="corpName">三院</span></td>
+								<td><span name="idNo">李四/业务部</span></td>
+								<td><span name="name">2016-5-18 12:45</span></td>
+								<td><span name="corpName">说明</span></td>
+								<td><span name="idNo">已报价</span></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="row-fluid">
+						<div style="padding: 18px;" id="page-nav" class="light-theme simple-pagination">
+							<ul>
+								<li class="disabled"><span class="current prev">上一页</span></li>
+								<li class="actived"><span class="current">1</span></li>
+								<li><a class="page-link" href="#page-2">2</a></li>
+								<li><a class="page-link" href="#page-3">3</a></li>
+								<li><a class="page-link" href="#page-4">4</a></li>
+								<li><a class="page-link" href="#page-5">5</a></li>
+								<li><a class="page-link" href="#page-6">6</a></li>
+								<li><a class="page-link next" href="#page-2">下一页</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+		</div>
+
+	</div>
+	<script type="text/javascript" src="/iw/js/supply/util.js"></script>
+</body>
+</html>

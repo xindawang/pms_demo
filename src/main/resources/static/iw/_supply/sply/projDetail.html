@@ -1,0 +1,822 @@
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/supply/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/supply/projUpdateDetail.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">供货管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">供货项目列表</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div style="float: right; margin-top: -8px; margin-right: 0px;">
+						<button type="button" class="btn btn-link "   id="createContact" style="display:none;" onclick="newCntract()" name="projDetail.id">
+							<span class="glyphicon glyphicon-plus"></span> 生成项目合同
+						</button>
+						<button type="button" class="btn btn-link " id="btnContact" style="display:none;" onclick="contractDetail(this);">
+							<span class="glyphicon glyphicon-list"></span> 项目合同
+						</button>
+						<button type="button" class="btn btn-link ">
+							<span class="glyphicon glyphicon-chevron-up"></span>
+						</button>
+					</div>
+					<span class="glyphicon glyphicon-th"> </span> 供货项目详情
+				</div>
+				<div class="panel-body panel-condensed" role="form">
+					<table class="table tableform  table-condensed">
+						<tr>
+							<th>项目名称</th>
+							<td><input type="text" name="projDetail.name" id="name" value="" class="form-control" /></td>
+							<th>简称</th>
+							<td><input type="text" name="projDetail.shortName" id="shortName" value="" class="form-control" /></td>
+
+						</tr>
+						<tr>
+							<th>甲方</th>
+							<td><div class="input-group ">
+									<input type="hidden" name="projDetail.aCorpId" id="aCorpId" onchange="javascript:abc()" value="" />
+									 <input type="text" class="form-control" name="projDetail.aCorpName" value="" id="aCorpName" readonly /> <span class="input-group-addon" data-target="#firstPartyModal" onclick="$$('corpOffset').value=0;_corpCommit();corpPaginate();" data-toggle="modal"> ... </span>
+								</div></td>
+							<th>乙方</th>
+							<td><input type="text" name="projDetail.corpName" value="中国华腾" class="form-control" readonly="readonly"  id="corpN"/></td>
+						</tr>
+						<tr>
+							<th>甲方项目经理</th>
+							<td><div class="input-group ">
+									<input type="hidden" name="projDetail.aManagerId" id="aManagerId" onchange="javascript:abc()" value="" /> 
+									<input type="text" class="form-control" name="projDetail.aManagerName" value="" id="aManagerName" readonly /> <span id="itemSelectSpan" class="input-group-addon"
+										data-target="#firstuserModal" onclick="$$('custOffset').value=0;_custCommit();custPaginate();" data-toggle="modal"> ... </span>
+								</div></td>
+							<th>乙方项目经理</th>
+							<td><div class="input-group ">
+									<input type="hidden" name="projDetail.managerId" id="managerId" onchange="javascript:abc()" value="" />
+									<input type="text" class="form-control" name="projDetail.managerName" value="张三" id="itemName" readonly /> <span id="itemSelectSpan" class="input-group-addon"
+										data-target="#userModal" onclick="$$('custOffset').value=0;_custsCommit();custsPaginate();" data-toggle="modal"> ... </span>
+								</div></td>
+
+						</tr>
+						<tr>
+							<th>地址</th>
+							<td><input type="text" name="projDetail.addr" value="" class="form-control"  id="addr"/></td>
+							<th>密级</th>
+							<td>
+								<div class="form-group">
+									<label class="radio-inline">
+										<input type="radio" name="projDetail.scretLvl" value="核心"/>核心
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="projDetail.scretLvl" value="内部"/>内部
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="projDetail.scretLvl" value="秘密"/>秘密
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="projDetail.scretLvl" value="机密"/>机密
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="projDetail.scretLvl" value="机密"/>机密
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="projDetail.scretLvl" value="机密"/>机密
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="projDetail.scretLvl" value="机密"/>机密
+									</label>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>邮编</th>
+							<td colspan=""><input type="text" name="projDetail.zip" value="" class="form-control" id="zip"/></td>
+							<th>项目状态</th>
+							<td>
+									<label class="radio-inline">
+										<input type="radio" name="projDetail.status" value="初始" disabled/>初始
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="projDetail.status" value="询价中" disabled/>询价中
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="projDetail.status" value="已询价" disabled/>已询价
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="projDetail.status" value="折价待确认" disabled/>折价待确认
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="projDetail.status" value="折扣已拒绝" disabled/>折扣已拒绝
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="projDetail.status" value="已流标" disabled/>已流标
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="projDetail.status" value="已生成合同" disabled/>已生成合同
+									</label>
+							</td>
+						</tr>
+						<tr>
+							<th>联系电话</th>
+							<td colspan="3"><input type="text" name="projDetail.tel" value="" class="form-control" id="tel"/></td>
+						</tr>
+						<tr>
+							<th>传真</th>
+							<td colspan="3"><input type="text" name="projDetail.fax" value="" class="form-control" id="fax" /></td>
+						</tr>
+					</table>
+				</div>
+				<div class="panel-footer" id="step1">
+					<button type="button" class="btn btn-primary" onclick="makeProj()">
+						<span class="glyphicon glyphicon-ok"></span><span name="" function="">保存</span>
+					</button>
+					<button style="display: none;" type="button" class="btn btn-primary " onclick="location.href='projSplitPage.html'">
+						<span class="glyphicon glyphicon-ok"></span><span name="dual">拆分项目</span>
+					</button>
+					<button type="button" class="btn btn-default " onclick="location.href='/iw/supply/projPage.html'">
+						<span class="glyphicon glyphicon-remove"></span> 取消
+					</button>
+				</div>
+			</div>
+
+			<div class="panel panel-default showOrHideTheSecondCorp">
+				<div class="panel-heading">
+					<div style="float: right; margin-top: -8px; margin-right: 5px;" class="">
+						<button type="button" class="btn btn-link " onclick="cleanInput()" data-toggle="modal" data-target="#subProjModal">
+							<span class="glyphicon glyphicon-plus"></span> 添加子项目
+						</button>
+						<button type="button" class="btn btn-link ">
+							<span class="glyphicon glyphicon-chevron-up"></span>
+						</button>
+					</div>
+		<span class="glyphicon glyphicon-th"> </span> 子项目列表
+				</div>
+				<div class="panel-body panel-condensed">
+					<table class="table table-condensed">
+						<thead>
+							<tr>
+								<th width="100px">项目名称</th>
+								<th width="200px">甲方</th>
+								<th width="100px">甲方项目经理</th>
+								<th width="200px">乙方</th>
+								<th width="100px">乙方项目经理</th>
+								<th width="100px">状态</th>
+								<th width="100px">供应报价</th>	
+								<th width="100px">供应折扣价</th>							
+								<th >操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="subProjsTemplate" style="display: none;">
+								<input name="contractId" type="hidden">
+								<input name="parentId" type="hidden">
+								<input name="no" type="hidden"/>
+								<input name="id" type="hidden"/>
+								<td name="" onclick="projPageHref(this)"><a><span name="name"></span></a></td>
+								<td name="aCorpName"></td>
+								<td name="aManagerName"></td>
+								<td name="corpName"></td>
+								<td name="managerName"></td>
+								<td name="status" function="myProjStatus"></td>
+								<td name="totalSalePrice" ></td>	
+								<td class="text-right moneyHover disctPriceDisPlay">									
+									<span name="disctSupplyPrice"></span>
+									<input type="text" name="disctPrice" class="form-control">																	
+								</td>
+								<td>
+									<button type="button" class="btn btn-default " onclick="newSubCntract(this)" name="conract" style="display: none;">
+										<span class="glyphicon glyphicon-plus"></span> 生成合同
+									</button>	
+									<button type="button" class="btn btn-link " onclick="contractDetail(this);" name="projectConracts" style="display: none;">
+										<span class="glyphicon glyphicon-list"></span> 项目合同
+									</button>
+									<button type="button" class="btn btn-danger " name="myProjStatus" onclick="failProj(this)">
+										<span class="glyphicon glyphicon-send"></span> 流标
+									</button>	
+					<!-- 				<button style="display: none" type="button" class="btn btn-primary confirmProjDisctSupplyPriceDisPlay" onclick="confirmProjDisctSupplyPrice(this)">
+										<span>确认供应折扣价</span>
+										<input type="hidden" name="status" function="confirmProjDisctSupplyPriceStatusValueTo"/>
+										<input type="hidden" name="disctSupplyPrice"/>
+										<input type="hidden" name="no"/>
+									</button> -->	
+									<button type="button" class="btn btn-default" name="disctProjPriceDisPlay" onclick="disctProjPrice(this)" style="display: none;">
+										<span class="glyphicon glyphicon-edit"></span> 保存供应折扣价
+									</button>							
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div style="float: right; margin-top: -8px; margin-right: 5px;">
+						<button type="button" class="btn btn-link showOrHideTheSecondCorp" onclick="$$('hisSupplyItemOffset').value=0;_hisSupplyItemCommit();hisSupplyItemPaginate();" data-toggle="modal" data-target="#matingModal">
+							<span class="glyphicon glyphicon-plus"></span> 添加配套表
+						</button>
+						<button type="button" class="btn btn-link ">
+							<span class="glyphicon glyphicon-chevron-up"></span>
+						</button>
+					</div>
+					<span class="glyphicon glyphicon-th"> </span> 配套表列表
+				</div>
+				<div class="panel-body panel-condensed">
+					<table class="table table-condensed treelist table-bordered">
+						<thead>
+							<tr>
+								<th width="200px">名称</th>
+								<th width="200px">NSN</th>
+								<th width="100px">零件号</th>
+								<th width="100px">状态</th>
+								<th width="90px">数量</th>
+								<th width="90px">价格</th>
+								<th >操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="" name="inventoriesTemplate" style="display: none;" function="debug">
+								<input type="hidden" name="id" >
+								<input type="hidden" name="parentId">
+								<input type="hidden" name="projStatus">
+								<td>
+									<div class="tree-node tree-root-one tree node-last ">
+									   <div style="display:none" name="subInventories" function="changeIcon"></div>
+									   <input type="hidden" name="no"/> 
+									 	<!-- <span class="tree-hit tree-expanded"></span> 
+										<span class="tree-icon tree-folder tree-folder-open"></span>  -->
+										<span class="tree-title" name="itemName"></span>
+									</div>
+								</td>
+								<td name="nsn"></td>
+								<td name="partNo"></td>
+								<td name="status" function="modNumPriceButton"></td>
+							    <td class="text-right numberHover" >									
+									<span  class="number" name="num"></span>
+									<input type="text" name="num"  class="form-control"  />																	
+								</td>	
+								<td class="text-right moneyHover" >									
+									<span  name="totalPrice" class="money"></span>
+									<input type="text" name="totalPrice"  class="form-control"  />																	
+								</td>	
+								<!-- <td class="numberHover">
+									<span type="text" name="num"></span>
+									点击修改数量按钮后，这里的 span 隐藏  input 和button 显示, 
+									<span name="num" class="number"></span>
+									<input type="text" name="num" value="" id="priceNum" style="display:none;" />																	
+								</td>	
+								<td class="moneyHover" name="price">
+									点击修改价格按钮后，这里的 span 隐藏  input 和button 显示, 
+									<span name="price" class="money"></span>
+									<input type="text" name="mastingNumber" value="" style="display:none;" />																	
+								</td>	 -->							
+								<td>
+									<button type="button" class="btn btn-default showOrHideTheSecondCorp" onclick="createProjSub(this);$$('hisSupplyItemsOffset').value=0;_hisSupplyItemsCommit();hisSupplyItemsPaginate();"  data-toggle="modal" data-target="#subProjMatingModal" >
+										<span class="glyphicon glyphicon-plus"></span> 添加子项目配套表
+									</button>
+									<button type="button" class="btn btn-default " onclick="modInventoryNum(this)" style='display:none' name="modifyNum" >
+										<span class="glyphicon glyphicon-saved"></span> 保存数量
+									</button>	
+									<button type="button" class="btn btn-default " onclick="modInventoryTotalPrice(this)" style='display:none' name="modifyPrice" >
+										<span class="glyphicon glyphicon-saved"></span> 保存价格
+									</button>
+									<button type="button" class="btn btn-default " value="true" onclick="confirmNum(this)" style='display:none' name="agreeNum" >
+										<span class="glyphicon glyphicon-ok"></span> 同意数量
+									</button>	
+									<button type="button" class="btn btn-danger " value="false" onclick="confirmNum(this)" style='display:none' name="refuseNum" >
+										<span class="glyphicon glyphicon-minus-sign"></span> 拒绝数量
+									</button>
+									<button type="button" class="btn btn-default " value="true" onclick="confirmTotalPrice(this)" style='display:none' name="agreePrice" >
+										<span class="glyphicon glyphicon-ok"></span> 同意价格
+									</button>	
+									<button type="button" class="btn btn-danger " value="false" onclick="confirmTotalPrice(this)" style='display:none' name="refusePrice" >
+										<span class="glyphicon glyphicon-minus-sign"></span> 拒绝价格
+									</button>									
+								</td>	
+							</tr>
+							
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+		
+		
+	</div>
+
+	<div id="subProjModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<span class="glyphicon glyphicon-plus"></span> 添加<span name="projName">地对空导弹</span>(<span name="managerName">项目经理名字</span>)的子项目
+				</div>
+				<div class="modal-body">
+					<table class="table tableform  table-condensed">
+						<tr>
+							<th>项目名称</th>
+							<td><input type="text" name="" value="" class="form-control"  id="sonName"/></td>
+						</tr>
+						<tr>
+							<th>简称</th>
+							<td><input type="text" name="" value="" class="form-control" id="sonShortName"/></td>
+						</tr>
+						<tr>
+							<th>乙方</th>
+							<td>
+								<div class="input-group ">
+									<input type="hidden" name="supplyItem.itemNameCode" id="BCorp" onchange="javascript:abc()" value="" /> 
+									<input type="text" class="form-control" name="supplyItem.itemName.name" value="" id="BCorpName" readonly /> <span id="itemSelectSpan" class="input-group-addon"
+										data-target="#secondPartyModal" onclick="$$('corpSonOffset').value=0;_corpSonCommit();corpSonPaginate()" data-toggle="modal"> ... </span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>乙方项目经理</th>
+							<td><div class="input-group ">
+									<input type="hidden" name="supplyItem.itemNameCode" id="BCorpManagerId" onchange="javascript:abc()" value="" />
+									 <input type="text" class="form-control" name="supplyItem.itemName.name" value="" id="BCorpManagerName" readonly /> <span id="itemSelectSpan" class="input-group-addon"
+										data-target="#secondPartyUserModal" onclick="$$('custSonOffset').value=0;_custSonCommit();custSonPaginate();" data-toggle="modal"> ... </span>
+								</div></td>
+
+						</tr>
+						<tr>
+							<th>密级</th>
+							<td>
+								<div class="form-group">
+									<label class="radio-inline">
+										<input type="radio" name="subProjScretLvl" value="核心" checked="checked" />核心
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="subProjScretLvl" value="内部" />内部
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="subProjScretLvl" value="秘密" />秘密
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="subProjScretLvl" value="机密" />机密
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="subProjScretLvl" value="一般商密" />一般商密
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="subProjScretLvl" value="核心商密" />核心商密
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="subProjScretLvl" value="非密" />非密
+									</label>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>地址</th>
+							<td><input type="text" name="" value="" class="form-control"  id="sonAddr"/></td>
+						</tr>
+						<tr>
+							<th>邮编</th>
+							<td><input type="text" name="" value="" class="form-control" id="sonZip" /></td>
+						</tr>
+						<tr>
+							<th>联系电话</th>
+							<td><input type="text" name="" value="" class="form-control" id="sonTel"/></td>
+						</tr>
+						<tr>
+							<th>传真</th>
+							<td><input type="text" name="" value="" class="form-control" id="sonFax"/></td>
+						</tr>
+					</table>
+
+				</div>
+
+
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="makeProject()">
+						<span class="glyphicon glyphicon-ok"> </span> 确定
+					</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove"> </span> 取消并关闭
+					</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div id="matingModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content" id="">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					从物项库选择 <select name="" id="subProSelect">
+						<option value="NSN">NSN</option>
+						<option value="零件号">零件号</option>
+						<option value="名称">名称</option>
+					</select> <input type="text" placeholder="输入关键字" class="form-control" value="" id="keyWord" 　/>
+					<button type="button" class="btn btn-xs" onclick="$$('hisSupplyItemOffset').value=0;_hisSupplyItemCommit();hisSupplyItemPaginate();">搜索</button>
+				</div>
+
+				<div class="modal-body">
+					<table class="table table-hover table-condensed tablelist" name="nones">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>NSN</th>
+								<th>零件号</th>
+								<th>生产商</th>
+								<th>名称</th>
+								<th>价格</th>
+								<th>数量</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr  name="itemPageTemplate" style="display: none;">							     
+								<td><input type="radio" name="ids" value="" /></td>
+								<input type="hidden" name="id" id="supplyItemId">
+								<td name="nsn"></td>
+								<td name="partNo"></td>
+								<td name="supplyName"></td>
+								<td name="itemName"></td>
+								<td name="price"><input type="text" name="" value="" class="form-control" id="makePrice"/></td>
+								<td name="num"><input type="text" name="" value="" class="form-control" id="num"/></td>
+							</tr>
+						</tbody>
+					</table>					
+					<input type="hidden" name="hisSupplyItemOffset" id="hisSupplyItemOffset" value=0> 
+					<input type="hidden" name="hisSupplyItemLimit" id="hisSupplyItemLimit" value=3>
+					<div class="row-fluid">
+						<div id="hisSupplyItemPage-nav" style="padding: 18px;"></div>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" onclick="createInventory()">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消并关闭</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="subProjMatingModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					
+					<div class="form-group form-inline " style="zoom: 1; overflow: hidden; " id="subprojRadio">
+						子项目：
+					<!-- 	 这些子项目是动态创建的 
+						<label class="radio" style="display: none;" id="">
+					        <input type="radio" name="subproj" value=""  /> 子项目1
+				        </label> -->
+					</div>
+					<div class="search-inline">
+					从物项库选择 <select name="" id="newSubProSelect">
+						<option value="NSN">NSN</option>
+						<option value="零件号">零件号</option>
+						<option value="名称">名称</option>
+					</select> <input type="text" placeholder="输入关键字" class="form-control" value="" id="newKeyWord" 　/>
+					<button type="button" class="btn btn-xs" onclick="$$('hisSupplyItemsOffset').value=0;_hisSupplyItemsCommit();hisSupplyItemsPaginate();"> <span class="glyphicon glyphicon-search"></span> 搜索</button>
+					</div>
+					
+				</div>
+
+				<div class="modal-body">
+					
+					<table class="table table-hover table-condensed tablelist" name="nones">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>NSN</th>
+								<th>零件号</th>
+								<th>生产商</th>
+								<th>名称</th>
+								<th>价格</th>
+								<th>数量</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="itemPageTemplate" style="display: none;">
+							    <input id="supplyItemId" type="hidden" name="id" name="supplyItemIds"/>
+								<td><input type="radio" name="ids1" id="ids" value="" /></td>
+								<td name="nsn"></td>
+								<td name="partNo"></td>
+								<td name="supplyName"></td>
+								<td name="itemName"></td>
+								<td name="price"><input type="text" name="" value="" class="form-control" id="createPrice"/></td>
+								<td name="num"><input type="text" name="" value="" class="form-control" id="createNum"/></td>
+							</tr>
+						</tbody>
+					</table>					
+					<input type="hidden" name="hisSupplyItemsOffset" id="hisSupplyItemsOffset" value=0> 
+					<input type="hidden" name="hisSupplyItemsLimit" id="hisSupplyItemsLimit" value=3>
+					<div class="row-fluid">
+						<div id="hisSupplyItemsPage-nav" style="padding: 18px;"></div>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" onclick="createSubInventorySon()">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消并关闭</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div id="firstPartyModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					名称 : <input type="text" placeholder="输入关键字" class="form-control search-control" value="" name=""  id="corpPageName"　/>
+					<button type="button" class="btn btn-xs" onclick="$$('corpOffset').value=0;corpPaginate();_corpCommit();">
+						<span class="glyphicon glyphicon-search"></span> 搜索
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<table class="table table-hover table-condensed tablelist" name="nones">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>企业代码</th>
+								<th>企业名称</th>
+								<th>邮编</th>
+								<th>联系电话</th>
+								<th>传真</th>
+								<th>地址</th>
+							</tr>
+						</thead>
+						<tbody>
+						<tr name="corpPageTemplate" style="display:none">
+							    <td style="display:none"><span name="id" id="id"></td>
+								<td><input type="radio" name="radio"  value=""/></td>
+								<td><span name="code"></span></td>
+								<td><span name="name" id="name"></span></td>
+								<td><span name="zip"></span></td>
+								<td><span name="contactorPhones"></span></td>
+								<td><span name="faxes"></span></td>
+								<td><span name="addr"></span></td>
+							</tr>
+						</tbody>
+					</table>
+					<input type="hidden" name="corpTotal" id="corpTotal" value=0>
+					<input type="hidden" name="corpOffset" id="corpOffset" value=0>
+					<input type="hidden" name="corpLimit" id="corpLimit" value=3>
+
+					<div class="row-fluid">
+						<div id="corpPage-nav" style="padding: 18px;"></div>
+					</div>
+				</div>
+
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" onclick="supplyChoice()">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消并关闭</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div id="secondPartyModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					名称 : <input type="text" placeholder="输入关键字" class="form-control search-control" value="" name="" id="corpSonPageName"/>
+					<button type="button" class="btn btn-xs" onclick="$$('corpSonOffset').value=0;corpSonPaginate();_corpSonCommit();">
+						<span class="glyphicon glyphicon-search"></span> 搜索
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<table class="table table-hover table-condensed tablelist" name="nones">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>机构代码</th>
+								<th>名称</th>
+								<th>邮编</th>
+								<th>联系电话</th>
+								<th>传真</th>
+								<th>地址</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="corpPageTemplate" style="display:none">
+							    <td style="display:none"><span name="id" id="id"></td>
+								<td><input type="radio"  value=""/></td>
+								<td><span name="code"></span></td>
+								<td><span name="name" id="name"></span></td>
+								<td><span name="zip"></span></td>
+								<td><span name="contactorPhones"></span></td>
+								<td><span name="faxes"></span></td>
+								<td><span name="addr"></span></td>
+							</tr>
+						</tbody>
+					</table>
+					<input type="hidden" name="corpSonTotal" id="corpSonTotal" value=0> 
+					<input type="hidden" name="corpSonOffset" id="corpSonOffset" value=0> 
+					<input type="hidden" name="corpSonLimit" id="corpSonLimit" value=3>
+					<div class="row-fluid">
+						<div id="corpSonPage-nav" style="padding: 18px;"></div>
+					</div>
+				</div>
+
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" onclick="supplyCorp()">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消并关闭</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div id="userModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					姓名/证件号 : <input type="text" placeholder="输入关键字" class="form-control search-control" value="" name="" id="custBName"　/>
+					<button type="button" class="btn btn-xs" onclick="$$('custOffset').value=0;_custsCommit();custsPaginate();">
+						<span class="glyphicon glyphicon-search"></span> 搜索
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<table class="table table-hover table-condensed tablelist" name="nones">
+						<thead>
+							<tr>
+								<th width="50px">#</th>
+								<th>姓名</th>
+								<th>证件号</th>
+								<th>证件类型</th>
+							</tr>
+						</thead>
+							<tbody>
+							<tr name="custPageTemplate" style="display:none">
+							<td style="display:none"><span name="id" id="id"></td>
+								<td><input type="radio" name="user" value="" /></td>
+								<td><span  name="name"></span></td>
+								<td><span  name="idNo"></span></td>
+								<td>身份证</td>
+							</tr>
+
+						</tbody>
+					</table>
+					<input type="hidden" name="custsTotal" id="custsTotal" value=0>
+					<input type="hidden" name="custsOffset" id="custsOffset" value=0>
+					<input type="hidden" name="custsLimit" id="custsLimit" value=3>
+
+					<div class="row-fluid">
+						<div id="custsPage-nav" style="padding: 18px;"></div>
+					</div>
+				</div>
+
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" onclick="supplyDetailChoice()">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消并关闭</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="secondPartyUserModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					姓名/证件号 : <input type="text" placeholder="输入关键字" class="form-control search-control" value="" name="" id="NameId"　/>
+					<button type="button" class="btn btn-xs" onclick="$$('custSonOffset').value=0;_custSonCommit();custSonPaginate();">
+						<span class="glyphicon glyphicon-search"></span> 搜索
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<table class="table table-hover table-condensed tablelist" name="nones">
+						<thead>
+							<tr>
+								<th width="50px">#</th>
+								<th>姓名</th>
+								<th>证件号</th>
+								<th>证件类型</th>
+							</tr>
+						</thead>
+						<tbody>
+								<tr name="custPageTemplate" style="display:none">
+								<td style="display:none"><span name="id" id="id"></span></td>
+								<td><input type="radio" name="user" value="" /></td>
+								<td><span  name="name"></span></td>
+								<td><span  name="idNo"></span></td>
+								<td>身份证</td>
+							</tr>
+						</tbody>
+					</table>
+					<input type="hidden" name="custSonTotal" id="custSonTotal" value=0>
+					<input type="hidden" name="custSonOffset" id="custSonOffset" value=0>
+					<input type="hidden" name="custSonLimit" id="custSonLimit" value=3>
+					<div class="row-fluid">
+						<div id="custSonPage-nav" style="padding: 18px;"></div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" onclick="supplyCorpName()">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消并关闭</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="firstuserModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					姓名/证件号: <input type="text" placeholder="输入关键字" class="form-control search-control" value="" name=""  id="custName"/>
+					<button type="button" class="btn btn-xs" onclick="$$('custOffset').value=0;custPaginate();_custCommit();">
+						<span class="glyphicon glyphicon-search"></span> 搜索
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<table class="table table-hover table-condensed tablelist" name="nones">
+						<thead>
+							<tr>
+								<th width="50px">#</th>
+								<th>姓名</th>
+								<th>证件号</th>
+								<th>证件类型</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="custPageTemplate" style="display:none">
+							<td style="display:none"><span name="id" id="id"></td>
+								<td><input type="radio" name="user" value="" /></td>
+								<td><span  name="name"></span></td>
+								<td><span  name="idNo"></span></td>
+								<td>身份证</td>
+							</tr>
+
+						</tbody>
+					</table>
+					<input type="hidden" name="custTotal" id="custTotal" value=0>
+					<input type="hidden" name="custOffset" id="custOffset" value=0>
+					<input type="hidden" name="custLimit" id="custLimit" value=3>
+
+					<div class="row-fluid">
+						<div id="custPage-nav" style="padding: 18px;"></div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" onclick="supplyChoiceFa()">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消并关闭</button>
+				</div>
+			</div>
+		</div>		
+	</div>
+	<div class="hint"></div>	
+    <script type="text/javascript" src="/iw/js/tree.js"></script>
+    <!-- <script type="text/javascript" src="/iw/js/supply/util.js"></script> -->
+	<script type="text/javascript" src="/iw/js/supply/projDetail.js"></script>
+</body>
+</html>

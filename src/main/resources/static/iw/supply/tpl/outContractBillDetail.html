@@ -1,0 +1,91 @@
+<!-- 合同销售清单 -->
+<div class="top-actions">
+	<button class="btn btn-primary" data-target="#createSalesListModal" data-toggle="modal" onclick="allInnerQuote()">
+		<span class="icon-plus"></span> 从报价单生成
+	</button>
+		<button class="btn btn-primary" onclick="return confirm('你确定确认此销售清单吗');">
+		<span class="icon-ok"></span> 确认销售清单
+	</button>
+	<button class="btn btn-primary"  onclick="location.href='historyOutSalesBill.html';">
+		<span class="icon-plus"></span> 创建销售清单
+	</button>
+
+	
+	<span class="must">在下方列表为空时显示从报价单生成和创建销售清单按钮</span>
+</div>
+<table class="table" >
+	<thead>
+		<tr>
+			<th>序号</th>
+			<th>NSN</th>
+			<th>零/部件号</th>
+			<th>名称及规格</th>
+			<th>单位</th>
+			<th style="width:150px;">数量</th>
+			<th style="width:150px;">单价</th>
+			<th style="width:150px;">金额</th>
+			<th style="width:150px;">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td><input type="text" class="form-control xs" /></td>
+			<td><input type="text" class="form-control xs" /></td>
+			<td></td>
+			<td>				
+				<button class="btn btn-danger">
+					<span class="icon-remove"></span> 删除
+				</button>
+			</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td><input type="text" class="form-control xs" /></td>
+			<td><input type="text" class="form-control xs" /></td>
+			<td></td>
+			<td>				
+				<button class="btn btn-danger">
+					<span class="icon-remove"></span> 删除
+				</button>
+			</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td><input type="text" class="form-control xs" /></td>
+			<td><input type="text" class="form-control xs" /></td>
+			<td></td>
+			<td>				
+				<button class="btn btn-danger">
+					<span class="icon-remove"></span> 删除
+				</button>
+			</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="7" style="text-align:right;">
+				总额：
+			</td>
+			<td style="text-align:right;">
+				$100,000,000,000
+			</td>
+		</tr>
+	</tfoot>
+</table>
+<div class="must" >
+	1：销售清单确认后不可随意修改<br/>
+	2：合同确认后以上信息不能再修改。操作按钮也不显示。
+</div>

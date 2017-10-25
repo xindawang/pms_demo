@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<!--[if lte IE 6]>
+<script  type="text/JavaScript" src="/iw/js/json2.js"></script>
+<![endif]-->
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.min.css">
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home "></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">公共管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active">用户管理</li>
+			</ul>
+		</div>
+		<!-- Main content -->
+		<div class="body">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="glyphicon glyphicon-search"> </span> 用户查询
+				</div>
+				
+					<table class="table formtable">
+						<tbody>
+							<tr>
+								<th >姓名：</th><td  colspan="3"><input type="text" id="custName" class="form-control " /></td>
+							</tr>
+							<tr>
+								<th >状态：</th>
+								<td>
+									<div class="form-group">
+										<label class="checkbox-inline"><input type="checkbox" value="正常" name="custStatus" id="custStatus">正常</label> 
+										<label class="checkbox-inline"><input type="checkbox" value="锁定" name="custStatus" id="custStatus">锁定</label>
+										<label class="checkbox-inline"><input type="checkbox" value="已禁用" name="custStatus" id="custStatus">已禁用</label> 
+									</div>
+								</td>
+								<th>密级：</th>
+								<td>
+								<div class="form-group">
+									<label class="checkbox-inline"><input type="checkbox" value="核心" name="custScretLvl" id="custScretLvl">核心</label> 
+									<label class="checkbox-inline"><input type="checkbox" value="内部" name="custScretLvl" id="custScretLvl">内部</label>
+									<label class="checkbox-inline"><input type="checkbox" value="秘密" name="custScretLvl" id="custScretLvl">秘密</label> 
+									<label class="checkbox-inline"><input type="checkbox" value="机密" name="custScretLvl" id="custScretLvl">机密</label>
+									<label class="checkbox-inline"><input type="checkbox" value="非密" name="custScretLvl" id="custScretLvl">非密</label>
+									<label class="checkbox-inline"><input type="checkbox" value="一般商密" name="custScretLvl" id="custScretLvl">一般商密</label>
+									<label class="checkbox-inline"><input type="checkbox" value="核心商密" name="custScretLvl" id="custScretLvl">核心商密</label>
+								</div>
+								</td>
+							</tr>
+							<tr>
+								
+							</tr>
+							<tr>
+								<td class="oper" colspan="4">
+								<button class="btn btn-primary" onclick="$$('offset').value=0;_commit();paginate();">
+									<span class="glyphicon glyphicon-search"></span> 查询
+								</button>
+								<button class="btn btn-default " onclick="window.location.reload(true)"><span class="glyphicon glyphicon-refresh"></span> 重置</button>
+								</td>
+							</tr>
+							
+						</tbody>
+					</table>					
+				
+			</div>
+
+
+			<div class="operator">
+				<button class="btn btn-primary " perm="three.makeNormalOrg" onclick="location.href='custDetail.html';">
+					<span class="glyphicon glyphicon-plus"></span> 新建
+				</button>
+			</div>
+            <table class="table table-hover table-striped table-condensed" name="custPage">
+				<thead>
+					<tr>
+						<th>用户名</th>
+						<th>姓名</th>
+						<th>机构/部门</th>
+						<th>密级</th>
+						<th>状态</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr name="custPageTemplate" style="display: none;">
+						<input type="hidden" value="" name="id" />
+						<input type="hidden" value="" name="no" />
+						<td><span name="idNo"></span></td>
+						<td><span name="name"></span></td>
+						<td><span name="corpName"></span></td>
+						<td><span name="scretLvl"></span></td>
+						<td><span name="status"></span></td>
+						<td>
+							<button type="button" class="btn btn-default btn-xs" onclick="cust(this)" perm="three.makeNormalOrg">
+								<span class="glyphicon glyphicon-edit"></span> 修改用户
+							</button>
+							<button class="btn btn-default btn-xs" onclick="$('#detailForm').modal('show'); hisRoles(this);" roles="three.hisRoles">
+								<span class="glyphicon glyphicon-user"></span> 用户角色
+							</button>
+							<button type="button" class="btn btn-danger btn-xs" onclick="resetPass(this)" roles="three.resetThreePass">
+								<span class="glyphicon glyphicon-edit"></span> 重置密码
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<input type="hidden" name="total" id="total" value=0> <input type="hidden" name="offset" id="offset" value=0> <input type="hidden" name="limit" id="limit" value=8>
+			<div class="row-fluid">
+				<div id="page-nav" style="padding: 18px;"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="detailForm" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<span id="currCustName"></span>的角色					
+				</div>
+				<div class="modal-body">
+
+					<table class="rolesetting">
+						<tr>
+							<td class="role_left" valign="top">
+								<div>可选角色</div>
+							<select id="leftSide" multiple="multiple" class="role_select" >
+							</select>
+							<td class="role_center">
+								<button id="rightAllBtn" type="button" class="btn btn-default">
+									<span class="glyphicon glyphicon-forward"></span>
+								</button>
+								<br />
+								<button id="rightBtn" type="button" class="btn btn-default">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</button>
+								<br />
+								<button id="leftBtn" type="button" class="btn btn-default">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</button>
+								<br />
+								<button id="leftAllBtn" type="button" class="btn btn-default">
+									<span class="glyphicon glyphicon-backward"></span>
+								</button>
+							</td>
+							<td class="role_right"  valign="top">
+								<div>已选角色</div> <select id="rightSide" class="role_select" multiple="multiple" >
+							</select>
+							</td>
+						</tr>
+
+					</table>
+
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary" onclick="makeCustRoles()">
+						<span class="glyphicon glyphicon-ok"></span>保存
+					</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove"></span>关闭
+					</button>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+	<div class="hint"></div>
+
+</body>
+<script type="text/javascript" src="/iw/js/three/custPage.js"></script>
+<script type="text/javascript" src="/iw/js/rolePerms.js"></script>
+</html>
+

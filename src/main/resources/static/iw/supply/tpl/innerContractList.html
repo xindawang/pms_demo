@@ -1,0 +1,35 @@
+<!-- 内部合同 -->
+<table  style="width: 700px" class="table">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>合同编号</th>
+			<th>合同名称</th>
+			<th>甲方</th>
+			<th>甲方联系人</th>
+			<th>乙方</th>
+			<th>乙方联系人</th>
+			<th>状态</th>
+		</tr>
+	</thead>
+	<tbody>	
+		<tr name="innerContractPageTemplate" style="display:none; width: 700px;">
+			<td name="RN">1</td>
+			<td ><a href="javascript:void(0)" onclick="innerContractDetail()"><span name="no"></span></a></td>
+			<td name="name"></td>
+			<td name="corpName"></td>
+			<td name="managerName"></td>
+			<td name=""></td>
+			<td name=""></td>
+			<td name="status"></td>
+		</tr>
+	</tbody>
+</table>
+	<input style="width: 700px" type="hidden" name="innerContractTotal" id="innerContractTotal" value=0>
+	<input style="width: 700px" type="hidden" name="innerContractOffset" id="innerContractOffset" value=0>
+	<input style="width: 700px" type="hidden" name="innerContractLimit" id="innerContractLimit" value=10>
+	<div class="row-fluid" style="width: 700px"> 
+		<div id="innerContractPage-nav" style="padding: 18px;"></div> 
+	</div>
+
+

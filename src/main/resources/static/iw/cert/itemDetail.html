@@ -1,0 +1,634 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css"  />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><a href="#">认证管理</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">已认证</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">已认证详情</li>
+			</ul>
+		</div>
+		<div class="body">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<div class="title">NSN <span name="item.nsn"></span></div>
+					<div class="name" name="item.tag">电阻器 ，固定 ， 绕线 ，无电感 </div>
+					<div class="code">名称代码 <span name="item.itemName.code"></span></div>
+				</div>
+			</div>
+			<div class="panel-body">
+ 			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>供应商代码</th>
+						<th>供应商名称</th>
+						<th>供应商零件号</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr name="itemPageTemplate"  style="display: none">
+						<td name="rowNo"></td>
+						<td name="supplyCode"></td>
+						<td name="supplyName"></td>
+						<td name="partNo"></td>
+					</tr>
+				</tbody>
+			</table>
+			    <input type="hidden" name="total" id="total" value=0>
+				<input type="hidden" name="offset" id="offset" value=0>
+				<input type="hidden" name="limit" id="limit" value=2>
+			<div class="row-fluid"><div id="page-nav" style="padding: 18px;"></div></div>
+				</div>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<div><span class="glyphicon glyphicon-th"></span> 5905-00-101-2401  - FLIS - 分部 M/V - 特性数据</div>
+				</div>
+				<div class="panel-body panel-nsnmrd">
+					<table class="table table-hover">
+						<thead>
+							<tr >
+								<th width="4%">序号</th>
+								<th width="46%">属性名称</th>
+								<th width="10%">目录名称</th>
+								<th width="40%">目录取值</th>
+							</tr>
+						</thead>
+						<tbody id="attrs">
+							<tr name="整数" style="display:none">
+								<th class="info" name="#{attrCode}.rowNo"></th>
+								<th class="info" name="#{attrCode}.name"></th>
+								<th class="info">整数取值</th>
+								<td><span class="read" name="#{attrCode}.integer"></span></td>
+							</tr>
+							<tr name="小数" style="display:none">
+								<th class="info" name="#{attrCode}.rowNo"></th>
+								<th class="info" name="#{attrCode}.name"></th>
+								<th class="info">小数取值</th>
+								<td><span class="read" name="#{attrCode}.decimal"></span></td>
+							</tr>
+							<tr name="一个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.rowNo"></th>
+								<th class="info" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td>
+									<div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span>
+									</div>
+								</td>
+							</tr>
+							<tr name="一个公差" style="display:none">
+								<th class="info" rowspan="3" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="3" name="#{attrCode}.name"></th>
+								<th class="info">公称值</th>
+								<td><span class="read" name="#{attrCode}.#{replyCode}"></span></td>								
+							</tr>
+							<tr name="一个公差" style="display:none">
+								<th class="info">上偏差</th>
+								<td><span class="read" name="#{attrCode}.upper"></span></td>								
+							</tr>
+							<tr name="一个公差" style="display:none">
+								<th class="info">下偏差</th>
+								<td><span class="read" name="#{attrCode}.down"></span></td>								
+							</tr>
+							<tr name="文本" style="display:none">
+								<th class="info" name="#{attrCode}.rowNo"></th>
+								<th class="info" name="#{attrCode}.name"></th>
+								<th class="info">文本取值</th>
+								<td>
+									<textarea readonly="readonly" class="read" name="#{attrCode}.text"></textarea>
+								</td>
+							</tr>
+							<tr name="两个单选框" style="display:none">
+								<th class="info" rowspan="2" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="2" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span>
+									</div>
+								</td>
+							</tr>
+							<tr name="两个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td>
+									<div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span>
+									</div>
+								</td>
+							</tr>
+							<tr name="三个单选框" style="display:none">
+								<th class="info" rowspan="3" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="3" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span>
+									</div>
+								</td>
+							</tr>
+							<tr name="三个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span>
+									</div>
+								</td>
+							</tr>
+							<tr name="三个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span>
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框" style="display:none">
+								<th class="info" rowspan="4" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="4" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span>
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span>
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span>
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span>
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框" style="display:none">
+								<th class="info" rowspan="5" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="5" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span>
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框" style="display:none">
+								<th class="info" rowspan="6" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="6" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="一个单选框和一个整数" style="display:none">
+								<th class="info" rowspan="2" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="2" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="一个单选框和一个整数" style="display:none">
+								<th class="info">整数取值</th>
+								<td><span class="read" name="#{attrCode}.integer"></span></td>
+							</tr>
+							<tr name="一个单选框和一个小数" style="display:none">
+								<th class="info" rowspan="2" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="2" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="一个单选框和一个小数" style="display:none">
+								<th class="info">小数取值</th>
+								<td><span class="read" name="#{attrCode}.decimal"></span></td>
+							</tr>
+							<tr name="一个单选框和一个公差" style="display:none">
+								<th class="info" rowspan="4" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="4" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="一个单选框和一个公差" style="display:none">
+								<th class="info">公称值</th>
+								<td><span class="read" name="#{attrCode}.normal"></span></td>								
+							</tr>
+							<tr name="一个单选框和一个公差" style="display:none">
+								<th class="info">上偏差</th>
+								<td><span class="read" name="#{attrCode}.upper"></span>	</td>					
+							</tr>
+							<tr name="一个单选框和一个公差" style="display:none">
+								<th class="info">下偏差</th>
+								<td><span class="read" name="#{attrCode}.down"></span></td>								
+							</tr>							
+							<tr name="两个单选框和一个整数" style="display:none">
+								<th class="info" rowspan="3" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="3" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="两个单选框和一个整数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="两个单选框和一个整数" style="display:none">
+								<th class="info">整数取值</th>
+								<td><span class="read" name="#{attrCode}.integer"></span></td>
+							</tr>
+							<tr name="两个单选框和一个小数" style="display:none">
+								<th class="info" rowspan="3" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="3" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="两个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="两个单选框和一个小数" style="display:none">
+								<th class="info">小数取值</th>
+								<td><span class="read" name="#{attrCode}.decimal"></span></td>
+							</tr>
+							<tr name="两个单选框和一个公差" style="display:none">
+								<th class="info" rowspan="5" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="5" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="两个单选框和一个公差" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="两个单选框和一个公差" style="display:none">
+								<th class="info">公称值</th>
+								<td><span class="read" name="#{attrCode}.normal"></span></td>								
+							</tr>
+							<tr name="两个单选框和一个公差" style="display:none">
+								<th class="info">上偏差</th>
+								<td><span class="read" name="#{attrCode}.upper"></span></td>					
+							</tr>
+							<tr name="两个单选框和一个公差" style="display:none">
+								<th class="info">下偏差</th>
+								<td><span class="read" name="#{attrCode}.down"></span></td>								
+							</tr>
+							<tr name="三个单选框和一个整数" style="display:none">
+								<th class="info" rowspan="4" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="4" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="三个单选框和一个整数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="三个单选框和一个整数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="三个单选框和一个整数" style="display:none">
+								<th class="info">整数取值</th>
+								<td><span class="read" name="#{attrCode}.integer"></span></td>
+							</tr>	
+							<tr name="三个单选框和一个小数" style="display:none">
+								<th class="info" rowspan="4" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="4" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="三个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="三个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="三个单选框和一个小数" style="display:none">
+								<th class="info">小数取值</th>
+								<td><span class="read" name="#{attrCode}.decimal"></span></td>
+							</tr>	
+							<tr name="四个单选框和一个整数" style="display:none">
+								<th class="info" rowspan="5" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="5" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框和一个整数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框和一个整数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框和一个整数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框和一个整数" style="display:none">
+								<th class="info">整数取值</th>
+								<td><span class="read" name="#{attrCode}.integer"></span></td>
+							</tr>	
+							<tr name="四个单选框和一个小数" style="display:none">
+								<th class="info" rowspan="5" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="5" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框和一个小数" style="display:none">
+								<th class="info">小数取值</th>
+								<td><span class="read" name="#{attrCode}.decimal"></span></td>
+							</tr>
+							<tr name="五个单选框和一个小数" style="display:none">
+								<th class="info" rowspan="6" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="6" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框和一个小数" style="display:none">
+								<th class="info">小数取值</th>
+								<td><span class="read" name="#{attrCode}.decimal"></span></td>
+							</tr>
+							<tr name="六个单选框和一个小数" style="display:none">
+								<th class="info" rowspan="7" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="7" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<span class="read" name="#{attrCode}.#{replyCode}"></span> 
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框和一个小数" style="display:none">
+								<th class="info">小数取值</th>
+								<td><span class="read" name="#{attrCode}.decimal"></span></td>
+							</tr>
+							<tr name="一个图纸" style="display:none">
+								<th class="info" name="#{attrCode}.rowNo"></th>
+								<th class="info" name="#{attrCode}.name"></th>
+								<th class="info">PNG图片名称</th>
+								<td>
+									<div class="input-group">								    
+										<span class="read" name="#{attrCode}.draw"></span> 
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				
+				</div>
+			</div>
+		</div>	
+	</div>
+	<div class="hint"></div>
+</body>
+<script type="text/javascript" src="/iw/js/cert/itemDetail.js"></script>
+
+<!--[if lte IE 9]>
+	<script type="text/javascript" src="/iw/css/bootstrap/js/html5shiv.js"></script>
+	<script type="text/javascript" src="/iw/css/bootstrap/js/respond.min.js"></script>
+<![endif]-->
+</html>

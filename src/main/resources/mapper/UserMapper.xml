@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.iothust.dao.mapper.UserMapper">
+
+	<select id="getUserCorp" resultMap="userEntity">
+		select u.id,u.name,u.corpid,u.scretlvl,
+		c.name as corpName,
+		c.id as corpId
+		from
+		iot_cust u
+		left join iot_corp c 
+		on u.corpid=c.id
+		where u.id=#{id}
+	</select>
+
+	<select id="searchUsers" resultMap="userEntity">
+		select u.*,
+		c.shortName as corpName,
+		c.id as corpId
+		from iot_cust u
+		left join iot_corp c
+		on u.corpid=c.id
+		where u.name like concat(#{item},'%')
+		or c.name like concat(#{item},'%')
+		or c.shortname like concat(#{item},'%')
+	</select>
+		
+	<select id="getAllUsers" resultMap="userEntity">
+		select u.*,
+		c.shortName as corpName,
+		c.id as corpId
+		from iot_cust u
+		left join iot_corp c
+		on u.corpid=c.id
+	</select>
+
+	<resultMap id="userEntity" type="UserEntity">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="corpId" column="corpId" />
+        <result property="secretLvl" column="scretlvl" />
+		<association property="corp" javaType="CorpEntity">
+			<id property="id" column="corpId" />
+			<result property="name" column="corpName" />
+		</association>
+		
+	</resultMap>
+</mapper>

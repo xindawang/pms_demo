@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/myUtil.js"></script>
+<script type="text/javascript" src="/iw/js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">供货管理</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">销售管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">直接建内部销售清单</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="top-actions">				
+				<button type="button" class="btn btn-primary" onclick="makeContract()">
+					<span class="glyphicon glyphicon-ok"></span><span name="" function="">确认销售清单</span>
+				</button>
+				<button type="button" class="btn btn-primary" onclick="" data-target="#selectOutSalesBillModal" data-toggle="modal">
+					<span class="icon-plus"></span> 从出口销售清单生成
+				</button>
+				<button type="button" class="btn btn-default " onclick="history.go(-1);">
+					<span class="icon-undo">返回</span>
+				</button>				
+				
+			</div>
+			
+			<div class="panel panel-default">
+
+				<div class="panel-heading">
+					<span class="icon-th"></span> 相关产品列表
+				</div>
+				<table id="productTree" class="table  treelist">
+					<thead>
+						<tr class="">
+							<th>#</th>
+							<th>名称</th>
+							<th>NSN</th>
+							<th>零件号</th>
+							<th>数量</th>
+							<th>单价</th>
+							<th>单位</th>	
+							<th>金额</th>						
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody name="children0Template" style="display: none;">
+						<tr class="tree-node-selected" data-id="1" data-parent="0" data-hasreq="0">
+							<td>
+								<input type="checkbox" />
+							</td>
+							<td>
+								<div class="tree-node tree-root-one tree node-last">
+									<span class="tree-hit tree-collapsed"></span>
+									<span class="tree-icon tree-folder"></span> 
+									<span class="tree-title" name="name"></span> 
+								</div>
+							</td>
+							<td name="NSN"></td>
+							<td name="partNo"></td>
+							<td style="text-align:right;"><input type="text" class="form-control xs" name="num"/></td>
+							<td style="text-align:right;"><input type="text" class="form-control xs" /></td>
+							<td name="unit"></td>
+							<td style="text-align:right;">1000</td>							
+							<td>
+								<button type="button" class="btn btn-danger " onclick="">
+									<span class="icon-trash"></span> 删除
+									<input type="hidden" name="id"/>
+									<input type="hidden" name="saleProposalId"/>
+								</button>
+							</td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+						    <td><input type="checkbox" /> </td>
+							<td>
+								配套附件1
+							</td>
+							<td><a href="/iw/org/itemDetail.html?id="></a>1000235688945</td>
+							<td>0001</td>
+							<td style="text-align:right;"><input type="text" class="form-control xs" value="2"/></td>
+							<td style="text-align:right;"><input type="text" class="form-control xs" /></td>
+							<td>个</td>	
+							<td style="text-align:right;">1000</td>						
+							<td><button type="button" class="btn btn-danger " onclick="">
+									<span class="icon-trash"></span> 删除
+								</button>
+							</td>
+						</tr>
+						<tr>
+						    <td><input type="checkbox" /> </td>
+							<td>
+								配套附件2
+							</td>
+							<td><a href="/iw/org/itemDetail.html?id="></a>1000235688945</td>
+							<td>0001</td>
+							<td style="text-align:right;"><input type="text" class="form-control xs" value="2"/></td>
+							<td style="text-align:right;"><input type="text" class="form-control xs" /></td>
+							<td>个</td>	
+							<td style="text-align:right;">1000</td>						
+							<td><button type="button" class="btn btn-danger " onclick="">
+									<span class="icon-trash"></span> 删除
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>					
+
+			</div>
+		</div>
+	</div>
+	<div class="hint"></div>
+	<div class="includeHtml" data-url="../tpl/selectOutSalesBillModal.html" ></div>
+	<script type="text/javascript" src="/iw/js/supply/util.js"></script>
+</body>
+</html>

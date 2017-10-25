@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+    <title>武器装备保障平台</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/projmgt/js/common/env.js"></script>
+    <script type="text/javascript" src="/projmgt/js/common/simplePaginationEnv.js"></script>
+    <script type="text/javascript" src="/projmgt/js/common/table.js"></script>
+    <script type="text/javascript" src="/projmgt/js/plan/impl/myTask.js"></script>
+    <link rel="stylesheet" type="text/css" href="/iw/css/three/style.css"/>
+</head>
+<body>
+
+<div class="table-box">
+    <div class="content-header">
+        <ul class="breadcrumb">
+            <li>未完成任务</li>
+        </ul>
+    </div>
+
+    <div id="unfinishedTable" class="body">
+        <table class="table table-hover  table-condensed">
+        </table>
+    </div>
+</div>
+
+<div class="table-box">
+    <div class="content-header">
+        <ul class="breadcrumb">
+            <li>未完成审批</li>
+        </ul>
+    </div>
+
+    <div id="unapprovedTable" class="body">
+        <table class="table table-hover  table-condensed">
+        </table>
+    </div>
+</div>
+
+<div class="table-box">
+    <div class="content-header">
+        <ul class="breadcrumb">
+            <li>已完成任务</li>
+        </ul>
+    </div>
+
+    <div id="finishedTable" class="body">
+        <table class="table table-hover  table-condensed">
+        </table>
+    </div>
+</div>
+
+<div class="table-box">
+    <div class="content-header">
+        <ul class="breadcrumb">
+            <li>已完成审批</li>
+        </ul>
+    </div>
+
+    <div id="approvedTable" class="body">
+        <table class="table table-hover  table-condensed">
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">请选择计划创建方式</h4>
+            </div>
+            <div class="modal-body">
+                <button id="addPlanByModel" type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#addPlanByModelModal">
+                    根据计划模板创建新计划
+                </button>
+                <!-- <button type="button" class="btn btn-primary">
+                    根据产品树、任务模板创建计划
+                </button> -->
+                <a target="_parent" id="createPlan" type="button" class="btn btn-primary">创建新计划</a>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+
+<!-- 根据计划模板创建计划模态框（Modal） -->
+<div class="modal fade bs-example-modal-lg" id="addPlanByModelModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h5 class="modal-title">请输入以下信息：</h5>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal panel-body" id="addPlanByModelForm" method="post" role="form">
+                    <div class="container-fluid">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">计划模板</label>
+                            <div class="col-sm-5">
+                                <select id="universalSchedule" class="form-control" multiple
+                                        style="overflow-y: scroll; height: 150px; width: 400px">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <a id="confirm" class="btn btn-primary" target='_parent'>确定</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+
+</body>
+</html>

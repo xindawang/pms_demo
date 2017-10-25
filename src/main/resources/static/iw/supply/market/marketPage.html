@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/myUtil.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">供货管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">市场管理</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="top-actions">
+				<button type="button" class="btn btn-primary " onclick="location.href='projNew.html';">
+					<span class="icon-plus"></span> 创建供货项目
+				</button>
+			</div>
+
+			<ul id="search-tabs" class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a onclick="NamLikeValue(this)" data-toggle="tab">代号</a></li>
+				<li role="presentation"><a onclick="NamLikeValue(this)" data-toggle="tab" value="nameLike">名称</a></li>
+				<li role="presentation"><a onclick="NamLikeValue(this)" data-toggle="tab" value="supplyNameLike">国家</a></li>
+				<!-- <li role="presentation"><a onclick="NamLikeValue(this)" data-toggle="tab" value="partNoLike">用户</a></li> -->
+			</ul>
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="nsn">
+					<div class="form-group form-inline search-box" style="zoom: 1; overflow: hidden; display: block;">
+						<input type="text" class="form-control" id="nameLike" />
+						<button type="button" class="btn btn-primary " onclick="$$('offset').value=0;_commit();paginate();">
+							<span class="glyphicon glyphicon-search"></span> 搜索
+						</button>
+					</div>
+					<div class="form-group form-inline" style="margin-bottom: 0;">
+						<label>用户：</label>
+						<label>
+							<input type="checkbox"  name="idSelected" value="海军" /> 海军
+						</label>		
+						<label>
+							<input type="checkbox"  name="idSelected" value="空军" /> 空军
+						</label>		
+						<label>
+							<input type="checkbox" name="idSelected"  value="国防工业署"/> 国防工业署
+						</label>
+						<label>
+							<input type="checkbox" name="idSelected" value="国防部采购局"/> 国防部采购局
+						</label>
+						<div class="form-group form-inline" style="margin-left: 100px;">
+							<label>密级：</label>
+							<label>
+								<input type="checkbox"  name="scretLvl"  value="机密"/> 机密
+							</label>
+							<label>
+								<input type="checkbox" name="scretLvl" value="秘密"/> 秘密
+							</label>
+							<label>
+								<input type="checkbox" name="scretLvl"  value="内部"/> 内部
+							</label>
+							<label>
+								<input type="checkbox" name="scretLvl"  value="非密"/> 非密
+							</label>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<!-- list -->
+			<div class="list-header form-inline">
+				<div class="right">
+					<select class="form-control" id="number">
+						<option value="10">10个/页</option>
+						<option value="20">20个/页</option>
+						<option value="50">50个/页</option>
+					</select>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-primary " id="PROJNO" value="PROJNO" name="PROJNO" onclick="orderBy(this)">
+						<span class="glyphicon glyphicon-sort" name="projNo "></span> 编号
+					</button>
+					<button type="button" class="btn btn-default " id="COUNTRY" value="COUNTRY" name="COUNTRY" onclick="orderBy(this)">
+						<span class="glyphicon glyphicon-sort" name="country"></span> 国家
+					</button>
+					<button type="button" class="btn btn-default " id="UPAT" name="UPAT" value="UPAT" onclick="orderBy(this)">
+						<span class="glyphicon glyphicon-sort" name="newat"></span> 建立时间
+					</button>
+				</div>
+			</div>
+			<table class="table table-hover  table-condensed">
+				<thead>
+					<tr>
+						<th colspan="9">项目列表</th>
+					</tr>
+					<tr class="">
+						<th width="80px">序号</th>
+						<th width="">项目编号</th>
+						<th width="">项目名称</th>
+						<th width="">项目经理</th>
+						<th width="100px">国家&用户</th>
+						<th width="80px">状态</th>
+						<th width="100px">关注度</th>
+						<th>建立时间</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr  name="myProjPageTemplate" style="display: none" >
+						<input type="hidden" name="id"/>
+						<td  name="RN">1</td>
+						<td> <a name="id" href="javascript:void(0)" onclick="toProjDetail(this)">
+							<input type="hidden" name="id"/>
+							<span name="projNo"></span>
+							<input type="hidden" name="no"/>
+						</a></td>
+						<td name="name">项目名称</td>
+						<td><span name="managerName"></span></td>
+						<td><span name="country"></span> & <span name="consumer"></span></td>
+						<td name="state"></td>
+						<td name="focusOn"></td>
+						<td name="newat"></td>
+						<td>
+							<button type="button" class="btn btn-primary " onclick="projDetail(this)" data-target="#projModal" data-toggle="modal" value="基本情况" >基本情况</button>
+							<button type="button" class="btn btn-primary " onclick="showMaterial(this)" data-target="#docModal" data-toggle="modal" value="文档资料" >文档资料</button>
+							<button type="button" class="btn btn-primary " onclick="$$('questionOffset').value=0;_questionCommit(this);_questionPaginate(this);" data-target="#qaModal" data-toggle="modal">问题&答复</button>
+							<!-- 
+							<button type="button" class="btn btn-primary " onclick="location.href='../sales/projIqPage.html?pid=';" >询报价</button>
+							<button type="button" class="btn btn-primary " onclick="location.href='../sales/projInnerIqPage.html?pid=';" >内部询报价</button>
+							 -->
+							<button name="id" type="button" class="btn btn-primary " onclick="hrefProjContractPage(this)" >合同</button>
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+			<input type="hidden" name="total" id="total" value=0>
+			<input type="hidden" name="offset" id="offset" value=0>
+		    <input type="hidden" name="limit" id="limit" value=10>
+		    <div class="row-fluid"> 
+				<div id="page-nav" style="padding: 18px;"></div> 
+			</div>
+
+		</div>
+	</div>
+
+	<div id="projModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header modal-primary">
+					项目基本情况
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+
+				<div class="modal-body" data-url="../tpl/projShow.html"></div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+					</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="docModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header modal-primary">
+					文档资 料
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+
+				<div class="modal-body" data-url="../tpl/docShow.html"></div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+					</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="qaModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header modal-primary">
+					问题&答复
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+
+				<div class="modal-body" data-url="../tpl/qaShow.html"></div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+					</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="inquiryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header modal-primary">
+					询报价
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+
+				<div class="modal-body" data-url="../tpl/inquiryShow.html"></div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+					</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+		<script type="text/javascript" src="/iw/js/supply/util.js"></script>
+		<script type="text/javascript" src="/iw/js/supply/market/marketPage.js"></script>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/css/jqueryui/jquery-ui.js"></script>
+<script type="text/javascript" src="/iw/css/jqueryui/local/jquery.ui.datepicker-zh-CN.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/jqueryui/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/supply/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="../org/welcome.html">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="./projPage.html">供应管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">供货合同详情</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div style="float: right; margin-top: -8px; margin-right: 5px;" class="">
+						<button type="button" class="btn btn-link " onclick="history.go(-1)">
+							<span class="glyphicon glyphicon-list-alt icon-list-alt"></span> 项目详情
+						</button>
+						<button type="button" class="btn btn-link " onclick="location.href='itemPage.html'">
+							<span class="glyphicon glyphicon-list-alt icon-list-alt"></span> 部件主要信息列表
+						</button>
+					</div>
+					<span class="glyphicon glyphicon-th"> </span> 供应合同详情
+
+				</div>
+				
+				<table class="table tableform  table-condensed">
+					<tr>
+						<th>合同编号</th>
+						<td><input type="text"  name="contractDetail.contractNo" value="" class="form-control" /></td>
+						<th>登记日期</th>
+						<td><input type="text" class="form-control" name="contractDetail.regAt" value="" /></td>
+					</tr>
+
+					<tr>
+						<th>合同名称</th>
+						<td><input type="text" name="contractDetail.name" value="" class="form-control" /><span class="must">*</span></td>
+						<th>预计签订日期</th>
+						<td>
+							<input name="contractDetail.signAt" type="text" class="form-control"> 
+							
+						</td>
+					</tr>
+					<tr>
+						<th>合同价格</th>
+						<td><input type="text" name="contractDetail.disctSalePrice" value="" class="form-control" /><span class="must">*</span></td>
+						
+						<th>实际签订日期</th>
+						<td><input type="text" class="form-control" name="contractDetail.effectAt" /></td>
+					</tr>
+					<tr>
+						<th>甲方</th>
+						<td><input type="text" name="contractDetail.aManagerName" value="" class="form-control" readonly="readonly" /></td>
+						<th>乙方</th>
+						<td>
+							<div class="input-group ">
+									<input type="hidden" name="" id="aCorpId" onchange="javascript:abc()" value="" /> 
+									<input type="text" class="form-control" name="contractDetail.managerName" value="" id="aCorpName" readonly /> 
+									<span class="must">*</span>
+							</div>
+						</td>
+					</tr>
+				</table>
+
+				<div class="panel-footer" id="step1">
+					<button type="button" class="btn btn-primary" onclick="location.href='/iw/supply/myContPage.html'">
+						<span class="glyphicon glyphicon-ok">返回合同列表</span>
+					</button>				
+				</div>
+			</div>
+			
+			<!-- 子项目合同列表 -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="glyphicon glyphicon-th"> </span> 子项目合同列表
+				</div>
+				<div class="panel-body panel-condensed">
+					<table class="table table-condensed">
+						<thead>
+							<tr>
+								<th width="100px">项目名称</th>
+								<th width="200px">甲方</th>
+								<th width="100px">甲方项目经理</th>
+								<th width="200px">乙方</th>
+								<th width="100px">乙方项目经理</th>
+								<!-- <th width="100px">供应报价</th>	
+								<th width="100px">供应折扣价</th>	 -->						
+								<th >操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="subContractsTemplate" style="display: none;">
+							<input name="id" type="hidden"/>
+								<td name="projName"></td>
+								<td name="aCorpName"></td>
+								<td name="aManagerName"></td>
+								<td name="corpName"></td>
+								<td name="managerName"></td>
+								<!-- <td class="text-right" >									
+									<span   class="money"></span>																										
+								</td>	
+								<td class="text-right" >									
+									<span   class="money"></span>																
+								</td>	 -->
+								<td>
+									<!-- 已经生成合同的情况下显示这个合同详情按钮 -->	
+									<button type="button" class="btn btn-link " name="id" onclick="location.href='subContDetail.html?id=#{id}';">
+										<span class="glyphicon glyphicon-list"></span> 合同详情
+									</button>																		
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+			
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div style="float: right; margin-top: -8px; margin-right: 5px;">						
+						<button type="button" class="btn btn-link ">
+							<span class="glyphicon glyphicon-chevron-up"></span>
+						</button>
+					</div>
+					<span class="glyphicon glyphicon-th"> </span> 交付数据清单
+				</div>
+				<div class="panel-body panel-condensed">
+					<table class="table table-condensed treelist table-bordered">
+						<thead>
+							<tr>
+								<th width="50px">#</th>
+								<th>交付名称</th>				
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td><a href="" class="btn btn-link">（物项）部件主要信息列表</a></td>								
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>序列化部件码列表</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>多用途部件细节信息</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>可更换部件列表</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>部件标签</td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>CM部件清单</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>多用途部件细节</td>
+							</tr>
+							<tr>
+								<td>8</td>
+								<td>部件图</td>
+							</tr>
+							<tr>
+								<td>9</td>
+								<td>主物项模型（爆炸）</td>
+							</tr>
+							<tr>
+								<td>10</td>
+								<td><a href="./majoItemPage.html" class="btn btn-link">主物项清单</a></td>
+							</tr>
+							<tr>
+								<td>11</td>
+								<td>FSCM CAGE 清单</td>
+							</tr>
+							<tr>
+								<td>12</td>
+								<td>可更换部件清单</td>
+							</tr>
+							<tr>
+								<td>13</td>
+								<td>部件文档参考</td>
+							</tr>
+							<tr>
+								<td>14</td>
+								<td>预防性维护（PM）数据要求</td>
+							</tr>
+							<tr>
+								<td>15</td>
+								<td>预防性维护（PM）工作计划</td>
+							</tr>
+							<tr>
+								<td>16</td>
+								<td>工作计划</td>
+							</tr>
+							<tr>
+								<td>17</td>
+								<td>作业（任务）</td>
+							</tr>
+							<tr>
+								<td>18</td>
+								<td>作业工艺</td>
+							</tr>
+							<tr>
+								<td>19</td>
+								<td>作业替代部件</td>
+							</tr>
+							<tr>
+								<td>20</td>
+								<td>作业工具</td>
+							</tr>
+							<tr>
+								<td>21</td>
+								<td>工具包部件</td>
+							</tr>
+							<tr>
+								<td>22</td>
+								<td>安全计划数据要求</td>
+							</tr>
+							<tr>
+								<td>23</td>
+								<td>数据监测条件要求</td>
+							</tr>
+							
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<!-- list 项目配套表 -->
+			<div class="panel panel-default">
+				<div class="panel-heading">				
+					<span class="glyphicon glyphicon-th"> </span> 配套表列表
+				</div>
+				<div class="panel-body panel-condensed">
+					<table class="table table-condensed treelist table-bordered">
+						<thead>
+							<tr>
+								<th width="200px">名称</th>
+								<th width="200px">NSN</th>
+								<th width="100px">零件号</th>
+								<th width="100px">状态</th>
+								<th width="90px">数量</th>
+								<th width="90px">价格</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="" name="inventoriesTemplate" style="display: none;" function="debug">
+								<input type="hidden" name="id" >
+								<input type="hidden" name="parentId">
+								<td>
+									<div class="tree-node tree-root-one tree node-last ">
+									   <div style="display:none" name="subInventories" function="changeIcon"></div>
+									   <input type="hidden" name="no"/> 
+									 	<!-- <span class="tree-hit tree-expanded"></span> 
+										<span class="tree-icon tree-folder tree-folder-open"></span>  -->
+										<span class="tree-title" name="itemName"></span>
+									</div>
+								</td>
+								<td name="nsn"></td>
+								<td name="partNo"></td>
+								<td name="status"></td>
+							    <td class="text-right" name="num">									
+								</td>	
+								<td class="text-right" name="totalPrice" >									
+								</td>								
+								
+							</tr>
+							
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="hint"></div>
+	<script type="text/javascript" src="/iw/js/_supply/util.js"></script>
+	<script type="text/javascript" src="/iw/js/_supply/contDetail.js"></script>
+</body>
+</html>

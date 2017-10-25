@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+.btn-link-td {
+  font-weight: normal;
+  color: #ddd;
+  cursor: pointer;
+  border-radius: 0;
+  float:right;
+  margin-right:4px;
+  border:0;
+}
+
+.btn-link-td,
+.btn-link-td:active,
+.btn-link-td[disabled],
+fieldset[disabled] .btn-link-td {
+  background-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btn-link-td,
+.btn-link-td:hover,
+.btn-link-td:focus,
+.btn-link-td:active {
+  border-color: transparent;
+}
+
+.btn-link-td:hover,
+.btn-link-td:focus {
+  color: #fff;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+#mediaContainer {
+    border: 1px solid #ddd;
+    display:none;
+}
+#fileContainer{
+	display:none;
+}
+
+.media, .media-body {
+    overflow: hidden;
+    zoom: 1;
+}
+

@@ -1,0 +1,463 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/myUtil.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">物项认证</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">物项信息编辑</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="panel panel-default">
+				<div class="panel-heading">基本信息</div>
+				<table class="table">
+					<tr>
+						<th width="100px">产品代号：</th>
+						<td colspan="3">
+							<input type="text" />
+						</td>
+					</tr>
+					<tr>
+						<th width="100px">物项名称：</th>
+						<td width="500px">
+							<input type="text" />
+							<button>...</button>
+						</td>
+						<td colspan="2">
+							<input type="text" />
+						</td>
+					</tr>
+					<tr>
+						<th width="100px">大类(3994)：</th>
+						<td width="500px"><select id="cat" style="width:500px">
+							<option value="1">全部</option>
+						</select></td>
+						<th width="100px">小类(3996)：</th>
+						<td width="500px"><select id="cat1" style="width:500px">
+							<option value="1">全部</option>
+						</select></td>
+					</tr>
+				</table>
+				<div  class="panel-heading">
+					<label></label>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">认证信息</div>
+				<table class="table">
+					<tr>
+						<th width="100px">认证类型(4820):</th>
+						<td width="200px">
+							<select id="cat">
+								<option value="1">1-1(完整描述)</option>
+								<option value="2">K-1A(完整描述-参考号)</option>
+								<option value="3">L-1B(完整描述-参考号描述)</option>
+								<option value="4">4-4(部分描述)</option>
+								<option value="5">M-4A(部分描述-参考号)</option>
+								<option value="6">N-4B(部分描述-参考号描述)</option>
+								<option value="7">2-2(参考号)</option>
+							</select>
+						</td>
+						<th width="100px">CRITL(3843):</th>
+						<td width="200px">
+							<select id="critl">
+								<option value="1">C</option>
+								<option value="2">E</option>
+								<option value="3">F</option>
+								<option value="4">N</option>
+								<option value="5">H</option>
+								<option value="6">M</option>
+								<option value="7">S</option>
+								<option value="8">X</option>
+								<option value="9">Y</option>
+							</select>
+						</td>
+						<th width="100px">RPDMRC(4765):</th>
+						<td width="200px">
+							<select id="rpdmrc">
+								<option value="1"></option>
+							</select>
+						</td>
+						<th width="100px">DEMIL(0167):</th>
+						<td width="200px">
+							<select id="demil">
+								<option value="1"></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>HMIC(0865):</th>
+						<td>
+							<select id="hmic">
+								<option value="1"></option>
+							</select>
+						</td>
+						<th>ESD(2043):</th>
+						<td>
+							<select id="esd">
+								<option value="1"></option>
+							</select>
+						</td>
+						<th>PMIC(0802):</th>
+						<td>
+							<select id="pmic">
+								<option value="1"></option>
+							</select>
+						</td>
+						<th>ADPEC(0801):</th>
+						<td>
+							<select id="adpec">
+								<option value="1"></option>
+							</select>
+						</td>
+					</tr>
+				</table>
+				<div  class="panel-heading">
+					<label>
+					</label>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">参考号</div>
+				<table class="table table-hover  table-condensed">
+					<tbody>
+						<tr>
+							<th width="100px">参考号</th>
+							<th width="100px">供应商代码</th>
+							<th width="100px">RNCC(2910)</th>
+							<th width="100px">RNVC(4780)</th>
+							<th width="100px">RNFC(2920)</th>
+							<th width="100px">RNAAC(2900)</th>
+							<th width="100px">RNSC(2923)</th>
+							<th width="100px">DAC(2640)</th>
+							<th width="100px">RNJC(2750)</th>
+							<th width="100px">SADC(4672)</th>
+							<th width="100px">HCC(2579)</th>
+							<th width="100px">MSDS(9076)</th>
+							<th width="100px">操作</th>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><button>删除</button></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><button>删除</button></td>
+						</tr>
+					</tbody>
+				</table>
+				<div  class="panel-heading">
+					<button type="button" class="btn btn-primary " onclick="projDetail(this)" data-target="#projModal" data-toggle="modal" value="">
+						增加参考号
+					</button>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">属性</div>
+				<table class="table table-hover  table-condensed">
+					<tr>
+						<th width="100px">选填必填</th>
+						<th width="100px">MRC</th>
+						<th width="400px">名称</th>
+						<th width="100px">类型</th>
+						<th width="400px">第二地址码</th>
+						<th width="600px">属性值</th>
+					</tr>
+					<tr>
+						<td></td>
+						<td>CRTL</td>
+						<td>CRITICALITY CODE JUSTIFICATION</td>
+						<td>A</td>
+						<td></td>
+						<td>
+							<input type="text" /><button><span>+</span></button>
+							<input type="checkbox"><label>或</label><input type="text">
+							<button><span>+</span></button><button><span>-</span></button>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>AARH</td>
+						<td>FAILURE RATE LEVEL IN PERCENT,RELIABILITY</td>
+						<td>B</td>
+						<td></td>
+						<td>
+							<input type="text" /><button><span>+</span></button>
+							<input type="checkbox"><label>或</label><input type="text">
+							<button><span>+</span></button><button><span>-</span></button>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>AARB</td>
+						<td>TYPE,TERMINAL</td>
+						<td>D</td>
+						<td></td>
+						<td>
+							<input type="text" /><button><span>+</span></button>
+							<input type="checkbox"><label>或</label><input type="text">
+							<button><span>+</span></button><button><span>-</span></button>
+						</td>
+					</tr>
+					<tr>
+						<td>*</td>
+						<td>AAPE</td>
+						<td>COEFFICIENT OF RESISTANCE IN PPM PER DEG CELSIUS,TEMP</td>
+						<td>F</td>
+						<td></td>
+						<td>
+							<input type="text" /><button><span>+</span></button>
+							<input type="checkbox"><label>或</label><input type="text">
+							<button><span>+</span></button><button><span>-</span></button>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>FEAT</td>
+						<td></td>
+						<td>G</td>
+						<td></td>
+						<td>
+							<input type="text" /><button><span>+</span></button>
+							<input type="checkbox"><label>或</label><input type="text">
+							<button><span>+</span></button><button><span>-</span></button>
+						</td>
+					</tr>
+					<tr>
+						<td>*</td>
+						<td>AXPT</td>
+						<td></td>
+						<td>H</td>
+						<td></td>
+						<td>
+							<input type="text" /><button><span>+</span></button>
+							<input type="checkbox"><label>或</label><input type="text">
+							<button><span>+</span></button><button><span>-</span></button>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>ADAQ</td>
+						<td>BODY LENGTH</td>
+						<td>2D+1B</td>
+						<td></td>
+						<td>
+							<input type="text" /><button><span>+</span></button>
+							<input type="checkbox"><label>或</label><input type="text">
+							<button><span>+</span></button><button><span>-</span></button>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>CQFD</td>
+						<td></td>
+						<td>1D+1B</td>
+						<td></td>
+						<td>
+							<input type="text" /><button><span>+</span></button>
+							<input type="checkbox"><label>或</label><input type="text">
+							<button><span>+</span></button><button><span>-</span></button>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>CQFD</td>
+						<td></td>
+						<td>2D+1B</td>
+						<td></td>
+						<td>
+							<input type="text" /><button><span>+</span></button>
+							<input type="checkbox"><label>或</label><input type="text">
+							<button><span>+</span></button><button><span>-</span></button>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>STYL</td>
+						<td>STYLE DESIGNATOR</td>
+						<td>L</td>
+						<td></td>
+						<td>
+							<input type="text" /><button><span>+</span></button>
+							<input type="checkbox"><label>或</label><input type="text">
+							<button><span>+</span></button><button><span>-</span></button>
+						</td>
+					</tr>
+				</table>
+				<div  class="panel-heading">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id=projModal class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header modal-primary">
+					参考号
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+
+				<table class="table table-hover  table-condensed">
+					<tr>
+						<th>参考号:</th>
+						<td>
+							<input type="text"/>
+						</td>
+					</tr>
+					<tr>
+						<th>供应商代码:</th>
+						<td>
+							<input type="text"/>
+						</td>
+					</tr>
+					<tr>
+						<th>RNCC(2910):</th>
+						<td>
+							<select>
+								<option value="1"></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>RNVC(4780):</th>
+						<td>
+							<select>
+								<option value="1"></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>RNFC(2920):</th>
+						<td>
+							<select>
+								<option value="1"></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>RNAAC(2900):</th>
+						<td>
+							<select>
+								<option value="1"></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>RNSC(2923):</th>
+						<td>
+							<select>
+								<option value="1"></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>DAC(2640):</th>
+						<td>
+							<select>
+								<option value="1"></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>RNJC(2750):</th>
+						<td>
+							<select>
+								<option value="1"></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>SADC(4672):</th>
+						<td>
+							<select>
+								<option value="1"></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>HCC(2579):</th>
+						<td>
+							<select>
+								<option value="1"></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>MSDS(9076):</th>
+						<td>
+							<select>
+								<option value="1"></option>
+							</select>
+						</td>
+					</tr>
+				</table>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+					</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="/iw/js/supply/util.js"></script>
+	<script type="text/javascript" src="/iw/js/supply/market/marketPage.js"></script>
+</body>
+</html>

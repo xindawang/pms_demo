@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/admin/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">型号角色</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<ul id="search-tabs" class="nav nav-tabs" role="tablist">
+				<li  class="active"><a  onclick="namLikeValue(this)" data-toggle="tab" href="#model">型号管理员</a></li>
+				<li ><a  onclick="namLikeValue(this)" data-toggle="tab"  href="#representative" >军贸总代表</a></li>
+				<li ><a onclick="namLikeValue(this)" data-toggle="tab"  href="#salesman">业务员</a></li>
+			</ul>
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="model">
+					<div class="form-group form-inline search-box" style="zoom:1;overflow:hidden;display:block;">
+						<input type="text" class="form-control" id="nameLike" />
+						<button type="button" class="btn btn-primary " onclick="$$('offset').value=0;_commit();paginate();">
+							<span class="glyphicon glyphicon-search"></span> 搜索
+						</button>
+					</div>					
+		
+					<table class="table table-hover  table-condensed">
+						<thead>
+							<tr class="">
+								<th>序号</th>
+								<th>用户名</th>
+								<th>身份证号</th>
+								<th>所属机构</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							 <tr name="custPageByRoleTemplate" style="display: none">
+							 	<input name="custId" type="hidden"/>
+								<td><span name="RN"></sapn></td>
+								<td><a name="pageTypeAndNo" function="supplyItemDetailByPageType"><span name="name"></span></a></td>
+								<td><span name="idNo"></span></td>
+								<td><span name="corpName"></span></td>								
+								<td>
+								    <button id="addSupply" class="btn btn-primary btn-xs" type="button" name="no" onclick="hisRoles(this)" data-toggle="modal" data-target="#permModal">
+										<span class="glyphicon glyphicon-edit"></span> 权限
+									</button>									
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				<input type="hidden" name="total" id="total" value=0> 
+					<input type="hidden" name="offset" id="offset" value=0>
+					 <input type="hidden" name="limit" id="limit" value=3>
+					<div class="row-fluid">
+						<div id="page-nav" style="padding: 18px;"></div>
+					</div>
+				</div>
+			</div>
+			<!-- list -->
+			
+
+		</div>
+	</div>
+	
+<div id="permModal" class="modal fade in" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					***可管理型号列表
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="">&times;</button>
+				</div>
+
+				<div class="modal-body">					
+					<table class="rolesetting" style="margin:0 auto;">
+						<tr>
+							<td class="role_left" valign="top">
+								<div>可选型号</div>
+							<select id="leftSide" multiple="multiple" class="role_select" >
+								<option value="" name=otherRolesTemplate style="display: none" function="roleOptionValueTo"></option>
+							</select>
+							<td class="role_center">
+								<button id="rightAllBtn" type="button" class="btn btn-default">
+									<span class="glyphicon glyphicon-forward"></span>
+								</button>
+								<br />
+								<button id="rightBtn" type="button" class="btn btn-default">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</button>
+								<br />
+								<button id="leftBtn" type="button" class="btn btn-default">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</button>
+								<br />
+								<button id="leftAllBtn" type="button" class="btn btn-default">
+									<span class="glyphicon glyphicon-backward"></span>
+								</button>
+							</td>
+							<td class="role_right"  valign="top">
+								<div>已选型号</div> <select id="rightSide" class="role_select" multiple="multiple" >
+									<option value="" name="hisRolesTemplate" style="display:none;" function="roleOptionValueTo"></option> 
+							</select>
+							</td>
+						</tr>
+
+					</table>				 
+				</div>	
+				 			
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="makeCustModels()" >保存</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+
+			</div>
+		</div>		
+</div>
+
+
+	<!--[if lte IE 9]>
+	<script type="text/javascript" src="/iw/css/bootstrap/js/html5shiv.js"></script>
+	<script type="text/javascript" src="/iw/css/bootstrap/js/respond.min.js"></script>
+<![endif]-->
+	<!--[if lte IE 6]>
+	<script type="text/javascript" src="/iw/js/bootstrap-ie.js"></script>
+<![endif]-->
+	<script type="text/javascript" src="/iw/js/admin/modelManagerPage.js"></script>
+</body>
+</html>

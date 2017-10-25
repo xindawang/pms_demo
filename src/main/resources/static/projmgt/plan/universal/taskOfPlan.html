@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>武器装备保障平台</title>
+<meta charset="UTF-8">
+<script type="text/javascript" src="/projmgt/js/common/env.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/projmgt/js/plan/universal/taskOfPlan.js"></script>
+
+
+</head>
+<body>
+	<div id="top" class="top"></div>
+
+	<div id="left" class="left"></div>
+
+	<div class="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="/iw/org/welcome.html">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">项目管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active">任务详情</li>
+			</ul>
+		</div>
+
+		<div class="table-box">
+			<div class="content-header">
+				<button class="btn btn-primary " id="save" style="background: #ebebeb">
+					<span>保存</span>
+				</button>
+				<button class="btn btn-primary " id="cancel">
+					<span>取消</span>
+				</button>
+			</div>
+
+			<form class="form-horizontal panel-body" id="uniScheduleTaskForm" method="post" role="form">
+				<div class="comtainer-fluid">
+					<div class="form-group">
+						<label class="col-md-1 control-label"><span style="color:red">*</span>任务模板</label>
+						<div class="col-md-3">
+							<select id="universalTaskBase" class="form-control edit" multiple
+								style="overflow-y: scroll">
+							</select>
+						</div>
+						<div class="col-md-3 col-md-offset-1">
+							<select id="universalTask" class="form-control edit" multiple style="overflow-y: scroll">
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label">名称</label>
+						<div class="col-md-3">
+							<input id="taskName" name="name" class="form-control">
+						</div>
+						<label class="col-md-1 control-label">完成形式</label>
+						<div class="col-md-3">
+							<input id="form" name="form" class="form-control" readOnly="readonly">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label">工期</label>
+						<div class="col-md-3">
+							<input id="duration" name="duration" class="form-control" readOnly="readonly">
+						</div>
+						<div class="col-md-3 col-md-offset-1">
+							<input id="milestone" type="checkbox" class="edit" readOnly="readonly"><label class="control-label">里程碑任务</label>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-1 control-label">优先级</label>
+						<div class="col-md-3">
+							<input id="priority" name="priority" placeholder="0-99(数字越大优先级越高)" class="form-control" readOnly="readonly">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-md-1 control-label"><span style="color:red">*</span>密级</label>
+						<div class="col-md-3">
+							<select id="securityLevel" name="securityLevel" class="form-control">
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-1 control-label">说明</label>
+						<div class="col-md-7">
+							<textarea id="state" name="state" class="form-control edit" readOnly="readonly" style="overflow-y: scroll; resize: none" rows="3"></textarea>
+						</div>
+					</div>
+
+				</div>
+			</form>
+		</div>
+
+
+	</div>
+</body>
+</html>

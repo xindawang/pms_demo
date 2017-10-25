@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="/iw/js/jquery-2.0.3.min.js"></script>
+</head>
+<body>
+	<button id="divId" onclick="dianji()">asdf</button>
+	
+	<script>
+/* 	function makeCounter() {
+		//‘i’ 只的作用域只在 ‘makeCounter’ 方法内。
+		var i = 0;
+
+		return function() {
+			console.log( ++i );
+		};
+	}
+	var counter = makeCounter(); */
+
+/*  	var foo = function() {
+		//‘i’ 只的作用域只在 ‘makeCounter’ 方法内。
+		var i = 0;
+
+		return function() {
+			console.log( ++i );
+		};
+	}  */
+
+/* 	(function() {
+		var i = 0;
+		console.log(++i) 
+	}()) */
+/*  	function foo(x) {
+	    var tmp = 3;
+	    return function (y) {
+	        console.log(x + y + (++tmp));
+	        console.log(tmp)
+	    }
+	}
+	var bar = foo(2); // bar 现在是一个闭包
+	bar(10);  */
+
+/* 	function foo(x) {
+		var tmp = 3;
+		return function (y) {
+		    alert(x + y + tmp); //15
+		    x.memb = x.memb ? x.memb + 1 : 1;
+		    alert(x.memb);
+	    }
+	}
+	var age = new Number(2);
+	var bar1 = foo(age); // bar 现在是一个引用了age的闭包
+	var bar2 = foo(age); // bar 现在是一个引用了age的闭包
+	bar1(10); */
+
+/* 	var db = (function() {
+		// 创建一个隐藏的object, 这个object持有一些数据
+		// 从外部是不能访问这个object的
+		var data = {};
+		// 创建一个函数, 这个函数提供一些访问data的数据的方法
+		return function(key, val) {
+		    if (val === undefined) { return data[key] } // get
+		    else { return data[key] = val } // set
+		    }
+		// 我们可以调用这个匿名方法
+		// 返回这个内部函数，它是一个闭包
+	})(); */
+
+/* 	db('x'); // 返回 undefined
+	db('x', 1); // 设置data['x']为1
+	db('x'); // 返回 1
+	// 我们不可能访问data这个object本身
+	// 但是我们可以设置它的成员 */
+	
+	// 创建一个立即调用的匿名方法，将它的返回值赋予一个变量。
+
+/* 	var counter = (function(){
+		var i = 0;
+		 
+		return {
+			get: function(){
+				return i;
+			},
+			set: function( val ){
+				i = val;
+			},
+			increment: function() {
+				return ++i;
+			}
+		};
+	}());
+	 
+	// ‘counter’ 是一个包含了若干方法的对象
+	 
+	counter.get(); // 0
+	counter.set( 3 );
+	counter.increment(); // 4
+	counter.increment(); // 5
+	 
+	counter.i; // undefined (‘i’ 不包含在返回对象的属性中)
+	i; // ReferenceError: i is not defined (它只在闭包中存在) */
+
+/* var mod = (function() {
+    var privateVar = "foo";
+    return {
+        getPrivateVar: function() {
+            return privateVar;
+        },
+        setPrivateVar: function(value) {
+            privateVar = value;
+        }
+    };
+}());
+ 
+console.log(mod.getPrivateVar());
+mod.setPrivateVar("buzz");
+console.log(mod.getPrivateVar()); */
+
+	function create() {}
+	var a = new create();
+	a.name = 1;
+	a.age = 10;
+	</script>
+</body>
+</html>

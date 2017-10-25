@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">供货管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">销售管理</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="form-group form-inline search-box" style="zoom: 1; overflow: hidden; display: block;">
+				<input type="text" class="form-control" id="nameLike" placeholder="请输入项目名称、合同名称" />
+				<button type="button" class="btn btn-primary " onclick="$$('offset').value=0;_commit();paginate();">
+					<span class="glyphicon glyphicon-search"></span> 搜索
+				</button>
+			</div>
+			<!-- list -->
+			<div class="list-header form-inline">
+				<div class="right">
+					<select class="form-control" onclick="limitValueTo(this)">
+						<option>10个/页</option>
+						<option>20个/页</option>
+						<option>50个/页</option>
+					</select>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-primary " id=CONTRACTNUM value="CONTRACTNUM" name="CONTRACTNUM" onclick="orderBy(this)">
+						<span class="glyphicon glyphicon-sort" name="upAtProjName"></span> 项目名称
+					</button>
+					<button type="button" class="btn btn-default " id="PROJNAME" value="PROJNAME" name="PROJNAME" onclick="orderBy(this)">
+						<span class="glyphicon glyphicon-sort" name="upAtNum"></span> 出口合同编号
+					</button>
+				</div>
+			</div>
+			<table class="table table-hover  table-condensed">
+				<thead>
+					<tr class="">
+						<th width="40px">#</th>
+						<th width="100px">合同编号</th>
+						<th width="200px">合同名称</th>
+						<th width="150px">项目名称</th>
+						<th width="200px">甲方</th>
+						<th width="100px">甲方联系人</th>
+						<th width="200px">乙方</th>
+						<th width="100px">乙方联系人</th>
+						<th width="100px">状态</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr name="contractPageTemplate" style="display:none;">
+						<input type="hidden" name="id" />
+						<input type="hidden" name="projId"/>
+						<input type="hidden" name="typ"/>
+						<td name="RN">1</td>
+						<td><a href="javascript:void(0)" onclick="contractDetail(this)"> <span name="contractNum"></span></a></td>
+						<td name="name"></td>
+						<td>
+							<a href="javascript:void(0)" onclick="toProjContractPage(this)">
+								<input type="hidden" name="id" />
+								<span name="projName"></span>
+								<input type="hidden" name="projId" />
+							</a>
+						</td>
+						<td name="aParty"></td>
+						<td name="aManager"></td>
+						<td name="corpName"></td>
+						<td name="managerName"></td>
+						<td name="status" function="changeValueTo"></td>
+						<td name="butn">
+							<!-- <button class="btn btn-primary btn-xs" onclick="location.href='outQuoteNew.html';">
+									<span class="icon-plus"></span> 生成外部报价单
+							</button> -->
+							<button type="button" class="btn btn-default " onclick="inquiry(this);$$('inquiryOffset').value=0;inquiryPage();inquiryPaginate();" data-target="#outInquiryListModal" data-toggle="modal">
+								<span class="icon-th"></span> 外部询价单
+							</button>
+							<button type="button" class="btn btn-default " onclick="" data-target="#outQuoteListModal" data-toggle="modal">
+								<span class="icon-th"></span> 外部报价单
+							</button>
+							<button type="button" class="btn btn-default " onclick="" data-target="#innerInquiryListModal" data-toggle="modal">
+								<span class="icon-th"></span> 内部询价单
+							</button>
+							<button type="button" class="btn btn-default " onclick="inquiry(this);allInnerQuote();" data-target="#innerQuoteListModal" data-toggle="modal">
+								<span class="icon-th"></span> 内部报价单
+							</button>
+							<button type="button" class="btn btn-default " onclick="innerContractCommit()" data-target="#innerContractListModal" data-toggle="modal">
+								<span class="icon-th"></span> 内部合同
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<input type="hidden" name="total" id="total" value=0>
+			<input type="hidden" name="offset" id="offset" value=0>
+		    <input type="hidden" name="limit" id="limit" value=10>
+		    <div class="row-fluid"> 
+				<div id="page-nav" style="padding: 18px;"></div> 
+			</div>
+		</div>
+	</div>
+	<div id="outInquiryListModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header modal-primary">
+					<span class="icon-th"></span> 外部询价单列表
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="">&times;</button>
+				</div>
+
+				<div class="modal-body includeHtml" data-url="../tpl/outInquiryList.html"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+					</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="outQuoteListModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header modal-primary">
+					<span class="icon-th"></span> 外部报价单列表
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+
+				<div class="modal-body includeHtml" data-url="../tpl/outQuoteList.html"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+					</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="innerInquiryListModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header modal-primary">
+					<span class="icon-th"></span> 内部询价单列表
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+
+				<div class="modal-body includeHtml" data-url="../tpl/innerInquiryList.html"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+					</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="innerQuoteListModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header modal-primary">
+					<span class="icon-th"></span> 内部报价单列表
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+
+				<div class="modal-body " >
+					<table  class="table">
+						<thead>
+							<tr class="">
+								<th width="100px">报价单号</th>
+								<th width="80px">甲方</th>
+								<th width="100px">甲方联系人</th>
+								<th width="80px">乙方</th>
+								<th width="100px">乙方联系人</th>
+								<th width="80px">状态</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="allInnerQuoteTemplate" style="display:none;">
+								<td name="quoteNum"><a href="innerQuoteShow.html">ht00001-03</a></td>
+								<td name="aCorpName"></td>
+								<td name="aSalerName"></td>
+								<td name="corpName"></td>
+								<td name="salerName"></td>
+								<td name="typ">立项</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+					</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="innerContractListModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header modal-primary">
+					<span class="icon-th"></span> 内部合同列表
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+
+				<div class="modal-body includeHtml" data-url="../tpl/innerContractList.html"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+					</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="/iw/js/supply/util.js"></script>
+	<script type="text/javascript" src="/iw/js/supply/sales/salesPage.js"></script>
+</body>
+</html>
+>

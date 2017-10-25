@@ -1,0 +1,57 @@
+<div id="outContractSignModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header modal-primary">
+				合同签订
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+
+			<div class="modal-body">
+				<table class="table tableform" style="width: 400px">
+					<tr>
+						<th>合同编号：</th>
+						<td id="contractId">1234567</td>
+					</tr>
+					<tr>
+						<th>合同名称：</th>
+						<td id="contractName">合同1</td>
+					</tr>
+					<tr>
+						<th>签约地址：<span class="must">*</span></th>
+						<td><input type="text" class="form-control" id="signAddrs" /></td>
+					</tr>
+					<tr>
+						<th>签订时间：<span class="must">*</span></th>
+						<td><input type="date" class="form-control" id="signAts" /></td>
+					</tr>
+					<tr>
+						<th>签订人：<span class="must">*</span></th>
+						<td><div class="input-group ">
+								<input type="hidden" name="" id="aCorpId" value="" /> <input type="text" class="form-control" readonly /> <span class="input-group-addon" data-target="#userModal" onclick="" data-toggle="modal"> ... </span>
+							</div></td>
+					</tr>
+					<tr>
+						<th>生效时间：<span class="must">*</span></th>
+						<td><input type="date" class="form-control" id="effectAts" /></td>
+					</tr>
+					<tr>
+						<th>执行周期：</th>
+						<td><input type="text" class="form-control" id="executeCycles" /></td>
+					</tr>
+					<tr>
+						<th>预付金比例：</th>
+						<td><input type="text" class="form-control" id="prepayRates" /></td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-save" onclick='signContract()'>
+					<span class="icon-save"></span> 保存
+				</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+				</button>
+			</div>
+		</div>
+	</div>
+	</

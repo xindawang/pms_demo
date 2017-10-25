@@ -1,0 +1,54 @@
+<h1 id="logo">
+    <a href="/iw/">武器装备保障平台</a>
+</h1>
+<div class="logotitle">武器装备保障平台
+    <div class="subtitle">技术人员管理后台</div>
+</div>
+<div class="topNav">
+    欢迎你 <span id="adminName">manage</span> [<a href="#" onclick="logout()"> 注销</a>]
+</div>
+
+<script>
+
+    $("#adminName").text($.cookie("adminName"));
+
+    function logout() {
+//	$.ajax({
+//		type: "post",
+//		//http://localhost:81/ils/admin/logout/2FirU7AKR6VrA-AlT8gkxg2FirU7AKR6VrA-AlT8gkxg/sys
+//		url: apphost() + "/ils/admin/logout/" + $.cookie("sid") + appsys(),
+//		async: false,
+//		dataType: "json",
+//		success: function (jsonData) {
+//			console.log(jsonData);
+//			if (!right(jsonData)) return;
+//			$.removeCookie('sid', {path: "/"});
+//			location.href = "login.html";
+//
+//		}
+//	});
+
+        $.ajax({
+            url: '/sessions/remove',
+            success: function (data) {
+                if (data != 'success') {
+                    alert('注销失败')
+                    return;
+                }
+                $.removeCookie('custId', {
+                    path: "/"
+                }) // 对其生命周期进行管理，在所有此目录下cookie皆有效
+                $.removeCookie('loginName', {
+                    path: "/"
+                });
+                $.removeCookie('corpId', {
+                    path: "/"
+                });
+                $.removeCookie('corpName', {
+                    path: "/"
+                })
+                location.href = '/iw/org/login.html'
+            }
+        })
+    }
+</script>

@@ -1,0 +1,103 @@
+@charset "utf-8";
+/* CSS Document */
+/*pro_header*/
+.propage_header{width:100%; height: 51px; background: #333; }
+.propage_headerBox{ margin:0 auto; width:1200px; height:100%; line-height: 51px; font-size: 16px; color: #fff; zoom: 1; }
+.propage_headerBox a{color:#fff; display: inline-block; height:50px; line-height: 50px; padding: 0 21px;}
+.propage_headerBox .propage_login{padding-right: 0;}
+.propage_headerBox .propage_reg{padding-left: 0;}
+.propage_header_list{position:relative; width:84px; z-index: 12; }
+.propage_header_list a{display:block; padding:0; text-align: center; }
+
+.activeHover{background:#fff; height:50px; _height:49px; width:82px; border:1px solid #dfdede; border-bottom: 0; color:#000;}
+.propage_head_lists{position:absolute; top: 38px; left:-1px; width:82px; border:1px solid #dfdede; border-top:0; background:#fff; z-index: 100;}
+.propage_head_lists a{color:#020202; width:100%; height:30px;line-height: 30px; display:inline-block;}
+.propage_head_lists a:hover{background:#d11921; color:#fff;}
+.propage_header_list .toBlack{color:#000; }
+.propage_header_list .propage_collet{background:url(../images/proClound_arrow001.jpg) no-repeat 70px 23px; text-align: left; padding-left: 14px;}
+.propage_header_list .propage_collets{background:url(../images/proClound_arrow002.jpg) no-repeat 70px 23px;}
+
+.propage_head_news{width:268px; left:-84px;}
+.propage_head_news h5{height:25px; line-height: 25px; text-align: center; border-bottom: 1px solid #c9c7c7; color:#020202;}
+.propage_head_news a{display:inline-block; color:#626262;}
+.propage_head_news a:hover{background:#fff; color:#626262;}
+.propage_head_news span{display:inline-block; width:112px;}
+.propage_head_news p{height:24px; line-height: 24px; overflow:hidden; zoom:1;}
+.propage_head_news .propage_tasks_select{width:118px; margin-left: 12px; margin-right: 18px;}
+.propage_tasks_con a{width:34px;}
+.propage_tasks_btn{text-align: right; margin-top: 10px; margin-bottom: 15px;margin-right:15px;}
+.propage_tasks_btn1{width:68px; height:20px; border:1px solid #dcdada; text-align: center; line-height: 20px; color:#262626; background:#fff; cursor:pointer; margin-right: 38px;}
+.propage_tasks_btn2{width:59px; height:22px; background:#d11921; color:#fff; text-align:right; padding-right:2px;line-height: 22px; cursor:pointer; border:0;}
+
+.propage_tasks .propage_inves{width:190px; color:#626262; margin-left: 8px;}
+.propage_tasks .propage_look{width:50px;}
+.propage_tasks_whole{margin-top: 10px; margin-bottom: 15px; }
+.propage_tasks_whole_btn{margin-left: 195px;_margin-left:180px;}
+
+.propage_logoCon_box{width:100%; height:154px; background:url(../images/proClound_bg001.jpg) repeat-x; }
+.propage_logo{width:1200px; height:48px;  margin:0 auto; padding-top: 24px; padding-bottom: 32px;box-sizing:content-box;}
+.propage_left{width:490px; height:100%; margin-left: 42px; }
+.propage_left span{font-size: 22px; color:#121010; display:inline-block; line-height: 48px; vertical-align: top;}
+.propage_right{width:550px; height:35px; margin-left: 74px; margin-top: 9px;}
+.propage_ser{width:70px;float:left;height:33px; border:1px solid #d11921; border-right: 0; position:relative; display: inline;zoom: 1; background:#fff; z-index: 20;}
+.propage_ser h3{height: 33px;line-height:33px;background: url(../images/proClound_arrow5.png) right center no-repeat;text-indent: 12px;cursor: pointer;color:#333;}
+.propage_ser ul{width: 70px; border:1px solid #d11921;margin-left: -1px;border-top: none;background: #fff; position:absolute;display:none; z-index: 100;}
+.propage_ser li{width: 70px;height: 26px;line-height: 26px;cursor: pointer;text-align: center;}
+/*.propage_ser li:hover{color:#fff; background:#d11921;}*/
+.propage_ser .addBac{color:#fff; background:#d11921;}
+
+.propage_classify{ height:33px; line-height: 33px; text-align: center;  border:0;}
+.propage_seek{width:188px; height:33px; padding-left: 8px; line-height: 33px; border:1px solid #d11921; border-left: 0;}
+.propage_res{width:79px; height:35px; background:#d11921; color:#fff; text-align: center; line-height: 35px; border:0; cursor:pointer;}
+.propage_or{width:62px; text-align: center; color:#666; height:35px; line-height: 35px; display:inline-block;}
+.propage_pub{width:134px; height:35px; background:#d11921; position:relative; z-index: 1;}
+.propage_pub_tit{display:block; width:100%; height:100%; color:#fff; text-align: center; line-height: 35px; background:url(../images/proClound_arrow3.png) no-repeat 102px 14px; }
+.propage_pub_list{position:absolute; left:0px; top:35px; width:132px; border:1px solid #dfdede; background:#fff; z-index: 3;}
+.propage_pub_list li a{width:100%; height:35px; text-align: center; line-height: 35px; display:inline-block;}
+.propage_pub_list .addBac{color:#fff; background:#d11921;}
+
+.propage_listing{width:1200px; height:50px; margin:0 auto; }
+.propage_listing li{ margin:0 37px;_margin:0 34px; height:50px; line-height: 50px; text-align: center;}
+.propage_listing li a{font-size: 18px;}
+.propage_main_box{line-height: 36px; padding-top: 6px;}
+.propage_main_box:hover{border-bottom: 3px solid #d11921;}
+.mainHover{border-bottom: 3px solid #d11921;}
+.propage_main_box .fontBold{font-weight: bold;}
+.propage_listing .propage_listing_main{width:167px; padding-left: 78px; height:100%; font-size: 18px; line-height: 50px; color:#fff;  background:#d11921 url(../images/proClound_img12.png) no-repeat 52px 16px; text-align: left; margin:0;}
+.propage_main_lists{position:relative; z-index: 10;}
+.propage_res_lists{position:absolute; left:-38px; top:50px; width:150px; background:#fff;}
+.propage_listing .propage_res_lists a{display:block; text-align: center; height:35px; line-height: 35px; font-size: 16px; color:#070404; }
+.propage_own{background:url(../images/proClound_arrow4.png) no-repeat 14px 8px;}
+.propage_main_box .propage_res_lists .propage_own:hover{background-color: #fff; color:#070404;}
+.propage_listing .propage_res_lists a:hover{color:#fff; background-color:#d11921;}
+.propage_res_lists1{width:240px; left:-60px;}
+.propage_own1{background-position: 50px 8px;}
+.propage_own2{background-position: 25px 8px;}
+.propage_own3{background-position: 2px 8px;}
+
+.stAdd_title{position:relative;color: #070404;font-size:16px;line-height:35px;cursor:pointer;display:block;}
+.stAdd_classify{position:absolute;left:148px;top:0px;zoom:1;z-index:999;width:100px;height:70px;background-color:#fff;display:none;_left:123px;_top:-5px;}
+
+
+/*pro_footer*/
+.propage_footer{width:100%; height:312px; background:#333;}
+.propage_footer_top{width:100%; height:230px; padding-top: 34px; border-bottom: 1px solid #fdfbfb; color:#fff;}
+.propage_footer_top a{color:#fefbf9;}
+.propage_footer_con{width:1200px; height:100%; margin:0 auto; overflow: hidden; zoom:1;}
+.propage_footer_con ul{width:220px; margin-left: 55px;}
+.propage_footer_con .propage_footer_us{width:280px;}
+.propage_footer_link{font-size: 16px; height:16px; line-height: 16px; margin-bottom: 16px;}
+.propage_footer_con li{height:20px; line-height: 20px;}
+.propage_footer_bot{width:1140px; padding-left: 60px; margin:0 auto; color:#999; overflow:hidden; zoom:1;}
+.propage_footer_bot li{height:66px; line-height: 66px; width:294px; text-align: center;}
+.propage_footer_bot .propage_footer_bot1{width:420px;}
+.propage_footer_num{color:#f5aa3d;}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.iothust.dao.mapper.TaskMapper">
+
+	<select id="getByScheduleId" resultMap="task">
+		select
+		st.task_name as name,st.schedule_id,
+		t.*,
+		c.id as user_id, c.name as user_name
+		from
+		schedule_task st
+		left join IOT_TASK t
+		on
+		st.task_id=t.id
+		left join iot_cust c
+		on
+		t.responsible=c.id
+		where
+		st.schedule_id=#{scheduleId}
+		order by t.sort
+	</select>
+	
+	<select id="getByUnivScheduleId" resultMap="univScheduleTask">
+	    select
+	    st.task_name as name,st.schedule_id,
+	    t.*,
+	    c.id as user_id, c.name as user_name
+	    from
+	    universal_schedule_task st
+	    left join IOT_TASK t
+	    on
+	    st.task_id=t.id
+	    left join iot_cust c
+	    on
+	    t.responsible=c.id
+	    where
+	    st.schedule_id=#{univScheduleId}
+	    order by t.sort
+	</select>
+	
+	<select id="getById" resultMap="task">
+		select t.*,
+		c.id as user_id, c.name as user_name,
+		st.task_name as name, st.schedule_id, s.name as schedule_name
+		from IOT_TASK t
+		left join iot_cust c
+		on t.responsible=c.id
+		left join schedule_task st
+		on
+		st.task_id=t.id
+		left join schedule s
+		on st.schedule_id=s.id
+		where t.id=#{id}
+	</select>
+	
+	<select id="getUniScheduleTaskById" resultMap="task">
+	    select t.*,
+	    c.id as user_id, c.name as user_name,
+	    st.task_name as name, st.schedule_id, s.name as schedule_name
+	    from IOT_TASK t
+	    left join iot_cust c
+	    on t.responsible=c.id
+	    left join universal_schedule_task st
+	    on
+	    st.task_id=t.id
+	    left join universal_schedule s
+	    on st.schedule_id=s.id
+	    where t.id=#{id}
+	</select>
+	
+	<select id="getReUnique" resultMap="task">
+		select schedule_id, task_id as id, task_name as name
+		from schedule_task
+		where schedule_id=#{te.scheduleId}
+		and task_name=#{te.name} 
+		<if test="te.id!=null">
+			and task_id!=#{te.id,jdbcType=BIGINT}
+		</if>
+	</select>
+	
+	<select id="getUnfinishedByUserId" resultMap="task">
+		select t.*,
+		st.task_name as name, st.schedule_id,
+		s.name as schedule_name, s.type 
+		from IOT_TASK t
+		left join schedule_task st
+		on st.task_id=t.id
+		left join schedule s
+		on st.schedule_id=s.id
+		where t.responsible=#{userId}
+		and t.status in ('ACCEPT','EXECUTE','RESOLVE')
+	</select>
+
+	
+	<select id="getFinishedByUserId" resultMap="task">
+		select t.*,
+		st.task_name as name, st.schedule_id,
+		s.name as schedule_name, s.type 
+		from IOT_TASK t
+		left join schedule_task st
+		on st.task_id=t.id
+		left join schedule s
+		on st.schedule_id=s.id
+		where t.responsible=#{userId}
+		and t.status in ('COMPLETE','ABORT')
+	</select>
+	
+	<insert id="addTask">
+		<selectKey keyProperty="te.id" resultType="long" order="BEFORE">
+			select task_pk_seq.nextval from
+			dual
+		</selectKey>
+		insert into
+		IOT_TASK(id,state,start_time,end_time,security_level,priority,responsible,milestone,resources,universal_task,universal_task_base,form,status,parent,sort)
+		values(#{te.id},#{te.state,jdbcType=VARCHAR},#{te.startTime,jdbcType=DATE},#{te.endTime,jdbcType=DATE},#{te.securityLevel,jdbcType=INTEGER},
+		#{te.priority,jdbcType=INTEGER},#{te.responsibleId,jdbcType=BIGINT},#{te.milestone,jdbcType=INTEGER},
+		#{te.resources,jdbcType=VARCHAR},#{te.universalTask,jdbcType=VARCHAR},#{te.universalTaskBase,jdbcType=VARCHAR},
+		#{te.form,jdbcType=VARCHAR},#{te.status},#{te.parent,jdbcType=BIGINT},#{te.id})	</insert>
+	
+	<insert id="addScheduleTask">
+		insert into
+		schedule_task(schedule_id,task_id,task_name)
+		values(#{te.scheduleId},#{te.id},#{te.name})
+	</insert>
+	
+	<insert id="addUniversalScheudleTask">
+		insert into
+		universal_schedule_task(schedule_id,task_id,task_name)
+		values(#{te.univScheduleId},#{te.id},#{te.name})
+	</insert>
+	
+	<update id="updateTask">
+		update IOT_TASK set
+		state=#{te.state,jdbcType=VARCHAR},
+		start_time=#{te.startTime,jdbcType=DATE},
+		end_time=#{te.endTime,jdbcType=DATE},
+		security_level=#{te.securityLevel,jdbcType=INTEGER},
+		priority=#{te.priority,jdbcType=INTEGER},
+		responsible=#{te.responsibleId,jdbcType=BIGINT},
+		milestone=#{te.milestone,jdbcType=INTEGER},
+		resources=#{te.resources,jdbcType=VARCHAR},
+		form=#{te.form,jdbcType=VARCHAR},
+		status=#{te.status},
+		accept_time=#{te.acceptTime,jdbcType=DATE},
+		finish_time=#{te.finishTime,jdbcType=DATE},
+		parent=#{te.parent,jdbcType=VARCHAR},
+		sort=#{te.sort},
+		update_time=sysdate
+		where id=#{te.id}
+	</update>
+	
+	<update id="updateScheduleTask">
+		update schedule_task set
+		task_name=#{te.name}
+		where task_id=#{te.id}
+	</update>
+
+	<update id="updateUniversalScheduleTask">
+		update universal_schedule_task set
+		task_name=#{te.name}
+		where task_id=#{te.id}
+	</update>
+		
+	<delete id="delTaskById">
+		delete from IOT_TASK where id=#{id}
+	</delete>
+	
+	<delete id="delScheduleTaskByTaskId">
+		delete from schedule_task where task_id=#{taskId}
+	</delete>
+	
+	<delete id="delUniScheduleTaskByTaskId">
+		delete from universal_schedule_task where task_id=#{taskId}
+	</delete>
+	
+	<delete id="delTaskDataByTaskId">
+		delete from task_data where task_id=#{taskId}
+	</delete>
+	
+	<resultMap type="TaskEntity" id="task">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="state" column="state" />
+		<result property="startTime" column="start_time" />
+		<result property="endTime" column="end_time" />
+        <result property="securityLevel" column="security_level"/>
+		<result property="priority" column="priority" />
+		<result property="resources" column="resources" />
+		<result property="universalTask" column="universal_task" />
+		<result property="universalTaskBase" column="universal_task_base" />
+		<result property="form" column="form" />
+		<result property="scheduleId" column="schedule_id"/>
+		<result property="milestone" column="milestone"/>
+		<result property="status" column="status"/>
+		<result property="responsibleId" column="user_id"/>
+		<result property="acceptTime" column="accept_time"/>
+		<result property="finishTime" column="finish_time"/>
+		<result property="parent" column="parent"/>
+		<result property="sort" column="sort"/>
+		<association property="responsible" javaType="UserEntity">
+			<id property="id" column="user_id" />
+			<result property="name" column="user_name" />
+		</association>
+		<association property="schedule" javaType="ScheduleEntity">
+			<id property="id" column="schedule_id" />
+			<result property="name" column="schedule_name" />
+			<result property="type" column="type"/>
+		</association>
+	</resultMap>
+	<resultMap type="TaskEntity" id="univScheduleTask">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="state" column="state" />
+		<result property="startTime" column="start_time" />
+		<result property="endTime" column="end_time" />
+		<result property="priority" column="priority" />
+		<result property="resources" column="resources" />
+		<result property="universalTask" column="universal_task" />
+		<result property="universalTaskBase" column="universal_task_base" />
+		<result property="form" column="form" />
+		<result property="univScheduleId" column="schedule_id"/>
+		<result property="milestone" column="milestone"/>
+		<result property="status" column="status"/>
+		<result property="acceptTime" column="accept_time"/>
+		<result property="finishTime" column="finish_time"/>
+		<result property="parent" column="parent"/>
+		<result property="sort" column="sort"/>
+	</resultMap>
+</mapper>

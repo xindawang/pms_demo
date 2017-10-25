@@ -1,0 +1,31 @@
+<table class="table" style="width: 500px;">
+	<thead>
+		<tr name="">
+			<th>序号</th>
+			<th>名称</th>
+			<th>上传人</th>
+			<th>上传时间</th>
+			<th>备注</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr name="materialPageTemplate" style="display: none;">
+			<td name="RN"></td>
+			<td><a href="javascript:void" onclick="downMaterial(this)">
+				<span name="origName"></span>
+				<input type="hidden" name="id"/>
+				<input type="hidden" name="corpName"/>
+			</a></td>
+			<td><span name="custName" function="projCustNameValueTo"></span>
+			</td>
+			<td name="upat"></td>
+			<td name="descr"></td>
+		</tr>
+	</tbody>
+</table>
+			<input type="hidden" name="materialTotal" id="materialTotal" value=0>
+			<input type="hidden" name="materialOffset" id="materialOffset" value=0>
+		    <input type="hidden" name="materialLimit" id="materialLimit" value=3>
+		    <div class="row-fluid"> 
+				<div id="materialPage-nav" style="padding: 18px;"></div> 
+			</div>

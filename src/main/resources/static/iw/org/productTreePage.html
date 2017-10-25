@@ -1,0 +1,397 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">型号产品管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">型号产品BOM维护</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="form-inline">
+				<button type="button" class="btn btn-primary " onclick="" data-target="#addProductNodeModal" data-toggle="modal">
+					<span class="glyphicon glyphicon-plus"></span> 新建节点
+				</button>
+				<button type="button" class="btn btn-primary " onclick="">
+					<span class="glyphicon glyphicon-edit"></span> 编辑节点
+				</button>
+				<button type="button" class="btn btn-danger " onclick="">
+					<span class="glyphicon glyphicon-remove"></span> 删除节点
+				</button>
+				<button type="button" class="btn btn-default " onclick="">
+					<span class="glyphicon glyphicon-list-alt"></span> 节点详情
+				</button>
+								
+				<button type="button" class="btn btn-default " onclick="tree_expanded_all('#productTree');">
+					<span class="glyphicon glyphicon-folder-open"></span> 全部展开
+				</button>
+				<button type="button" class="btn btn-default " onclick="tree_collapsed_all('#productTree',1);">
+					<span class="glyphicon glyphicon-folder-close"></span> 全部收缩
+				</button>
+					
+			</div>
+		
+			<table id="productTree" class="table  treelist">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>物项名称</th>
+						<th>武器系统代码</th>
+						<th>层次属性</th>
+						<th>物项代码</th>
+						<th>物项供应商代码</th>
+						<th>有效开始时间</th>
+						<th>有效结束时间</th>
+						<th>保密等级</th>
+					</tr>
+				</thead>
+				<tbody class="">
+					<tr class="tree-node-selected" data-id="1" data-parent="0">
+						<td>1</td>
+						<td>
+						   <div class="tree-node tree-root-one tree node-last ">
+						   	<span class="tree-hit tree-expanded"></span>
+						   	<span class="tree-icon tree-folder tree-folder-open"></span>
+						   	<span class="tree-title">导弹</span>
+						   </div>
+						</td>
+						<td>QW-2</td>
+						<td>主物项</td>
+						<td>QDD-2</td>
+						<td>155233566</td>
+						<td></td>
+						<td></td>
+						<td>内部</td>
+					</tr>
+					<tr data-id="2" data-parent="1">
+						<td>2</td>
+						<td>
+						   <div class="tree-node tree-root-one tree node-last ">
+						    <span class="tree-indent"></span>
+						   	<span class="tree-hit tree-collapsed"></span>
+						   	<span class="tree-icon tree-folder"></span>
+						   	<span class="tree-title">制导舱</span>
+						   </div>
+						</td>
+						<td>QW-2</td>
+						<td>主物项</td>
+						<td>QDD-2</td>
+						<td>155233566</td>
+						<td></td>
+						<td></td>
+						<td>内部</td>
+					</tr>
+					<tr data-id="21" data-parent="2" style="display:none;">
+						<td>21</td>
+						<td>
+						   <div class="tree-node tree-root-one tree node-last ">
+						    <span class="tree-indent"></span>
+						    <span class="tree-indent"></span>
+						    <span class="tree-indent"></span>						   	
+						   	<span class="tree-icon tree-file"></span>
+						   	<span class="tree-title">卡环</span>
+						   </div>
+						</td>
+						<td>QW-2</td>
+						<td>主物项</td>
+						<td>QDD-2</td>
+						<td>155233566</td>
+						<td></td>
+						<td></td>
+						<td>内部</td>
+					</tr>
+					<tr data-id="22" data-parent="2" style="display:none;">
+						<td>22</td>
+						<td>
+						   <div class="tree-node tree-root-one tree node-last ">
+						    <span class="tree-indent"></span>
+						    <span class="tree-indent"></span>
+						    <span class="tree-indent"></span>						   	
+						   	<span class="tree-icon tree-file"></span>
+						   	<span class="tree-title">止动螺钉</span>
+						   </div>
+						</td>
+						<td>QW-2</td>
+						<td>主物项</td>
+						<td>QDD-2</td>
+						<td>155233566</td>
+						<td></td>
+						<td></td>
+						<td>内部</td>
+					</tr>
+					<tr data-id="23" data-parent="2" style="display:none;">
+						<td>23</td>
+						<td>
+						   <div class="tree-node tree-root-one tree node-last ">
+						    <span class="tree-indent"></span>
+						    <span class="tree-indent"></span>
+						    <span class="tree-indent"></span>						   	
+						   	<span class="tree-icon tree-file"></span>
+						   	<span class="tree-title">焊片</span>
+						   </div>
+						</td>
+						<td>QW-2</td>
+						<td>主物项</td>
+						<td>QDD-2</td>
+						<td>155233566</td>
+						<td></td>
+						<td></td>
+						<td>内部</td>
+					</tr>
+					<tr data-id="24" data-parent="2" style="display:none;">
+						<td>24</td>
+						<td>
+						   <div class="tree-node tree-root-one tree node-last ">
+						    <span class="tree-indent"></span>
+						    <span class="tree-indent"></span>
+						    <span class="tree-indent"></span>						   	
+						   	<span class="tree-icon tree-file"></span>
+						   	<span class="tree-title">螺钉M2×6</span>
+						   </div>
+						</td>
+						<td>QW-2</td>
+						<td>主物项</td>
+						<td>QDD-2</td>
+						<td>155233566</td>
+						<td></td>
+						<td></td>
+						<td>内部</td>
+					</tr>
+					<tr data-id="25" data-parent="2" style="display:none;">
+						<td>25</td>
+						<td>
+						   <div class="tree-node tree-root-one tree node-last ">
+						    <span class="tree-indent"></span>
+						    <span class="tree-indent"></span>
+						    <span class="tree-indent"></span>						   	
+						   	<span class="tree-icon tree-file"></span>
+						   	<span class="tree-title">垫圈2</span>
+						   </div>
+						</td>
+						<td>QW-2</td>
+						<td>主物项</td>
+						<td>QDD-2</td>
+						<td>155233566</td>
+						<td></td>
+						<td></td>
+						<td>内部</td>
+					</tr>
+					<tr data-id="3" data-parent="1" >
+						<td>3</td>
+						<td>
+						   <div class="tree-node tree-root-one tree node-last ">
+						    <span class="tree-indent"></span>
+						   	<span class="tree-hit tree-expanded"></span>
+						   	<span class="tree-icon tree-folder tree-folder-open"></span>
+						   	<span class="tree-title">引战舱</span>
+						   </div>
+						</td>
+						<td>QW-2</td>
+						<td>主物项</td>
+						<td>QDD-2</td>
+						<td>155233566</td>
+						<td></td>
+						<td></td>
+						<td>内部</td>
+					</tr>
+					<tr data-id="31" data-parent="3" >
+						<td>31</td>
+						<td>
+						   <div class="tree-node tree-root-one tree node-last ">
+						    <span class="tree-indent"></span>
+						    <span class="tree-inden"></span>
+						    <span class="tree-indent"></span>
+						   	<span class="tree-icon tree-file"></span>
+						   	<span class="tree-title">引信</span>
+						   </div>
+						</td>
+						<td>QW-2</td>
+						<td>主物项</td>
+						<td>QDD-2</td>
+						<td>155233566</td>
+						<td></td>
+						<td></td>
+						<td>内部</td>
+					</tr>
+					<tr data-id="32" data-parent="3">
+						<td>32</td>
+						<td>
+						   <div class="tree-node tree-root-one tree node-last ">
+						    <span class="tree-indent"></span>
+						    <span class="tree-inden"></span>
+						    <span class="tree-indent"></span>
+						   	<span class="tree-icon tree-file"></span>
+						   	<span class="tree-title">战斗部</span>
+						   </div>
+						</td>
+						<td>QW-2</td>
+						<td>主物项</td>
+						<td>QDD-2</td>
+						<td>155233566</td>
+						<td></td>
+						<td></td>
+						<td>内部</td>
+					</tr>
+				
+				</tbody>
+			
+			</table>
+		
+		
+		</div>
+	</div>
+	
+		<div id="addProductNodeModal" class="modal fade in" tabindex="-1" role="dialog" style="display:none" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="">&times;</button>
+					添加产品节点					
+				</div>
+				<div class="modal-body" style="overflow-y:auto;height:500px;">
+				   <div class="panel panel-default">
+				   	 <div class="panel-heading">节点信息</div>
+				   	 <div class="panel-body">
+				   	 	<table class="table formtable" >
+				   	 		<tr>
+				   	 			<th>父级物项代号：</th>
+				   	 			<td>5453210</td>
+				   	 			<th>父级物项名称：</th>
+				   	 			<td>导弹</td>
+				   	 		</tr>
+				   	 		<tr>
+				   	 			<th>本级物项代号：</th>
+				   	 			<td><input type="text" name="" value="" class="form-control" /></td>
+				   	 			<th>本级物项名称：</th>
+				   	 			<td><input type="text" name="" value="" class="form-control" /></td>
+				   	 		</tr>
+				   	 		<tr>
+				   	 			<th>本级层次属性：</th>
+				   	 			<td><input type="text" name="" value="" class="form-control" /></td>
+				   	 			<th>保密等级：</th>
+				   	 			<td><input type="text" name="" value="" class="form-control" /></td>
+				   	 		</tr>
+				   	 		<tr>
+				   	 			<th>所在层级数量：</th>
+				   	 			<td colspan="3"><input type="text" name="" value="" class="form-control" /></td>				   	 			
+				   	 		</tr>
+				       
+				       </table>
+				   	 
+				   	 </div>
+				   	 <div class="panel-headings">标识信息</div>
+				   	 <div class="panel-body">
+				   	 	<div class="">
+							<label class="checkbox-inline-4"><input type="checkbox" value="" name="idSelected">序列化标识</label> 
+							<label class="checkbox-inline-4"><input type="checkbox" value="" name="idSelected">关键物项标识</label>
+							<label class="checkbox-inline-4"><input type="checkbox" value="" name="idSelected">多用途标识</label> 
+							<label class="checkbox-inline-4"><input type="checkbox" value="" name="idSelected">顶级标识</label>
+						</div>
+						<div class="">
+							<label class="checkbox-inline-4"><input type="checkbox" value="" name="idSelected">可安装标识</label> 
+							<label class="checkbox-inline-4"><input type="checkbox" value="" name="idSelected">可配置标识</label>
+							<label class="checkbox-inline-4"><input type="checkbox" value="" name="idSelected">拆分标识</label> 
+							<label class="checkbox-inline-4"><input type="checkbox" value="" name="idSelected">备件标识</label>
+						</div>				   	 
+				   	 </div>
+				   	 
+				   	 <div class="panel-headings">维修信息</div>
+				   	 <div class="panel-body">
+				   	 	<table class="table formtable" >
+				   	 		<tr>
+				   	 			<th>维修体制</th>
+				   	 			<td><select class="form-control">
+				   	 				<option value="">三级维修体制</option>
+				   	 			    </select>
+				   	 			</td>
+				   	 			<th>SMR码</th>
+				   	 			<td> <input type="text" name="" value="" class="form-control" /></td>
+				   	 		</tr>
+				   	 	</table>
+				   	 
+				   	 </div>
+				   	 
+				   	 <div class="panel-headings">备件信息</div>
+				   	 <div class="panel-body">
+				   	 	 <table class="table formtable" >
+				   	 		<tr>
+				   	 			<th>基层级备件数量:</th>
+				   	 			<td><input type="text" name="" value="" class="form-control" />
+				   	 			</td>
+				   	 			<th>随机备件数量:</th>
+				   	 			<td> <input type="text" name="" value="" class="form-control" /></td>
+				   	 		</tr>
+				   	 		<tr>
+				   	 			<th>中继级备件数量:</th>
+				   	 			<td><input type="text" name="" value="" class="form-control" />
+				   	 			</td>
+				   	 			<th>1年期备件数量:</th>
+				   	 			<td> <input type="text" name="" value="" class="form-control" /></td>
+				   	 		</tr>
+				   	 		<tr>
+				   	 			<th>基地级备件数量:</th>
+				   	 			<td><input type="text" name="" value="" class="form-control" />
+				   	 			</td>
+				   	 			<th></th>
+				   	 			<td></td>
+				   	 		</tr>
+				   	 	</table>
+				   	 </div>
+				   	 
+				   	  <div class="panel-headings">时效信息</div>
+				   	  <div class="panel-body">
+				   	  	 <table class="table formtable" >
+				   	 		<tr>
+				   	 			<th>有效开始时间:</th>
+				   	 			<td><input type="text" name="" value="" class="form-control" />
+				   	 			</td>
+				   	 			<th>有效结束时间:</th>
+				   	 			<td> <input type="text" name="" value="" class="form-control" /></td>
+				   	 		</tr>
+				   	 	</table>
+				   	  </div>
+				   	 
+				   </div>
+				   
+				   
+			    </div>
+		     </div>
+		  </div>
+		  </div>
+	
+	
+	<script type="text/javascript" src="/iw/js/tree.js"></script>
+</body>
+</html>

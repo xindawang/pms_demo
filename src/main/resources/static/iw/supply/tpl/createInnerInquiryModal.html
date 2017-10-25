@@ -1,0 +1,58 @@
+<div id="createInnerInquiryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header modal-primary">
+				<span class="icon-key"></span> 生成内部询价单
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+
+			<div class="modal-body">
+				<table style="width: 500px" class="table">
+					<tr>
+						<th>内部询价单号：</th>
+						<td><input type="text" name="" id="inquiryNum" value="" class="form-control" /></td>
+					</tr>
+					<tr>
+						<th>业务员:</th>
+						<td>
+							<table class="table">
+								<thead>
+									<tr>
+										<td>#</td>
+										<td>所属机构</td>
+										<td>姓名</td>
+										<td>身份证号</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr name="custPageTemplate" style="display: none">
+										<td><input type="radio"  name="custId"/></td>
+										<td name="corpName">二院</td>
+										<td name="name">张三</td>
+										<td name="idNo">12345678966666666666</td>
+									</tr>
+								</tbody>
+							</table>
+							<input type="hidden" name="total" id="total" value=0>
+							<input type="hidden" name="custsOffset" id="custsOffset" value=0>
+		  					<input type="hidden" name="custsLimit" id="custsLimit" value=3>
+		    				<div class="row-fluid"> 
+								<div id="custsPage-nav" style="padding: 18px;"></div> 
+							</div>
+						</td>
+					</tr>
+				</table>
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" onclick="makeInnerInquiry()" data-dismiss="modal">
+					<span class="icon-ok"></span> 创建
+				</button>				
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+				</button>
+			</div>
+
+		</div>
+	</div>
+</div>

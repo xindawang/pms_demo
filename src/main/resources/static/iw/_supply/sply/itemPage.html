@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/supply/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">供应管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">物项（部件）主要信息列表</li>
+			</ul>
+		</div>
+
+		<div class="body ">
+			<div class="panel panel-default scroll" >
+				<table class="table table-hover table-condensed table-bordered " style="width:3600px"  >
+					<thead>
+						<tr>
+							<th style="width:110px">NSN</th>
+							<th style="width:250px">Nomenclature</th>
+							<th style="width:100px">Acquisition Advice Code</th>
+							<th style="width:100px">Critical Item Flag</th>
+							<th style="width:100px">Direct Exchange Flag</th>
+							<th style="width:100px">Expendability Flag</th>
+							<th style="width:100px">Inventory Category Code</th>
+							<th style="width:100px">Manufacturers Part Number</th>
+							<th style="width:100px">Minimum Buy Quantity</th>
+							<th style="width:100px">Part Number</th>
+							<th style="width:100px">Physical Security Code</th>
+							<th style="width:100px">Quantity in Unit Pack</th>
+							<th style="width:100px">Repair and Return Flag</th>
+							<th style="width:100px">Shelf Life Code Indicator</th>
+							<th style="width:180px">Source, Maintenance & Recoverability (SMR) Code</th>
+							<th style="width:100px">Source of Supply Code</th>
+							<th style="width:100px">Stockage List Code</th>
+							<th style="width:100px">Number of End Items</th>
+							<th style="width:100px">Quantity End Item</th>
+							<th style="width:100px">Unit of Issue</th>
+							<th style="width:100px">Unit of Measure</th>
+							<th style="width:150px">Unit of Measure Quantitative</th>
+							<th style="width:100px">Unit of Order</th>
+							<th style="width:100px">Vendor Code</th>
+							<th style="width:100px">Stocked Flag</th>
+							<th style="width:100px">Serialized Item Flag</th>
+							<th style="width:100px">Major Item Flag</th>
+							<th style="width:100px">Major Item Code</th>
+							<th style="width:100px">Weapon System Code</th>
+							<th style="width:100px">Lot Flag</th>
+							<th style="width:100px">Software Flag</th>
+							<th style="width:100px">Document Flag</th>
+							<th style="width:100px">Bench Stock Flag</th>
+							<th style="width:100px">Long Lead Time Flag</th>
+							
+						</tr>
+						<tr>
+							<th >NSN</th>
+							<th>产品名称</th>
+							<th >采购建议码</th>
+							<th >关键物项标识</th>
+							<th>直接更换标识</th>
+							<th>消耗物项标识</th>
+							<th>存货目录代码</th>
+							<th>生产商部件号</th>
+							<th>最小采购数量</th>
+							<th>部件号</th>
+							<th>物品安全代码</th>
+							<th>单位包装数量	</th>
+							<th>修复和返厂标识</th>
+							<th>寿命代码标识</th>
+							<th>来源、维修和修复(SMR)代码</th>
+							<th>供应来源代码</th>
+							<th>仓储清单代码</th>
+							<th>顶层物项号</th>
+							<th>在顶层物项的数量</th>
+							<th>供货单位</th>
+							<th>计量单位</th>
+							<th>数量计量单位</th>
+							<th>订购单位</th>
+							<th>供应商代码</th>
+							<th>存储标识</th>
+							<th>序列化物项标识</th>
+							<th>主要物项标识	</th>
+							<th>主要物项代码</th>
+							<th>武器系统代码</th>
+							<th>标签标识</th>
+							<th>软件标识</th>
+							<th>文档标识</th>
+							<th>操作台标识</th>
+							<th>时间</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr name="itemAttrTemplate" style="display: none;">
+							<td name="CODE"></td>
+							<td name="NAME"></td>
+							<td name="ACQUISITIONCODE"></td>
+							<td name="ITEMFLAG"></td>
+							<td name="EXCHANGEFLAG"></td>
+							<td name="EXPENDABILITYFLAG"></td>
+							<td name="CATECODE"></td>
+							<td name="MANUFACTURERPARTNUMB"></td>
+							<td name="MINNUMB"></td>
+							<td name="PARTNUMB"></td>
+							<td name="SECURITYCODE"></td>
+							<td name="PACKNUMB"></td>
+							<td name="REPAIRFLAG"></td>
+							<td name="SHELFLIFEFLAG"></td>
+							<td name="RECOVERCODE"></td>
+							<td name="SUPPLYCODE"></td>
+							<td name="LISTCODE"></td>
+							<td name="ENDNUMB"></td>
+							<td name="ENDQUL"></td>
+							<td name="ISSUEUNIT"></td>
+							<td name="MEASUREUNIT"></td>
+							<td name="MEASUREQULUNIT"></td>
+							<td name="ORDERUNIT"></td>
+							<td name="WENDORUNIT"></td>
+							<td name="STOCKEDFLAG"></td>
+							<td name="SERIALIZEDFLAG"></td>
+							<td name="MAJORFLAG"></td>
+							<td name="MAJORCODE"></td>
+							<td name="SYSTEMCODE"></td>
+							<td name="LOTFLAG"></td>
+							<td name="SOFTWAREFLAG"></td>
+							<td name="DOCUMENTFLAG"></td>
+							<td name="BENCHFLAG"></td>
+							<td name="TIMEFLAG"></td>
+						</tr>
+					</tbody>
+				</table>
+				
+			</div>
+			<div class="panel-footer" id="step1">
+					<button type="button" class="btn btn-default" onclick="history.back();">
+						<span class="glyphicon glyphicon-repeat"></span><span >返回合同详情</span>
+					</button>
+				</div>
+
+
+		</div>
+	</div>
+	<div class="hint"></div>
+	<script type="text/javascript" src="/iw/js/supply/itemPage.js"></script>
+</body>
+</html>

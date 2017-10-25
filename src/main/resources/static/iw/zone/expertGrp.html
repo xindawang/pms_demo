@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+<script type="text/javascript" src="/iw/js/underscore-min.js"></script>
+<script type="text/javascript" src="/iw/js/handlebars.min.js"></script>
+<script type="text/javascript" src="/iw/js/handlebars_helper.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/zone/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">专栏专区</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual">专家组</li>
+			</ul>
+		</div>
+
+		<div class="body" style="padding-bottom:30px;">
+			<div class="alert alert-title"><span name="yearPlan.name"></span></div>
+			
+			<div class="actions">
+				<button type="button" class="btn btn-primary" id="viewplan" >
+					<span class="glyphicon glyphicon-list"></span> 查看计划
+				</button>
+				
+				<a href="" class="btn btn-primary" download="" function="fileNameValueTo" name="yearPlan.fileName">下载计划
+					<span class="glyphicon glyphicon-download"></span> 
+				</a>
+				
+			</div>
+			<table id="majorgrp" class="table table-hover  table-condensed treelist">
+				<thead>
+					<tr class="">
+						<th width="50px">序号</th>
+						<th width="300px">工作内容</th>
+						<th width="60px">完成形式</th>
+						<th width="60px">完成时间</th>
+						<th>责任单位</th>
+						<th>牵头人</th>
+						<th>备注</th>
+						<th width="360px">操作
+						<button type="button" class="btn-link-td " >
+							<span class="glyphicon glyphicon-chevron-up"></span>
+						</button>
+						</th>
+					</tr>
+				</thead>
+				<tbody id="expertgrp_content"></tbody>
+			</table>
+			
+			<div id="mediaContainer" class="media" style="background-color: rgb(255, 255, 255); width: 100%;">
+				<iframe width="100%"  src="" id="fileContainer"></iframe>
+			</div>
+			
+		</div>
+	</div>
+	
+	<div id="uploadModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				上传计划 </div>
+				<div class="modal-body">
+					<table class="table table-hover table-condensed ">
+						
+						<tbody>
+							<tr>
+								<th>计划文件：</th>
+								<td><input type="file" class="" /></td>
+							</tr>
+											
+						</tbody>
+					</table>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" onclick="">上传</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消并关闭</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+    <script type="text/javascript">var grpName = "专家组";</script>    
+    <script type="text/javascript" src="/iw/js/tree.js"></script>
+    <script type="text/javascript" src="/iw/js/zone/expertGrp.js"></script>
+    <script type="text/x-handlebars-template" id="row_template">
+		<tr  {{#if is_root }} class="tree-node-selected" {{/if}}  data-id="{{id}}" data-parent="{{parent}}" {{#compare depth '>' 2}} style="display:none;" {{/compare}} >
+			<td><div class="tree-node  tree ">
+                    {{{indent depth}}}
+					{{#if have_sub_node}}
+ 
+					{{#compare depth '>=' 2 }}
+					<span class="tree-hit tree-collapsed"></span>
+                    <span class="tree-icon tree-folder "></span>
+                    {{else}}                   
+                    <span class="tree-hit tree-expanded"></span>
+                    <span class="tree-icon tree-folder tree-folder-open"></span> 
+                    {{/compare}}
+
+                    {{else}}
+                    &nbsp;<span class="tree-icon tree-file"></span>
+                    {{/if}}					 
+					<span class="tree-title">{{id}}</span>
+				</div>
+			</td>
+            {{#compare depth '==' 1 }}
+			<td colspan="6"><strong>{{title}}</strong></td>
+            {{else}}
+				<td>{{{content}}}</td>
+				<td>{{completeFormal}}</td>
+				<td>{{{completeDate}}}</td>
+				<td>{{personLiable}}</td>
+				<td>{{company}}</td>
+				<td>{{remark}}</td>
+            {{/compare}}
+			<td>
+				{{#compare depth '>' 1 }}
+					<button type="button" class="btn btn-default " data-target="#uploadModal" onclick="" data-toggle="modal">
+								<span class="glyphicon glyphicon-upload"></span> 上传文件
+							</button>
+							<button type="button" class="btn btn-default ">
+								<span class="glyphicon glyphicon-th"></span> 查看文件
+							</button>
+							<button type="button" class="btn btn-default ">
+								<span class="glyphicon glyphicon-download"></span> 下载文件
+							</button>
+							<button type="button" class="btn btn-danger ">
+								<span class="glyphicon glyphicon-remove"></span> 删除文件
+							</button>
+                {{/compare}}
+
+            </td>
+		</tr>
+    </script>
+
+</body>
+</html>

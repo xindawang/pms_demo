@@ -1,0 +1,43 @@
+<div id="selectAdviceModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header modal-primary">
+				选择销售建议清单
+			</div>
+
+			<div class="modal-body" id="stepModal1">
+				<table style="width: 750px" class="table table-hover  table-condensed">
+					<thead>
+						<tr>
+							<th style="width:30px;">#</th>
+							<th style="width:100px;">型号名称</th>
+							<th style="width:200px;">型号配套表名称</th>
+							<th>清单名称</th>
+							<th>数量</th>
+						</tr>
+					</thead>
+					<tbody>						
+						<tr name="proposalsTemplate" style="display: none;">
+							<td><input type="radio" name="advice" />
+								<input type="hidden" name="id"/>
+							</td>
+							<td name="modelName"></td>
+							<td name="name"></td>
+							<td name="rootConfigName"></td>
+							<td><input type="text"  name="num"></td>
+						</tr>
+					</tbody>
+
+				</table>
+			</div>
+			<div class="modal-footer">				
+				<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="closeOutInquiry()" >
+					<span class="icon-ok"></span> 保存
+				</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" onclick="">
+					<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

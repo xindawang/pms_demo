@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.autocomplete.js"></script>	
+<script type="text/javascript" src="/iw/js/model.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home "></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">公共管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active">设置下级机构三员</li>
+			</ul>
+		</div>
+		<!-- Main content -->
+		<div class="body">
+		    <div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="glyphicon glyphicon-search"> </span> 设置<span name="corp.name"></span>机构三员
+				</div>				
+					<table class="table formtable">						
+						<tr>
+							<th>系统管理员：</th>
+							<td >
+								<div class="input-group " >
+								    <input type="hidden" name="corp.threeRole" id="sysCustId" function="sysCustIdValueTo"/>
+									<input type="text" class="form-control" name="corp.threeRole" value="" id="sysCustName" readonly function="sysCustNameValueTo"/> 
+									<span id="itemSelectSpan1" class="input-group-addon" data-target="#subOrgDetailModal" onclick="isChoice(this)" data-toggle="modal"> ... </span>
+								</div>
+							</td>
+							
+						</tr>
+						<tr>
+							<th>安全管理员：</th>
+							<td >
+								<div class="input-group " >
+								    <input type="hidden" name="corp.threeRole" id="secuCustId" function="secuCustIdValueTo"/>
+									<input type="text" class="form-control" name="corp.threeRole" value="" id="secuCustName" readonly function="secuCustNameValueTo"/> 
+									<span id="itemSelectSpan2" class="input-group-addon" data-target="#subOrgDetailModal" onclick="isChoice(this)" data-toggle="modal"> ... </span>
+								</div>
+
+							</td>
+						</tr>
+						<tr>
+							<th>审计管理员：</th>
+							<td >
+								<div class="input-group " >
+								    <input type="hidden" name="corp.threeRole" id="aduitCustId" function="aduitCustIdValueTo"/>
+									<input type="text" class="form-control" name="corp.threeRole" value="" id="aduitCustName" readonly function="aduitCustNameValueTo"/> 
+									<span id="itemSelectSpan3" class="input-group-addon" data-target="#subOrgDetailModal" onclick="isChoice(this)" data-toggle="modal"> ... </span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="oper">
+								<button class="btn btn-primary " onclick="makeThreeCustRoles()" >
+									<span class="glyphicon glyphicon-cog icon-cog"></span> 设置
+								</button>
+								<button class="btn btn-default " onclick="location.href='orgPage.html';" >
+									<span class="glyphicon glyphicon-eject icon-eject"></span> 返回
+								</button>
+							</td>
+						</tr>
+					</table>
+			</div>
+
+			
+		</div>
+	</div>
+	<div id="subOrgDetailModal" class="modal fade in" tabindex="-1" role="dialog" style="display:none" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					设置机构三员
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="">&times;</button>
+				</div>
+				<div class="form-inline modal-form">
+					<label class="form-label" style="width:80px;">姓名：</label> <input type="text" name="" id="nameLike" class="form-control" value="" style="width:100px;" />
+					<label class="form-label"  style="width:80px;">身份证号：</label> <input type="text" name="" id="idNoLike" class="form-control" value="" style="width:150px;"/>									
+ 					<button class="btn btn-default btn-xs" onclick="" style="margin-right:3px;">
+						<span class="glyphicon glyphicon-search"></span> 查询
+					</button>
+				</div>
+
+				<div class="modal-body">					
+					<table class="table table-condensed" name="nones">
+						<thead>
+							<tr>
+								<th style="width:50px;"></th>
+								<th>编号</th>
+								<th>身份证号</th>
+								<th>姓名</th>
+								<th>机构</th>
+							</tr>
+						</thead>
+						<tr name="custPageTemplate" style="display: none;">												      
+							<th ><input type="radio" name="1" /></th>
+							<td id="id"><span name="id"></span></td>							
+							<td><span name="idNo"></span></td>
+							<td id="name"><span name="name"></span></td>
+							<td><span name="corpName"></span></td>
+						</tr>
+					</table>
+					<input type="hidden" name="total" id="total" value=0>
+					<input type="hidden" name="offset" id="offset" value=0>
+				    <input type="hidden" name="limit" id="limit" value=3>
+				    <div class="row-fluid">
+				    <div id="page-nav" style="padding: 18px;"></div>
+			        </div>
+				</div>	
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="choice()">设置</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="">取消</button>
+				</div>
+
+			</div>
+		</div>		
+	</div>
+	<div class="hint"></div>
+	<script type="text/javascript" src="/iw/js/three/subOrgPage.js"></script>
+</body>
+</html>

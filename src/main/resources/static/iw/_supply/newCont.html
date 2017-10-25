@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/css/jqueryui/jquery-ui.js"></script>
+<script type="text/javascript" src="/iw/css/jqueryui/local/jquery.ui.datepicker-zh-CN.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/jqueryui/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/supply/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="../org/welcome.html">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="./projPage.html">供应管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">采购合同</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div style="float: right; margin-top: -8px; margin-right: 5px;" class="">
+						
+					</div>
+					<span class="glyphicon glyphicon-th"> </span> 采购合同
+
+				</div>
+				
+				<table class="table tableform  table-condensed">
+					<tr>
+						<th>合同编号</th>
+						<td><input type="text" name="" value="" id="contractNo" class="form-control" /></td>
+						<th>登记时间</th>
+						<td><input type="date" name="" id="regAt" value="" class="form-control form-date" /></td>
+					</tr>
+
+					<tr>
+						<th>合同名称</th>
+						<td><input type="text" name="" id="name" value="" class="form-control" /><span class="must">*</span></td>
+						<th>签订时间</th>
+						<td>
+							<input class="form-control form-date" id="signAt"  type="date" value="" > 
+							
+						</td>
+					</tr>
+					<tr>
+						<th>合同价格</th>
+						<td><input type="text" name="" id="totalSalePrice" value="" class="form-control" /><span class="must">*</span></td>
+						
+						<th>生效时间</th>
+						<td><input type="date" name="" value="" id="effectAt" class="form-control form-date" /></td>
+					</tr>
+					<tr>
+						<th>甲方</th>
+						<td><input type="text"  value="****"  class="form-control" readonly="readonly" id="aCorp"/></td>
+						<th>乙方</th>
+						<td>
+							<div class="input-group ">
+								<input type="hidden" name="" id="corpId"  value="" /> 
+								<input type="text" class="form-control" name="" value="" id="corpName" readonly /> 
+								<span  class="input-group-addon" data-target="#corpModal" onclick="$$('corpOffset').value=0;_corpCommit();corpPaginate();" data-toggle="modal" > ... </span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>甲方项目经理</th>
+						<td><input type="text" name="" value="****" id="aManagerName" class="form-control" readonly="readonly" /></td>
+						<th>乙方项目经理</th>
+						<td>
+							<div class="input-group ">
+									<input type="hidden" name="supplyItem.itemNameCode" id="managerId" onchange="javascript:abc()" value="" /> 
+									<input type="text" class="form-control" name="supplyItem.itemName.name" value="" id="managerName"readonly /> 
+									<span id="itemSelectSpan" class="input-group-addon" data-target="#userModal" onclick="$$('custOffset').value=0;_custCommit();custPaginate();" data-toggle="modal"> ... </span>
+								</div>
+						</td>
+					</tr>
+				</table>
+
+				<div class="panel-footer" id="step1">
+					<button type="button" class="btn btn-primary" onclick="newMakeContract()">
+						<span class="glyphicon glyphicon-ok"></span><span name="" function="">保存</span>
+					</button>
+					<button type="button" class="btn btn-default " onclick="location.href='subProjDetail.html';">
+						<span class="glyphicon glyphicon-remove"></span> 取消
+					</button>
+				</div>
+			</div>
+			
+			<div class="panel panel-default">
+				<div class="panel-heading">	
+					<div style="float: right; margin-top: -8px; margin-right: 5px;" class="">
+						<button type="button" class="btn btn-default " disabled onclick="">
+						<span class="glyphicon glyphicon-plus"></span> 关联请购单
+					    </button>
+						
+					</div>			
+					<span class="glyphicon glyphicon-th"> </span> 请购单列表
+				</div>
+				<div class="panel-body panel-condensed">
+					<table class="table table-condensed treelist table-bordered">
+						<thead>
+							<tr>
+								<th width="50px">类型</th>
+								<th width="200px">单号</th>
+								<th width="200px">状态</th>
+								<th width="90px">时间</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="" name=""  >
+								<input type="hidden" name="id" >
+								<td name="rowNo">请购单</td>
+								<td>
+									<a href="#">bj5456563263236636312</a>
+								</td>
+								<td >已完成</td>
+								<td>2017-2-1</td>
+								<td>
+									<button type="button" class="btn btn-default " disabled onclick="">
+									<span class="glyphicon glyphicon-remove"></span> 删除
+								    </button>
+								</td>
+							
+												
+								
+								
+							</tr>
+							
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="corpModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					名称 : <input type="text" placeholder="输入关键字" class="form-control search-control" value="" name="" id="nameLike"　/>
+					<button type="button" class="btn btn-xs" onclick="$$('corpOffset').value=0;_corpCommit();corpPaginate();">
+						<span class="glyphicon glyphicon-search"></span> 搜索
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<table class="table table-hover table-condensed tablelist" name="nones">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>机构代码</th>
+								<th>机构名称</th>
+								<th>邮编</th>
+								<th>联系电话</th>
+								<th>传真</th>
+								<th>地址</th>
+							</tr>
+						</thead>
+						<tbody>
+						<tr name="corpPageTemplate" style="display:none">
+							    <td style="display:none"><span name="id" id="id"></td>
+								<td><input type="radio" name="corpPageRadio" value=""/></td>
+								<td><span name="code"></span></td>
+								<td><span name="name" id="name"></span></td>
+								<td><span name="zip"></span></td>
+								<td><span name="contactorPhones"></span></td>
+								<td><span name="faxes"></span></td>
+								<td><span name="addr"></span></td>
+							</tr>
+						</tbody>
+					</table>
+					<input type="hidden" name="corpTotal" id="corpTotal" value=0>
+					<input type="hidden" name="corpOffset" id="corpOffset" value=0>
+					<input type="hidden" name="corpLimit" id="corpLimit" value=3>
+
+					<div class="row-fluid">
+						<div id="corpPage-nav" style="padding: 18px;"></div>
+					</div>
+				</div>
+
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" onclick="supplyChoice()">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消并关闭</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	
+	<div id="userModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					    姓名/证件号 : <input type="text" placeholder="输入关键字" class="form-control search-control" 
+						value="" name="" id="custName" />
+					<button type="button" class="btn btn-xs" onclick="$$('custOffset').value=0;_custCommit();custPaginate();"><span class="glyphicon glyphicon-search"></span> 搜索</button>
+
+				</div>
+
+				<div class="modal-body">
+					<table class="table table-hover table-condensed tablelist" name="nones">
+						<thead>
+							<tr>
+								<th width="50px">#</th>
+								<th>姓名</th>
+								<th>证件号</th>
+								<th>证件类型</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="custPageTemplate" style="display:none">
+							<td style="display:none"><span name="id" id="id"></td>
+								<td><input type="radio" name="custPageRadio" value="" /></td>
+								<td><span  name="name"></span></td>
+								<td><span  name="idNo"></span></td>
+								<td>身份证</td>
+							</tr>
+
+						</tbody>
+					</table>
+					<input type="hidden" name="custTotal" id="custTotal" value=0>
+					<input type="hidden" name="custOffset" id="custOffset" value=0>
+					<input type="hidden" name="custLimit" id="custLimit" value=3>
+
+					<div class="row-fluid">
+						<div id="custPage-nav" style="padding: 18px;"></div>
+					</div>
+				</div>
+
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" onclick="newSupplyChoices()">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消并关闭</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	
+	<div class="hint"></div>
+	<script type="text/javascript" src="/iw/js/_supply/util.js"></script>
+	<script type="text/javascript" src="/iw/js/_supply/newCont.js"></script>
+</body>
+</html>

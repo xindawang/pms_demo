@@ -1,0 +1,398 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/admin/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+<script type="text/javascript" src="/iw/js/resizable.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css"/>
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li class="active">流程管理</li>
+			</ul>
+		</div>
+
+		<div class="body">
+		<!-- 流程定义表  -->
+			<ul class="nav nav-tabs" id="myproj">
+				<li class="active"><a href="#myProcess">流程定义表</a>
+				<li><a href="#node">流程节点表</a></li>
+				<li><a href="#flow">节点流转表</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="myProcess">
+					<div class="form-group form-inline search-box" style="zoom: 1; overflow: hidden; display: block;">
+						<input type="text" class="form-control" id="processNameLike" placeholder="流程名称" />
+						<button type="button" class="btn btn-primary " onclick="$$('offset').value=0;_myProcessCommit();paginate();">
+							<span class="glyphicon glyphicon-search"></span> 搜索
+						</button>
+					</div>
+					<div>
+						<table class="table table-hover  table-condensed ">
+							<thead>
+								<tr>
+									<th>流程名称</th>
+									<th>业务表</th>
+									<th>业务表状态</th>
+									<th>流程实例名</th>
+									<th>流程当前任务名</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr name="processPageTemplate" style="display: none;" onclick="chooseCurrentTr(this)">
+									<input type="hidden" name="id" />
+									<td name="name"></td>
+									<td name="bizTab"></td>
+									<td name="statusColName"></td>
+									<td name="instanceIdColName"></td>
+									<td name="currTaskIdsColName"></td>
+								</tr>
+								<tr onclick="chooseCurrentTr(this)">
+									<td>1</td>
+									<td>技术规格书</td>
+									<td>张三 / 支持部 /华腾公司</td>
+									<td>2017/1/1 12：45</td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+						<input type="hidden" name="total" id="total" value=0>
+						<input type="hidden" name="offset" id="offset" value=0>
+					    <input type="hidden" name="limit" id="limit" value=5>
+					    <div class="row-fluid"> 
+							<div id="page-nav" style="padding: 18px;"></div> 
+						</div>
+					</div>
+					<div style="padding-top: 100px;">
+						<!-- 详情 -->
+						<table class="table table-hover  table-condensed tableform">
+							<thead>
+								<tr>
+									<th>详细信息</th>
+									<th></th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							<tr>
+								<th>流程名称：</th>
+								<td><input type="text"  id="proProcessName" name="" value="" class="form-control"  /></td>
+								<th>业务表：</th>
+								<td><input type="text"  id="proBizTab" name="" value="" class="form-control"  /></td>
+							</tr>
+							<tr>
+								<th>流程实例名：</th>
+								<td><input type="text" id="proInstanceIdColName" name="" value="" class="form-control"  /></td>
+								<th>业务表状态：</th>
+								<td><input type="text" id="proStatusColName" name="" value="" class="form-control"  /></td>
+							</tr>
+							<tr>
+								<th>流程当前任务名：</th>
+								<td><input type="text" id="proCurrTaskIdsColName" name="" value="" class="form-control" /></td>
+							</tr>
+							<tfoot>
+								<tr>
+									<td colspan="4" style="text-align:center; padding:5px;">
+										<button type="button" class="btn btn-primary" onclick="makeProcess()">
+											<span class="glyphicon glyphicon-ok"></span>保存</span>
+										</button>
+										<button type="button" class="btn btn-default " onclick="clearResizable()">
+											<span class="glyphicon glyphicon-remove">取消</span>
+										</button>	
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+				
+				<!-- 流程节点表 -->
+				<div class="tab-pane" id="node">
+					<div class="form-group form-inline search-box" style="zoom: 1; overflow: hidden; display: block;">
+						<input type="text" class="form-control" id="nodeNameLike" placeholder="流程名称" />
+						<button type="button" class="btn btn-primary " onclick="$$('nodeOffset').value=0;_myNodeCommit();bmpPaginate();">
+							<span class="glyphicon glyphicon-search"></span> 搜索
+						</button>
+					</div>
+					<div>
+						<table class="table table-hover  table-condensed ">
+							<thead>
+								<tr>
+									<th>流程名称</th>
+									<th>节点名称</th>
+									<th>是否是首选任务</th>
+									<th>是否是最后的任务</th>
+									<th>是否是多实例节点</th>
+									<th>节点类型</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr name="nodePageTemplate" style="display: none;" onclick="chooseCurrentTr(this)">
+									<input type="hidden" name="id"/>
+									<!-- <input type="hidden" name="processId"/> -->
+									<td name="processName"></td>
+									<td name="name"></td>
+									<td name="firsted"></td>
+									<td name="lasted"></td>
+									<td name="multiInstanced"></td>
+									<td name="typ"></td>
+								</tr>
+								<tr onclick="chooseCurrentTr(this)">
+									<td>1</td>
+									<td>技术规格书</td>
+									<td>张三 / 支持部 /华腾公司</td>
+									<td>2017/1/1 12：45</td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+						<input type="hidden" name="nodeTotal" id="nodeTotal" value=0>
+						<input type="hidden" name="nodeOffset" id="nodeOffset" value=0>
+					    <input type="hidden" name="nodeLimit" id="nodeLimit" value=5>
+					    <div class="row-fluid"> 
+							<div id="nodePage-nav" style="padding: 18px;"></div> 
+						</div>
+					</div>
+					<div style="padding-top: 100px;">
+						<!-- 详情 -->
+						<table class="table table-hover  table-condensed tableform">
+							<thead>
+								<tr>
+									<th>详细信息</th>
+									<th></th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							
+							<tr>
+								<th>节点名称：</th>
+								<td><input type="text" id="nodeName" name="" value="" class="form-control"  /></td>
+								<th>流程名称：</th>
+								<td>
+								<select id="nodeProcessName" name="" class="form-control">
+										<option value="中国">中国</option>
+										<option value="蒙古">蒙古</option>
+										<option value="朝鲜">朝鲜</option>
+										<option value="老挝">老挝</option>
+										<option value="柬埔寨">柬埔寨</option>
+										<option value="缅甸">缅甸</option>
+								</select>
+								</td>
+							</tr>
+							<tr>
+								<th>是否是首选任务：</th>
+								<td>
+									<input type="radio" name="first" value="1" checked="checked" /><span>是</span>
+									<input type="radio" name="first" value="0"/><span>否</span>
+								</td>
+								<th>是否是最后的任务：</th>
+								<td>
+									<input type="radio" name="last" value="1" checked="checked" /><span>是</span>
+									<input type="radio" name="last" value="0"/><span>否</span>
+								</td>
+							</tr>
+							<tr>
+								<th>是否是多实例节点：</th>
+								<td>
+									<input type="radio" name="more" value="1" checked="checked" /><span>是</span>
+									<input type="radio" name="more" value="0"/><span>否</span>
+								</td>
+								<th>节点类型：</th>
+								<td>
+								<select name="" id="nodeTyp" class="form-control">
+										<option value="用户任务">用户任务</option>
+										<option value="脚本任务">脚本任务</option>
+										<option value="JAVA节点">JAVA节点</option>
+										<option value="WEB服务节点">WEB服务节点</option>
+										<option value="业务规则任务">业务规则任务</option>
+										<option value="邮件任务">邮件任务</option>
+										<option value="人工任务">人工任务</option>
+										<option value="内嵌子流程">内嵌子流程</option>
+										<option value="外部子流程">外部子流程</option>
+										<option value="开始">开始</option>
+										<option value="结束">结束</option>
+										<option value="二选一分支">二选一分支</option>
+										<option value="普通分支">普通分支</option>
+										<option value="并行分支">并行分支</option>
+								</select>
+								</td>
+							</tr>
+							<tfoot>
+								<tr>
+									<td colspan="4" style="text-align:center; padding:5px;">
+										<button type="button" class="btn btn-primary" onclick="makeNode()">
+											<span class="glyphicon glyphicon-ok">保存</span>
+										</button>
+										<button type="button" class="btn btn-default " onclick="clearResizable()">
+											<span class="glyphicon glyphicon-remove">取消</span>
+										</button>	
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+				
+				<!-- 节点流转表 -->
+				<div class="tab-pane" id="flow">
+					<div class="form-group form-inline search-box" style="zoom: 1; overflow: hidden; display: block;">
+						<input type="text" class="form-control" id="flowNameLike" placeholder="流程名称" />
+						<button type="button" class="btn btn-primary " onclick="$$('flowOffset').value=0;_myFlowCommit();bmpPaginate();">
+							<span class="glyphicon glyphicon-search"></span> 搜索
+						</button>
+					</div>
+					<div>
+						<table class="table table-hover  table-condensed ">
+							<thead>
+								<tr>
+									<th>流程名称</th>
+									<th>节点名称</th>
+									<th>父级节点名称</th>
+									<th>下一个节点前的动作</th>
+									<th>前置处理</th>
+									<th>后置处理</th>
+									<th>规则</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr name="flowPageTemplate" style="display: none;" onclick="chooseCurrentTr(this)">
+									<input type="hidden" name="id"/>
+									<!-- <input type="hidden" name="nodeId"/> -->
+									<td name="name"></td>
+									<td name="nodeName"></td>
+									<td name="parentNodeName"></td>
+									<td name="action"></td>
+									<td name="beforeScript"></td>
+									<td name="afterScript"></td>
+									<td name="ruleScript"></td>
+								</tr>
+								<tr onclick="chooseCurrentTr(this)">
+									<td>1</td>
+									<td>技术规格书</td>
+									<td>张三 / 支持部 /华腾公司</td>
+									<td>2017/1/1 12：45</td>
+									<td></td>
+									<td>2017/1/1 12：45</td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+						<input type="hidden" name="flowTotal" id="flowTotal" value=0> 
+						<input type="hidden" name="flowOffset" id="flowOffset" value=0> 
+						<input type="hidden" name="flowLimit" id="flowLimit" value=5>
+						<div class="row-fluid">
+							<div id="flowPage-nav" style="padding: 18px;"></div>
+						</div>
+					</div>
+					<div style="padding-top: 100px;">
+						<!-- 详情 -->
+						<table class="table table-hover  table-condensed tableform">
+							<thead>
+								<tr>
+									<th>详细信息</th>
+									<th></th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							<tr>
+								<th>规则：</th>
+								<td><input type="text" value="" class="form-control" name="" id="ruleScript"></td>
+								<th>流程名称：</th>
+								<td>
+								<select name="" id="flowProcessName" class="form-control">
+										<option value="中国">中国</option>
+										<option value="蒙古">蒙古</option>
+										<option value="朝鲜">朝鲜</option>
+										<option value="老挝">老挝</option>
+										<option value="柬埔寨">柬埔寨</option>
+										<option value="缅甸">缅甸</option>
+								</select>
+								</td>
+							</tr>
+							<tr>
+								<th>节点名称：</th>
+								<td>
+								<select name="" id="nodeName" class="form-control">
+										<option value="中国">中国</option>
+										<option value="蒙古">蒙古</option>
+										<option value="朝鲜">朝鲜</option>
+										<option value="老挝">老挝</option>
+										<option value="柬埔寨">柬埔寨</option>
+										<option value="缅甸">缅甸</option>
+								</select>
+								</td>
+								<th>父级节点名称：</th>
+								<td>
+								<select name="" id="parentNodeName" class="form-control">
+										<option value="中国">中国</option>
+										<option value="蒙古">蒙古</option>
+										<option value="朝鲜">朝鲜</option>
+										<option value="老挝">老挝</option>
+										<option value="柬埔寨">柬埔寨</option>
+										<option value="缅甸">缅甸</option>
+								</select>
+								</td>
+							</tr>
+							<tr>
+								<th>前置处理：</th>
+								<td><input type="text" id="beforeScript" name="" value="" class="form-control"  /></td>
+								<th>后置处理：</th>
+								<td><input type="text" id="beforeScript" name="" value="" class="form-control"  /></td>
+							</tr>
+							<tr>
+								<th>下一节点前的动作：</th>
+								<td><input type="text"  id="action" name="" value="" class="form-control"  /></td>
+							</tr>
+							<tfoot>
+								<tr>
+									<td colspan="4" style="text-align:center; padding:5px;">
+										<button type="button" class="btn btn-primary" onclick="makeFlow()">
+											<span class="glyphicon glyphicon-ok">保存</span>
+										</button>
+										<button type="button" class="btn btn-default " onclick="clearResizable()">
+											<span class="glyphicon glyphicon-remove">取消</span>
+										</button>	
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+				
+				
+			</div>
+		<div class="hint"></div>
+	</div>
+	<script type="text/javascript" src="/iw/js/supply/util.js"></script>
+	<script type="text/javascript" src="/iw/js/admin/bmp.js"></script>
+</div>
+</body>
+</html>

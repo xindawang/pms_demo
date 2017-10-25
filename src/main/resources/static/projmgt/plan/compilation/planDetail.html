@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>武器装备保障平台</title>
+<meta charset="UTF-8">
+<script type="text/javascript" src="/projmgt/js/common/env.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/projmgt/js/common/simplePaginationEnv.js"></script>
+<script type="text/javascript" src="/projmgt/js/common/treeTable.js"></script>
+<script type="text/javascript" src="/projmgt/js/common/dateTimePicker.js"></script>
+<script type="text/javascript" src="/projmgt/js/common/select.js"></script>
+<script type="text/javascript" src="/projmgt/js/plan/compilation/planDetail.js"></script>
+<script type="text/javascript" src="/projmgt/plugin/jquery.form.js"></script>
+
+</head>
+<body>
+	<div id="top" class="top"></div>
+
+	<div id="left" class="left"></div>
+
+	<div class="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="/iw/org/welcome.html">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">项目管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active">计划详情</li>
+			</ul>
+		</div>
+
+		<div class="table-box">
+			<div class="content-header">
+				<button class="btn btn-primary " id="edit">
+					<span>编辑</span>
+				</button>
+				<button class="btn btn-primary " id="save" style="background: #c0c0c0c" disabled="disabled">
+					<span>保存</span>
+				</button>
+				<button class="btn btn-primary " id="editTask" style="background: #c0c0c0c" disabled="disabled">
+					<span>保存&编辑任务</span>
+				</button>
+			</div>
+			<form class="form-horizontal panel-body editForm" id="planDetailForm" method="post" role="form">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="row col-md-4" style="margin-left: 0px">
+							<div class="form-group">
+								<label class="col-md-3 control-label"><span style="color:red">*</span>代号</label>
+								<div class="col-md-9 ">
+									<input id="code" name="code" placeholder="计划代号" class="form-control edit" disabled="disabled">
+								</div>
+							</div>
+							<div class=" form-group">
+								<label class="col-md-3 control-label"><span style="color:red">*</span>名称</label>
+								<div class="col-md-9 ">
+									<input id="name" name="name" placeholder="计划的名称" class="form-control edit" disabled="disabled">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group col-md-7">
+							<label class="col-md-2 control-label">说明</label>
+							<div class="col-md-10 ">
+								<textarea id="state" name="state" class="form-control edit" style="overflow-y: scroll; resize: none" rows="3" disabled="disabled"></textarea>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-1 control-label"><span style="color:red">*</span>计划开始时间</label>
+						<div class="col-md-3">
+							<input id="startTime" name="startTime" class="form-control form_datetime edit" readonly disabled="disabled" >
+						</div>
+						<label class="col-md-1 control-label"><span style="color:red">*</span>计划结束时间</label>
+						<div class="col-md-3">
+							<input id="endTime" name="endTime" class="form-control form_datetime edit" readonly disabled="disabled">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label"><span style="color:red">*</span>密级</label>
+						<div class="col-md-3">
+							<select id="securityLevel" name="securityLevel" class="form-control edit" disabled="disabled">
+								<option value="0">--请选择--</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label"><span style="color:red">*</span>所属机构</label>
+						<div class="col-md-3">
+							<input id="organization" class="form-control" disabled="disabled">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label">所属型号</label>
+						<div class="col-md-3">
+							<select id="type" name="type" class="form-control edit" disabled="disabled">
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label">所属计划</label>
+						<div class="col-md-3">
+							<input id="parentName" class="form-control" disabled="disabled">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label">所属任务</label>
+						<div class="col-md-3">
+							<input id="superTask" class="form-control" disabled="disabled">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label"><span style="color:red">*</span>参与机构</label>
+						<div class="col-md-3">
+							<select id="partner" class="show-tick" disabled="disabled" multiple>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label">状态</label>
+						<div class="col-md-3">
+							<input id="status" name="status" class="form-control" disabled="disabled">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label"><span style="color:red">*</span>优先级</label>
+						<div class="col-md-3">
+							<input id="priority" name="priority" placeholder="0-99(数字越大优先级越高)" class="form-control edit" disabled="disabled">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 control-label"><span style="color:red">*</span>责任人</label>
+						<div class="col-md-3">
+							<input id="responsible" class="form-control" disabled="disabled">
+						</div>
+					</div>
+				</div>
+			</form>
+					
+			<form method='POST' id='uploadForm' enctype='multipart/form-data'
+				style='display: none'>
+				<input id="file" type='file' class='file' name='file' />
+			</form>
+		</div>
+
+		<div class="table-box">
+			<div class="content-header">
+				<span>计划数据</span>
+					<button id="addData" class="btn btn-primary" disabled="disabled">增加数据</button>
+			</div>
+			<div id="planDataTable" class="body">
+				<table class="table table-hover  table-condensed">
+				</table>
+			</div>
+		</div>
+
+	</div>
+	
+		<div class="modal fade bs-example-modal-lg" id="securityLevelModal"
+		tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h5 class="modal-title">该计划下文件密级</h5>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal panel-body" id="securityLevelForm"
+						method="post" role="form">
+						<div class="container-fluid">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">请选择</label>
+								<div class="col-sm-5">
+									<select id="securityLevelSelect" class="form-control" multiple
+										style="overflow-y: scroll; height: 150px; width: 300px">																				
+									</select>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+
+				<div class="modal-footer">
+					<button id="securityLevelConfirm" type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,61 @@
+<div id="userModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header modal-primary">
+				选择用户
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+
+			<div class="modal-body">
+			
+				<div class="top-actions form-inline">
+					<div class="form-group">
+						<label for="" class=""></label> <input type="text" id="nameLike" name="" id="findCorpName" class="form-control" value="" placeholder="姓名"/>
+					</div>
+					<button class="btn btn-default btn-xs" onclick="$$('offset').value=0;_commit();paginate();">
+						<span class="glyphicon glyphicon-search"></span> 查询
+					</button>
+				</div>
+			</div>
+
+			<div class="modal-body">
+					<table class="table" name="nones">
+						<thead>
+							<tr>
+								<td></td>							
+								<td>所属机构</td>
+								<td>姓名</td>
+								<td>身份证号</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="custPageTemplate" style="display: none;">
+							    <input id="custId" name="custId" type="hidden"/>
+								<th style="width:50px;"><input type="radio" name="radio" /></th>
+								<td id="corpName"><span name="corpName"></span></td>
+								<td id="name"><span name="name"></span></td>
+								<td id="idNo"><span name="idNo"></span></td>
+							</tr>
+						</tbody>
+					 </table>
+					<input type="hidden" name="total" id="total" value=0>
+					<input type="hidden" name="custOffset" id="custOffset" value=0>
+				    <input type="hidden" name="custLimit" id="custLimit" value=3>
+				    <div class="row-fluid"> 
+						<div id="custPage-nav" style="padding: 18px;"></div> 
+					</div>
+
+			</div>
+			
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="chooseCust()">
+					<span class="icon-ok"></span> 选择
+				</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+				</button>
+			</div>
+
+		</div>
+	</div>
+</div>

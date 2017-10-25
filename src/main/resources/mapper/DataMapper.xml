@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.iothust.dao.mapper.DataMapper">
+
+	<select id="getData" resultMap="data">
+		select d.*
+		from data d
+		left join ${de.relTable} u
+		on u.data_id=d.id
+		where
+		u.${de.relName}=#{de.relId}
+		order by d.sort
+	</select>
+
+	<resultMap id="data" type="DataEntity">
+		<id property="id" column="id" />
+		<result property="code" column="code" />
+		<result property="name" column="name" />
+		<result property="abbr" column="abbr" />
+		<result property="fill" column="fill" />
+		<result property="frequency" column="frequency" />
+		<result property="input_output" column="input_output" />
+		<result property="type" column="type" />
+		<result property="sort" column="sort" />
+		<result property="securityLevel" column="security_level" />
+		<result property="value" column="value" />
+	    <result property="parent" column="parent" />
+	</resultMap>
+
+	<update id="batchUpdate" parameterType="java.util.List">
+		<foreach collection="list" item="item" separator=";">
+			UPDATE DATA
+			SET  value=${item.value}
+			WHERE id=${item.id}
+		</foreach>
+	</update>
+
+
+</mapper>

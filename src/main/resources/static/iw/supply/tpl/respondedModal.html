@@ -1,0 +1,69 @@
+<div id="auditModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header modal-primary">
+				<span class="icon-key"></span> 科工局批复
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+
+			<div class="modal-body">
+				<table style="width:500px" class="table formtable">					
+					<tr>
+						<th style="width:100px">批复意见：</th>
+						<td>
+							<textarea rows="" cols="" class="form-control" style="width:100%;height:100px;"></textarea>							
+						</td>
+					</tr>
+				</table>
+				<table class="table">
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>附件</th>
+								<th>说明</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><span name="idNo">1</span></td>
+								<td><span name="name"><a href="#">aaa.doc</a></span></td>
+								<td>comment...</td>
+								<td>
+									<button type="button" class="btn btn-primary" data-target="#fileModal" onclick="" data-toggle="modal">
+										<span class="icon-upload"></span> 上传
+									</button>
+									<button type="button" class="btn btn-danger" onclick="">
+										<span class="icon-remove"></span> 删除
+									</button>
+
+								</td>
+							</tr>
+							<tr>
+								<td><span name="idNo">2</span></td>
+								<td><span name="name"></span></td>
+								<td><span name="corpName"></span></td>
+								<td>
+									<button type="button" class="btn btn-primary" data-target="#fileModal" onclick="" data-toggle="modal">
+										<span class="icon-upload"></span> 上传
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">
+					<span class="icon-ok"></span> 提交
+				</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">
+					<span class="icon-stop"></span> 拒绝
+				</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+				</button>
+			</div>
+
+		</div>
+	</div>
+</div>

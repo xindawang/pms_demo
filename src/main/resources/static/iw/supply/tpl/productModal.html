@@ -1,0 +1,49 @@
+<div id="productModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header modal-primary">
+				选择产品
+			</div>
+
+			<div class="modal-body">
+				<table class="table " style="width: 500px;">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>NSN</th>
+							<th>名称</th>
+							<th>数量</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr name="prodLibsTemplate" style="display:  none">
+							<td>
+								<input type="radio">
+								<input type="hidden" name="no">
+							</td>
+							<td name="nsn"></td>
+							<td name="name"></td>
+							<td><input type="text" name="num"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+				<input type="hidden" name="prodLibTotal" id="prodLibTotal" value=0>
+				<input type="hidden" name="prodLibOffset" id="prodLibOffset" value=0>
+				<input type="hidden" name="prodLibLimit" id="prodLibLimit" value=3>
+				<div class="row-fluid"> 
+					<div id="prodLibPage-nav" style="padding: 18px;"></div> 
+				</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" onclick="closeProdLib()" data-dismiss="modal">
+					<span class="icon-ok"></span> 选择
+				</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" onclick="">
+					<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+				</button>
+			</div>
+
+		</div>
+	</div>
+</div>

@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">供货管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" >项目合同</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="top-actions">
+				<button type="button" class="btn btn-primary " onclick="hrefOutContractNew()" >
+					<span class="icon-plus"></span> 创建供货项目出口合同
+				</button>
+			</div>	
+			<div class="panel panel-primary">
+				<div class="panel-heading" id="projName"></div>
+				<div class="panel-body" id="projDescr"></div>
+			</div>		
+			<!-- list -->
+			<div class="list-header form-inline">
+				<div class="right">
+					<select class="form-control" onclick="limitValueTo(this)">
+						<option >10个/页</option>
+						<option >20个/页</option>
+						<option >50个/页</option>
+					</select>
+				</div>
+				<div class="btn-group">					
+					<button type="button" class="btn btn-primary " id="CONTRACTNUM" value="CONTRACTNUM" name="CONTRACTNUM" onclick="orderBy(this)">
+						<span class="glyphicon glyphicon-sort" name="upAtProjNum"></span> 合同编号
+					</button>
+				</div>				
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">供货项目出口合同列表</div>
+				<table class="table table-hover  table-condensed">
+					<thead>					
+						<tr class="">	
+							<th width="40px">#</th>
+							<th width="100px">合同编号</th>
+							<th width="200px">合同名称</th>
+							<th width="200px">甲方</th>
+							<th width="100px">甲方联系人</th>
+							<th width="200px">乙方</th>
+							<th width="100px">乙方联系人</th>
+							<th width="100px">状态</th>
+							<th>简介</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr name="contractPageTemplate" style="display: none;">
+							<td>
+								<button type="button" class="btn btn-default btn-xs showdetail"  data-id="1" onclick="">
+									<span class="icon-plus" ></span> 
+								</button>
+							</td>
+							<td>
+								<a href="outContractDetail.html">
+									<input type="hidden" name="projDescr"/>
+									<input type="hidden" name="projName"/>
+									<span name="contractNum" function="changeValueTo"></span>
+								</a>
+							</td>
+							<td name="name"></td>
+							<td name="aParty"></td>
+							<td name="aManager"></td>
+							<td name="corpName"></td>	
+							<td name="managerName"></td>
+							<td name="status"></td>
+							<td name="descr"></td>
+							<td>
+								
+								<button type="button" class="btn btn-primary btn-xs" onclick="location.href='outInquiryDetail.html';"  >
+									<span class="icon-plus" ></span> 生成外部询价单
+								</button>
+							</td>					
+						</tr>
+						<!-- <tr data-id="1"  class="detail">
+							<td></td>
+							<td><a href="innerContractDetail.html">ht00001-01</a></td>
+							<td>FD采购合同</td>
+							<td></td>
+							<td></td>
+							<td>二院</td>	
+							<td>张三</td>
+							<td>立项</td>
+							<td></td>								
+							<td></td>					
+						</tr>
+						<tr data-id="1"  class="detail">
+							<td></td>
+							<td><a href="innerContractDetail.html">ht00001-02</a></td>
+							<td>FD采购合同</td>
+							<td></td>
+							<td></td>
+							<td>二院</td>	
+							<td>张三</td>
+							<td>立项</td>
+							<td></td>	
+							<td></td>					
+						</tr>
+						<tr data-id="1"  class="detail">
+							<td></td>
+							<td><a href="innerContractDetail.html">ht00001-03</a></td>
+							<td>FD采购合同</td>
+							<td></td>
+							<td></td>
+							<td>二院</td>	
+							<td>张三</td>
+							<td>立项</td>
+							<td></td>	
+							<td></td>					
+						</tr>
+						<tr >
+						    <td>
+								<button type="button" class="btn btn-default btn-xs showdetail"  data-id="2" onclick="">
+									<span class="icon-plus" ></span> 
+								</button>
+							</td>
+						    <td><a href="outContractDetail.html">ht00002</a></td>
+							<td>C出口合同</td>							
+							<td>沙特</td>
+							<td>aij</td>
+							<td></td>	
+							<td></td>
+							<td>立项</td>	
+							<td></td>	
+							<td>
+																
+							</td>						
+						</tr>
+						<tr data-id="2"  class="detail">
+							<td></td>
+							<td><a href="innerContractDetail.html">ht00002-01</a></td>
+							<td>FD采购合同</td>
+							<td></td>
+							<td></td>
+							<td>二院</td>	
+							<td>张三</td>	
+							<td>立项</td>
+							<td></td>	
+							<td></td>				
+						</tr>
+						<tr data-id="2"  class="detail">
+							<td></td>
+							<td><a href="innerContractDetail.html">ht00001-02</a></td>
+							<td>FD采购合同</td>
+							<td></td>
+							<td></td>
+							<td>二院</td>	
+							<td>张三</td>	
+							<td>立项</td>
+							<td></td>	
+							<td></td>					
+						</tr> -->
+					</tbody>
+				</table>
+			</div>
+			
+			<input type="hidden" name="total" id="total" value=0> 
+			<input type="hidden" name="offset" id="offset" value=0> 
+			<input type="hidden" name="limit" id="limit" value=10>
+			<div class="row-fluid">
+				<div id="page-nav" style="padding: 18px;"></div>
+			</div>
+
+		</div>
+	</div>
+	
+    <div class="includeHtml" data-url="../tpl/outContractModal.html"></div>
+    <div class="includeHtml" data-url="../tpl/innerContractModal.html"></div>
+    <div class="includeHtml" data-url="../tpl/userModal.html"></div>
+    <div class="includeHtml" data-url="../tpl/fileModal.html"></div>
+    
+	<script type="text/javascript" src="/iw/js/supply/util.js"></script>
+	<script type="text/javascript" src="/iw/js/supply/sales/projContractPage.js"></script>
+	
+</body>
+</html>

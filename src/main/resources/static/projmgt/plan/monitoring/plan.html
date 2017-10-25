@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>武器装备保障平台</title>
+<meta charset="UTF-8">
+<script type="text/javascript" src="/projmgt/js/common/env.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/projmgt/js/common/simplePaginationEnv.js"></script>
+<script type="text/javascript" src="/projmgt/js/common/dateTimePicker.js"></script>
+<script type="text/javascript" src="/projmgt/js/common/treeTable.js"></script>
+<script type="text/javascript" src="/projmgt/js/plan/monitoring/plan.js"></script>
+
+</head>
+<body>
+	<div id="top" class="top"></div>
+
+	<div id="left" class="left"></div>
+
+	<div class="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="/iw/org/welcome.html">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">项目管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active">计划监控</li>
+			</ul>
+		</div>
+
+		<div class="content-header">
+			<ul class="breadcrumb">          
+				<li>计划概览</li>
+			</ul>
+		</div>
+
+		<div class="panel-body" role="form">
+            <table class="formtable">
+                 <tbody>
+                 	<tr><th>代号</th><td><input id="code" name="" placeholder="计划代号" class="form-control" disabled="disabled"></td></tr>     
+                   	<tr><th>名称</th><td><input id="name" name="" placeholder="计划的名称" class="form-control" disabled="disabled"></td></tr> 
+                    <tr>
+                   	<th>说明</th><td rowspan="2"><textarea id="statement"class="form-control" disabled="disabled" style="overflow-y:scroll;width:400px;height:200px;resize: none"></textarea></td>
+                   </tr>
+                                  
+                 </tbody>
+            </table>
+             
+            <div class="table-box">
+				<div class="content-header">
+					<ul class="breadcrumb">          
+						<li>计划完成情况</li>
+					</ul>
+				</div>
+			
+				<div id="planTable" class="body">
+					<table class="table table-hover  table-condensed">
+					</table>
+				</div>			
+		 	</div>	
+				
+        </div>
+		
+	</div>
+</body>
+</html>

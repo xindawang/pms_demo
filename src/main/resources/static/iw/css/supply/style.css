@@ -1,0 +1,105 @@
+.search-control {
+	width:100px;
+}
+
+#firstPartyModal .modal-dialog {
+    width: 800px !important;
+}
+#firstPartyModal .modal-content {
+	width:780px;
+}
+
+.modal-content .modal-body {
+	padding-left:0;
+	padding-right:0;
+}
+.modal-body .tableform th {
+	background-color: #c4e3f3;
+	padding-right:5px;
+}
+.panel-body .tableform th {
+	padding-right:5px;
+}  
+
+.modal .tablelist .form-control {
+	width:150px;
+}
+
+#subProjMatingModal .modal-dialog {
+    width: 800px !important;
+}
+#subProjMatingModal .modal-content {
+	width:780px;
+}
+.form-radiolist{
+	padding-left:100px;
+}
+.must {
+	margin-left:5px;
+}
+.text-right {
+	text-align:right;
+	padding-right:5px;
+}
+.table .text-center {
+	text-align:center;
+}
+.table tfoot {
+	background-color:#99ccff;
+}
+
+.table tfoot td {
+	text-align:right;
+}
+
+td.numberHover span{
+	display:inline;
+}
+td.numberHover input.form-control{
+	display:none;
+}
+td.numberHover:hover span{
+	display:none;
+}
+td.numberHover:hover input.form-control{
+	display:block;
+	width:80px;
+}
+
+td.moneyHover span{
+	display:inline;
+}
+td.moneyHover input.form-control{
+	display:none;
+}
+td.moneyHover:hover span{
+	display:none;
+}
+td.moneyHover:hover input.form-control{
+	display:block;
+	width:80px;
+}
+
+.panel.scroll{
+	overflow: scroll;
+	width:auto;
+}
+
+.panel.scroll .table {
+	width:none;
+	max-width:none;
+}
+
+
+.search-box .radio-inline input {
+	width:15px !important;
+}
+
+.table td.text-right{
+	text-align:right;
+}
+
+.table tr.active td {
+	background-color:#ff8000;
+}
+

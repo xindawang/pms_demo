@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="/iw/org/welcome.html">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="/iw/model/modelPage.html">型号管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">批量导入产品信息</li>
+			</ul>
+		</div>
+		
+		<ul id="search-tabs" class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active"><a onclick="" data-toggle="tab" value="nsnLike">批量导入产品信息</a></li>
+		</ul>
+		
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="nsn">
+				<div class="form-group form-inline search-box" style="zoom: 1; overflow: hidden; display: block;">
+					<select class="form-control">
+						<option></option>
+						<option></option>
+						<option></option>
+					</select>
+					<button type="button" class="btn btn-default " onclick="">
+						<span class="glyphicon"></span> 浏览文件
+					</button>
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-inline">
+			<button type="button" class="btn btn-default " onclick="">
+				<span class="glyphicon"></span> 导入产品信息预览
+			</button>
+			<button type="button" class="btn btn-default " onclick="">
+				<span class="glyphicon"></span> 导入
+			</button>
+			<button type="button" class="btn btn-default " onclick="">
+				<span class="glyphicon"></span> 返回
+			</button>
+		</div>
+		
+		<table class="table table-hover  table-condensed">
+			<thead>
+				<tr class="">
+					<th>产品名称</th>
+					<th>状态</th>
+					<th>代号类型</th>
+					<th>产品代号</th>
+					<th>版本代号</th>
+					<th>设计单位</th>
+					<th>生产单位</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>螺钉1</td>
+					<td>有效</td>
+					<td>PN</td>
+					<td>A002</td>
+					<td>1</td>
+					<td>QQ</td>
+					<td>200厂</td>
+				</tr>
+				<tr>
+					<td>螺钉2</td>
+					<td>有效</td>
+					<td>PN</td>
+					<td>A003</td>
+					<td>2</td>
+					<td>QQL</td>
+					<td>230厂</td>
+				</tr>
+				<tr>
+					<td>螺母2</td>
+					<td>无效</td>
+					<td>NSN</td>
+					<td>1234-86-1234567</td>
+					<td>3</td>
+					<td>SS</td>
+					<td>211厂</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

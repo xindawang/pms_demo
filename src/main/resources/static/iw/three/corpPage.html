@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js" ></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js" ></script>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css"/>
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css"  />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home "></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">公共管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active">企业列表</li>
+			</ul>
+		</div>
+		<!-- Main content -->
+		<div class="body">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="glyphicon glyphicon-search"> </span> 企业查询
+				</div>
+				
+				    <table class="table formtable">
+						<tr>
+							<th>名称：</th>
+							<td><input type="text" id="nameLike" class="form-control" /></td>
+							<th>机构代码：</th>
+							<td><input type="text" id="code" class="form-control" />	</td>
+						</tr>
+						<tr>
+							<th>状态：</th>
+							<td>
+							<div class="form-group">
+										<label class="checkbox-inline"><input type="checkbox" value="正常" name="status">正常</label> 
+										<label class="checkbox-inline"><input type="checkbox" value="初始" name="status">初始</label>
+										<label class="checkbox-inline"><input type="checkbox" value="已禁用" name="status">已禁用</label> 
+							</div>
+							</td>
+								<th>机构类型：</th>
+								<td>
+							    <div class="form-group">
+									<label class="checkbox-inline"><input type="checkbox" value="普通机构" name="orgType">普通机构</label> 
+									<label class="checkbox-inline"><input type="checkbox" value="认证机构" name="orgType">认证机构</label>
+									<label class="checkbox-inline"><input type="checkbox" value="企业" name="orgType">企业</label> 
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>级别：</th>
+							<td >
+								<div class="form-group">
+									<label class="checkbox-inline"><input type="checkbox" value="1" name="lvl">级别1</label> 
+									<label class="checkbox-inline"><input type="checkbox" value="2" name="lvl">级别2</label> 
+									<label class="checkbox-inline"><input type="checkbox" value="3" name="lvl">级别3</label>
+								</div>
+							</td>
+						</tr>
+						<tr>							
+							<td colspan="4" class="oper">
+								<button class="btn btn-primary " roles="three.supplyPage"  onclick="$$('offset').value=0;_commit();paginate();">
+									<span class="glyphicon glyphicon-search"></span> 查询
+								</button>
+								<button class="btn btn-default " onclick="window.location.reload(true)"><span class="glyphicon glyphicon-refresh"></span> 重置</button>
+							</td>
+						</tr>
+						
+					</table>
+				
+			</div>
+			<div class="operator">
+				<button class="btn btn-primary " roles="three.makeCorp" onclick='location.href="orgDetail.html?orgType=企业";'>
+						<span class="glyphicon glyphicon-plus"></span> 新建企业
+				 </button>
+			</div>
+			<table class="table table-hover table-striped table-condensed">
+					<thead>
+						<tr >
+							<th style="display: none;"></th>
+							<th>代码</th>
+							<th>名称</th>
+							<th>类型</th>
+							<th>地址</th>
+							<th>联系人</th>
+							<th>有效期</th>
+							<th>操作</th>
+						</tr>
+					</thead>	
+					<tbody id="t">
+						<tr  name="supplyPageTemplate" style="display: none;">
+							<td style="display: none;" name="id"></td>
+							<td name="code"></td>
+							<td name="name"></td>
+							<td name="orgType"></td>
+							<td name="province"></td>
+							<td name="contactor"></td>
+							<td name="upat"></td>
+							<td><button  class="btn btn-primary btn-xs" roles="three.makeCorp"  onclick="makeNormalOrg(this)" ><span class="glyphicon glyphicon-edit"></span> 修改企业</button></td>
+						</tr>						
+					</tbody>
+				</table>
+				<input type="hidden" name="total" id="total" value=0>
+				<input type="hidden" name="offset" id="offset" value=0>
+				<input type="hidden" name="limit" id="limit" value=8>
+				<div class="row-fluid"> 
+					<div id="page-nav" style="padding: 18px;"></div> 
+				</div>
+			
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="/iw/js/three/supplyPage.js"></script>
+<script type="text/javascript" src="/iw/js/rolePerms.js"></script>
+</html>
+

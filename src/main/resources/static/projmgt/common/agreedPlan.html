@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+    <title>武器装备保障平台</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/projmgt/js/common/env.js"></script>
+    <script type="text/javascript" src="/iw/js/org/core.js"></script>
+    <script type="text/javascript" src="/projmgt/js/common/treeTable.js"></script>   
+<script>
+var category
+var sourceId
+var paramList = window.location.search.substring(1).split('&');
+for (i in paramList) {
+	var param = paramList[i]
+	param = param.split('=')
+	if (param[0] == 'category'){
+		category = param[1]
+	}
+	if (param[0] == 'sourceId'){
+		sourceId = param[1]
+	}			
+}
+$(function(){
+    var plansTable = $('#plansTable').treeTable({
+        url: '/ih/schedules/search?category='+category+'&sourceId='+sourceId,
+        type: "GET",// 请求方式
+        columns: [
+            {
+                title: '序号',
+                increment: 1,
+                width: '50px'
+            },
+            {
+                title: '计划代号',
+                data: 'code'
+            },
+            {
+                title: '计划名称',
+                data: 'name'
+            },
+            {
+                title: '所属合同号',
+                data: 'sourceId',
+            },            
+            {
+                title: '责任人',
+                data: 'responsible.name',
+            },
+            {
+                title: '状态',
+                data: 'status'
+            },
+            {
+                title: '分解计划',
+                data: 'resolved',
+                width: '50px'
+            },
+            {
+                title: '说明',
+                data: 'state'
+            },
+            {
+                title: '操作',
+                width: '40%',
+                element: "<a  class='btn btn-default monitoring' target='_parent'>监控</a>"
+                
+            }],
+        afterDraw: function () {
+        	var that=this
+            $('#plansTable a.monitoring').each(function (index, element) {
+                var id = that.list[index].id
+                var href = '/projmgt/plan/monitoring/plan.html?id=' + id
+                $(this).attr('href', href)
+            })
+        }
+    })
+})
+</script>
+</head>
+<body>
+
+		<div id="plansTable" class="body">
+		    <table class="table table-hover  table-condensed">
+		    </table>
+		</div>	
+
+</body>
+</html>
+

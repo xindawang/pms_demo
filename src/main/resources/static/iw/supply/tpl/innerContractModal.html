@@ -1,0 +1,134 @@
+<div id="innerContractModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header modal-primary">
+				添加内部合同
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+
+			<div class="modal-body" style="width:550px;">
+			
+				<table class="table">
+					<tr>
+						<th>出口合同编号：<span class="must">*</span></th>
+						<td><input type="text" class="form-control xs"  value="123456" readonly /></td>
+						<th>出口合同名称：<span class="must">*</span></th>
+						<td><input type="text" class="form-control xs"  value="fd" readonly /></td>
+					</tr>
+					<tr>
+						<th>合同编号：<span class="must">*</span></th>
+						<td><input type="text" class="form-control xs" name="proposal.modelName" value="" id="modelName" /></td>
+						<th>合同名称：<span class="must">*</span></th>
+						<td><input type="text" class="form-control xs" name="proposal.modelName" value="" id="modelName" /></td>
+					</tr>					
+					<tr>
+						
+					</tr>					
+					<tr>
+					    <th>供货方：</th>
+						<td><input type="text" class="form-control xs" name="proposal.modelName" value="" id="modelName" /></td>
+					    <th>供货方负责人：<span class="must">*</span></th>
+						<td>
+							<div class="input-group ">
+								<input type="hidden" name="" id="aCorpId" value="" /> 
+								<input type="text" class="form-control xs" readonly /> 
+								<span class="input-group-addon" data-target="#userModal" onclick="" data-toggle="modal">
+									... </span>
+							</div>
+						</td>
+						
+						
+					</tr>					
+					<tr>
+						<th>电话：</th>
+						<td><input type="text" class="form-control xs" name="proposal.modelName" value="" id="modelName" /></td>
+						<th>传真：</th>
+						<td><input type="text" class="form-control xs" name="proposal.modelName" value="" id="modelName" /></td>
+					</tr>					
+					<tr>
+						<th>邮件地址：</th>
+						<td><input type="text" class="form-control xs" name="proposal.modelName" value="" id="modelName" /></td>	
+						<th>合同类型：</th>
+						<td ><select id="" class="xs">
+								<option >产品</option>
+								<option>服务</option>
+								<option>产品 + 服务</option>
+								<option>技术转让</option>
+								<option>综合</option>
+						    </select>
+						</td>					
+					</tr>
+					<tr>
+						<th>签订时间：</th>
+						<td><input type="text" class="form-control xs" name="proposal.modelName" value="" id="modelName" /></td>
+						<th>签订人：</th>
+						<td>
+							<div class="input-group ">
+								<input type="hidden" name="" id="aCorpId" value="" /> 
+								<input type="text" class="form-control xs" name="" value="" id="aCorpName" readonly />
+								 <span class="input-group-addon" data-target="#userModal" onclick="" data-toggle="modal">
+									... </span>
+							</div>
+						</td>
+					</tr>	
+					<tr>
+						<th>签订地址：</th>
+						<td colspan="3"><textarea class="form-control " id="features" name="prodLibDetail.features" style="width: 100%; height: 25px;"></textarea></td>
+					</tr>				
+					<tr>
+						<th>说明：</th>
+						<td colspan="3"><textarea class="form-control " id="features" name="prodLibDetail.features" style="width: 100%; height: 100px;"></textarea></td>
+					</tr>
+				</table>
+				<div class="panel panel-default">
+					<div class="panel-heading">合同附件</div>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>附件</th>
+								<th>说明</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><span name="idNo">1</span></td>
+								<td><span name="name"><a href="#">aaa.doc</a></span></td>
+								<td>comment...</td>
+								<td>
+									<button type="button" class="btn btn-primary"  data-target="#fileModal" onclick="" data-toggle="modal">
+										<span class="icon-upload"></span> 上传
+									</button>
+									<button type="button" class="btn btn-danger" onclick="">
+										<span class="icon-remove"></span> 删除
+									</button>
+									
+								</td>
+							</tr>
+							<tr>
+								<td><span name="idNo">2</span></td>
+								<td><span name="name"></span></td>
+								<td><span name="corpName"></span></td>
+								<td>
+									<button type="button" class="btn btn-primary"  data-target="#fileModal" onclick="" data-toggle="modal">
+										<span class="icon-upload"></span> 上传
+									</button>								
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">
+					<span class="icon-save"></span> 保存
+				</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+				</button>
+			</div>
+
+		</div>
+	</div>
+</div>

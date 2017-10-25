@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/supply/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="../org/welcome.html">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="./projPage.html">供应管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">报价单</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="panel panel-default">
+				<table class="table table-hover table-condensed table-bordered">
+					<thead>
+						<tr>
+							<th width="110px">NSN</th>
+							<th width="250px">Nomenclature</th>
+							<th width="100px">Acquisition Advice Code</th>
+							<th width="100px">Manufacturers Part Number</th>
+							<th width="100px">Minimum Buy Quantity</th>
+							<th width="100px">Part Number</th>
+							<th width="100px">Quantity in Unit Pack</th>
+							<th width="60px">Unit of Issue</th>
+							<th width="60px">Unit of Order</th>
+							<th>Vendor Code</th>
+							<th>Unit Price</th>
+							<th>Price Currency Code</th>
+						</tr>
+						<tr>
+							<th>NSN</th>
+							<th>产品名称</th>
+							<th>采购建议码</th>
+							<th>生产商部件号</th>
+							<th>最小采购数量</th>
+							<th>部件号</th>
+							<th>单位包装数量</th>
+							<th>供货单位</th>
+							<th>订购单位</th>
+							<th>供应商代码</th>
+							<th>单位价格</th>
+							<th>价格货币代码</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr name="itemAttrTemplate" style="display: none;">
+							<td name="code"></td>
+							<td name="name"></td>
+							<td name="acquisitionCode"></td>
+							<td name="manufacturerPartNumb"></td>
+							<td name="minNumB" class="text-right"></td>
+							<td name="partNumB"></td>
+							<td name="packNumB"></td>
+							<td name="issueUnit"></td>
+							<td name="orderUnit"></td>
+							<td name="supplyCode"></td>
+							<td name="unitPrice" class="text-right"></td>
+							<td name="currencyCode"></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="4" class="text-right">合计：</td>
+							
+							<td colspan="7" class="text-right ">$1,397,382</td>
+							<td></td>
+						</tr>
+					</tfoot>
+				</table>
+				
+			</div>
+			
+			<div class="panel-footer" id="step1">
+				<button type="button" class="btn btn-default" onclick="history.back();">
+				<span class="glyphicon glyphicon-repeat"></span><span >返回合同详情</span>
+				</button>
+			</div>
+
+
+		</div>
+	</div>
+	<div class="hint"></div>
+	<script type="text/javascript" src="/iw/js/_supply/billPage.js"></script>
+</body>
+</html>

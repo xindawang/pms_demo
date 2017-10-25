@@ -1,0 +1,113 @@
+<table class="table">
+	<tr>
+		<th>出口合同编号：<span class="must">*</span></th>
+		<td><input type="text" class="form-control xs" value="" readonly /></td>
+		<th>出口合同名称：<span class="must">*</span></th>
+		<td><input type="text" class="form-control xs" value="" readonly /></td>
+	</tr>
+	<tr>
+		<th>合同编号：<span class="must">*</span></th>
+		<td><input type="text" class="form-control xs" name="contract.contractNum" value="" id="contractNum" /></td>
+		<th>合同名称：<span class="must">*</span></th>
+		<td><input type="text" class="form-control xs" name="contract.name" value="" id="name" /></td>
+	</tr>
+	<tr>
+
+	</tr>
+	<tr>
+		<!-- <th>供货方：</th>
+		<td>
+			<div class="input-group ">
+				<input type="hidden" name="" id="aCorpId" value="" /> 
+				<input type="text" class="form-control xs" readonly /> 
+				<span class="input-group-addon" data-target="#orgModal" onclick="" data-toggle="modal"> ... </span>
+			</div>
+		</td> -->
+		<th>合同类型：</th>
+		<td><select name="contract.typ" id="typ" class="xs">
+				<option value="产品">产品</option>
+				<option value="服务">服务</option>
+				<option value="产品 + 服务">产品 + 服务</option>
+				<option value="技术转让">技术转让</option>
+				<option value="综合">综合</option>
+		</select></td>
+		<th>供货方经理：<span class="must">*</span></th>
+		<td>
+			<div class="input-group ">
+				<input type="hidden" name="contract.managerId" id="managerId" value="" /> 
+				<input type="text" class="form-control xs" name="contract.managerName" readonly id="managerName"/> <span class="input-group-addon" data-target="#userModal" onclick="$$('custOffset').value=0;_custPageCommit();custPaginate();" data-toggle="modal"> ... </span>
+			</div>
+		</td>
+
+	</tr>
+	<!-- <tr>
+		<th>电话：</th>
+		<td><input type="text" class="form-control xs" name="proposal.modelName" value="" id="modelName" /></td>
+		<th>传真：</th>
+		<td><input type="text" class="form-control xs" name="proposal.modelName" value="" id="modelName" /></td>
+	</tr> -->
+	<tr>
+	
+		<!-- <th>邮件地址：</th>
+		<td><input type="text" class="form-control xs" name="proposal.modelName" value="" id="modelName" /></td> -->
+		<th>签订人：</th>
+		<td>
+			<input type="text" class="form-control xs" name="" value="" id="aCorpName" readonly />
+		</td>
+		<th>生效时间</th>
+		<td>
+			<input type="text" class="form-control xs" name="proposal.modelName" value="" id="modelName" readonly />
+		</td>
+	</tr>
+	<tr>
+		<th>签订时间：</th>
+		<td><input type="text" class="form-control xs" name="proposal.modelName" value="" id="modelName" readonly/></td>
+	</tr>
+	<tr>
+		<th>签订地址：</th>
+		<td colspan="3"><textarea class="form-control " id="features" name="prodLibDetail.features" style="width: 100%; height: 25px;" readonly></textarea></td>
+	</tr>
+	<tr>
+		<th>说明：</th>
+		<td colspan="3"><textarea class="form-control " id="descr" name="contract.descr" style="width: 100%; height: 100px;"></textarea></td>
+	</tr>
+</table>
+<div class="panel panel-default">
+	<div class="panel-heading">合同附件</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th >附件</th>
+				<th>说明</th>
+				<th  width="200px">操作</th>
+			</tr>
+		</thead>
+		<tbody id="appendMaterialTemplate">
+			<tr name="materialTemplate" style="display: none;">
+				<td><a href="javascript:void" onclick="downMaterial(this)">
+					<span name="origName"></span>
+					<input type="hidden" name="id"/>
+					<input type="hidden" name="name"/>
+				</a></td>
+				<td><span name="descr"></span></td>
+				<td>
+				<button type="button" class="btn btn-danger " onclick="delMaterial(this)">
+					<span class="icon-remove"></span> 删除
+					<input type="hidden" name="id"/>		
+				</button>
+				</td>											
+			</tr>										
+		</tbody>
+		<tbody>
+			<tr>
+				<td></td>
+				<td></td>
+				<td>
+				<button type="button" class="btn btn-primary " onclick=""  data-target="#fileModal" data-toggle="modal">
+					<span class="icon-upload"></span> 上传
+				</button>											
+				</td>											
+			</tr>
+	   </tbody>
+	</table>
+</div>

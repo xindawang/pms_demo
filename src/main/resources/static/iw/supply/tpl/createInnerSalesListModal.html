@@ -1,0 +1,35 @@
+<div id="createInnerSalesListModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				选择内部报价单
+			</div>
+			<div class="modal-body">				
+				<table class="table" style="width:500px;">
+					<thead>
+						<tr>
+							<td><input type="checkbox"  /> 全选</td>
+							<td>内部报价单</td>
+							<td>创建日期</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr name="allInnerQuoteTemplate" style="display:none;">
+							<input name="id" type="hidden"/>
+							<th style="width: 50px;"><input type="checkbox"  /></th>
+							<td name="quoteNum"></td>
+							<td name="newat"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default"  onclick="location.href='outQuoteNew.html';">确认</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			</div>
+
+		</div>
+	</div>
+</div>

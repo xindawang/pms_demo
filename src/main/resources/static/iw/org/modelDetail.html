@@ -1,0 +1,979 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/js/handlebars.min.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css"/>
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home icon-home"></span><a href="#">首页</a></li>
+				<li><a href="#">物项认证与编码</a></li>
+				<li class="active" name="dual" function="itemOrModelTitle">创建或修改型号</li>
+			</ul>
+		</div>
+		<div class="body">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="glyphicon glyphicon-th"> </span> 型号基本信息
+				</div>
+				<div class="panel-body" role="form">
+					<table class="table tableform  table-condensed">
+							<tr>
+							<th><span class="must">*</span>物项名称：</th>
+							<td>
+								<div class="input-group " >
+								    <input type="hidden" name="supplyItem.itemNameCode" id="itemNameCode"  onchange="javascript:abc()" value=""/>
+									<input type="text" class="form-control" name="supplyItem.itemName.name" value=""   id="itemName" readonly /> <span id="itemSelectSpan" class="input-group-addon" data-target="#itemnamesModal" onclick="$$('itemNameOffset').value=0;_itemNameCommit();itemNamePaginate();" data-toggle="modal"> ... </span>
+								</div>
+							</td>
+							<th><span class="must">*</span>供应商名称：</th>
+							<td>
+								<div class="input-group">
+								    <input type="hidden" name="supplyItem.supplyId" id="supplyId"/>
+									<input type="text" class="form-control" name="supplyItem.supplyName" value="" id="supplyNames" readonly /> <span class="input-group-addon" data-target="#supplierModal" data-toggle="modal"  onclick="$$('supplyOffset').value=0;_supplyCommit();supplyPaginate();"> ... </span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th><span class="must">*</span>大类：</th>
+							<td >
+							<div id="grpCateCodeDiv" class="autoComplete">
+								<input type="text" name=""  class="form-control complete" value="" placeholder="请选择大类"   id="grpCateCode"/>
+								<input type="hidden"  name="supplyItem.cateGrpCode" class="hidden" value="" />
+								<ul id="grpCodeUl">
+									<li  name="grpCateAllTemplate" style="display:none" onclick="cateAllByGrpCode()" >
+										<a href="javascript:;" data-val="" ><span name="grpCode"></span>_ &nbsp;<span name="grpName"></span></a>
+									</li>
+								</ul>
+							</div>
+							</td>
+							<th><span class="must">*</span>小类：</th>
+							<td>
+							<div id="cateCodeDiv" class="autoComplete">
+								<input type="text" name="" class="form-control complete" value="" placeholder="请选择小类"  name="code" id="cateCode" />
+								<input type="hidden" id="grpCateCode" name="supplyItem.cateCode" class="hidden" value="" />
+								<ul id="cateCodeUl">		
+									<li  name="cateAllByGrpIdTemplate" style="display:none;width:100%px;" >
+										<a href="javascript:;" data-val=""  ><span name="code" ></span>_ &nbsp;<span name="name" ></span></a>
+									</li> 
+								</ul>
+							</div>
+						</tr>
+						<tr>
+							<th><span class="must">*</span>零件号：</th>
+							<td><input type="text" name="supplyItem.partNo" value="" class="form-control " id="partNo" /></td>
+							<th>申请机构代码：</th>
+							<td><input type="text" name="" value="" class="form-control " disabled /></td>
+						</tr>
+						<tr>
+							<th><span class="must">*</span>密级：</th>
+							<td>
+							<div class="form-group" id="scretLvl">
+								<label class="checkbox-inline"><input type="radio" name="idSelected" value="核心" function="scretLvlRadio" />核心</label> 
+								<label class="checkbox-inline"><input type="radio" name="idSelected" value="内部" function="scretLvlRadio"/>内部</label>
+								<label class="checkbox-inline"><input type="radio" name="idSelected" value="秘密" function="scretLvlRadio"/>秘密</label> 
+								<label class="checkbox-inline"><input type="radio" name="idSelected" value="机密" function="scretLvlRadio"/>机密</label>
+								<label class="checkbox-inline"><input type="radio" name="idSelected" value="一般商密" function="scretLvlRadio"/>一般商密</label>
+								<label class="checkbox-inline"><input type="radio" name="idSelected" value="核心商密" function="scretLvlRadio"/>核心商密</label>
+								<label class="checkbox-inline"><input type="radio" name="idSelected" value="非密" function="scretLvlRadio"/>非密</label>
+							</div>
+							</td>
+							<th>关键字：</th>
+							<td><input type="text" name="supplyItem.tag" value="" id="tag"  class="form-control " /><span class="desc"> &nbsp;&nbsp;注：多个关键字以空格分开</span></td>
+						</tr>
+						<tr>
+							<th>状态：</th>
+							<td ><input type="text" name="supplyItem.certStatus" value="" class="form-control" readonly  /></td>
+							<th>供应价格：</th>
+							<td ><input type="text" name="supplyItem.certStatus" value="" class="form-control" id="price" /></td>
+						</tr> 
+						<tr>
+							<th>单位：</th>
+							<td colspan="3">
+								<label class="radio-inline"><input type="radio" name="unit" value="件" function="scretLvlRadio" />件</label>
+								<label class="radio-inline"><input type="radio" name="unit" value="个" function="scretLvlRadio" />个</label>
+								<label class="radio-inline"><input type="radio" name="unit" value="台" function="scretLvlRadio" />台</label>
+								<label class="radio-inline"><input type="radio" name="unit" value="发" function="scretLvlRadio" />发</label>
+								<label class="radio-inline"><input type="radio" name="unit" value="艘" function="scretLvlRadio" />艘</label>
+								<label class="radio-inline"><input type="radio" name="unit" value="卷" function="scretLvlRadio" />卷</label>
+								<label class="radio-inline"><input type="radio" name="unit" value="套" function="scretLvlRadio" />套</label>
+								<label class="radio-inline"><input type="radio" name="unit" value="门" function="scretLvlRadio" />门</label>
+								<label class="radio-inline"><input type="radio" name="unit" value="包" function="scretLvlRadio" />包</label>
+								<label class="radio-inline"><input type="radio" name="unit" value="桶" function="scretLvlRadio" />桶</label>
+								<label class="radio-inline"><input type="radio" name="unit" value="自定义" function="scretLvlRadio" />自定义</label>
+								<input type="text" name="custom" value="" class="form-control" /> 
+								
+								
+							</td>
+						</tr>                                                                                                                                                                                                   
+						
+					</table>
+				</div>
+				<div class="panel-footer" id="step1">
+					<button type="button" class="btn btn-primary" onclick="makeModel(true)">
+						<span class="glyphicon glyphicon-ok"></span><span name="supplyItem.certStatus" function="createOrModItemBtn"><span name="dual" function="createOrModItemBtn">创建物项</span></span>
+					</button>
+					<button type="button" class="btn btn-primary " onclick="$('#step1').hide();$('#step2').show();makeModel(false);$('#mrcSetting').show();">
+						<span class="glyphicon glyphicon-ok"></span><span name="supplyItem.certStatus"  function="createOrModItemWithCertBtn"><span name="dual" function="createOrModItemWithCertBtn">创建物项并完善认证信息</span></span>
+					</button>
+					<button type="button" class="btn btn-default " onclick="location='itemPage.html?pageType=myModel'">
+						<span class="glyphicon glyphicon-remove"></span> 取消
+					</button>
+				</div>
+			</div>
+			<div id="mrcSetting" class="panel panel-default">
+				<div class="panel-heading">
+					<span class="glyphicon glyphicon-th"> </span> 物项属性设置
+				</div>				
+				<div class="panel-body">
+					<table class="table table-hover tablelist table-condensed">
+						<thead>
+							<tr>
+								<th width="4%"></th>
+								<th width="6%">代码</th>
+								<th width="40%">属性名称</th>
+								<th width="10%">目录名称</th>
+								<th width="40%">目录取值</th>
+							</tr>
+						</thead>
+						<tbody id="attrs">
+							<tr name="整数" style="display:none">
+								<th class="info" name="#{attrCode}.rowNo"></th>
+								<th class="info" name="#{attrCode}.code"></th>
+								<th class="info" name="#{attrCode}.name"></th>
+								<th class="info">整数取值</th>
+								<td> <input class="form-control integer" name="#{attrCode}.integer"/><span> ( 整数 ) </span></td>
+							</tr>
+							<tr name="小数" style="display:none">
+								<th class="info" name="#{attrCode}.rowNo"></th>
+								<th class="info" name="#{attrCode}.code"></th>
+								<th class="info" name="#{attrCode}.name"></th>
+								<th class="info">小数取值</th>
+								<td><input class="form-control decimal" name="#{attrCode}.decimal" /><span> ( 小数 ) </span></td>
+							</tr>
+							<tr name="一个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.rowNo"></th>
+								<th class="info" name="#{attrCode}.code"></th>
+								<th class="info" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td>
+									<div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="一个公差" style="display:none">
+								<th class="info" rowspan="3" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="3" name="#{attrCode}.code"></th>
+								<th class="info" rowspan="3" name="#{attrCode}.name"></th>
+								<th class="info">公称值</th>
+								<td><input class="form-control normal" name="#{attrCode}.normal" /><span> ( 整数或小数 ) </span></td>								
+							</tr>
+							<tr name="一个公差" style="display:none">
+								<th class="info ">上偏差</th>
+								<td><input class="form-control upper" name="#{attrCode}.upper" /><span> ( 整数或小数 ) </span></td>							
+							</tr>
+							<tr name="一个公差" style="display:none">
+								<th class="info">下偏差</th>
+								<td><input class="form-control down" name="#{attrCode}.down" /><span> ( 整数或小数 ) </span></td>					
+							</tr>
+							<tr name="文本" style="display:none">
+								<th class="info" name="#{attrCode}.rowNo"></th>
+								<th class="info" name="#{attrCode}.code"></th>
+								<th class="info" name="#{attrCode}.name"></th>
+								<th class="info">文本取值</th>
+								<td>
+									<textarea class="form-control text formtextarea" name="#{attrCode}.text"></textarea>
+								</td>
+							</tr>
+							<tr name="两个单选框" style="display:none">
+								<th class="info" rowspan="2" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="2" name="#{attrCode}.code"></th>
+								<th class="info" rowspan="2" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="两个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td>
+									<div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="三个单选框" style="display:none">
+								<th class="info" rowspan="3" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="3" name="#{attrCode}.code"></th>
+								<th class="info" rowspan="3" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="三个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="三个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框" style="display:none">
+								<th class="info" rowspan="4" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="4" name="#{attrCode}.code"></th>
+								<th class="info" rowspan="4" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框" style="display:none">
+								<th class="info" rowspan="5" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="5" name="#{attrCode}.code"></th>
+								<th class="info" rowspan="5" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框" style="display:none">
+								<th class="info" rowspan="6" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="6" name="#{attrCode}.code"></th>
+								<th class="info" rowspan="6" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="一个单选框和一个整数" style="display:none">
+								<th class="info" rowspan="2" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="2" name="#{attrCode}.code"></th>
+								<th class="info" rowspan="2" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="一个单选框和一个整数" style="display:none">
+								<th class="info">整数取值</th>
+								<td><input class="form-control integer" name="#{attrCode}.integer" /><span> ( 整数 ) </span></td>
+							</tr>
+							<tr name="一个单选框和一个小数" style="display:none">
+								<th class="info" rowspan="2" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="2" name="#{attrCode}.code"></th>
+								<th class="info" rowspan="2" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="一个单选框和一个小数" style="display:none">
+								<th class="info">小数取值</th>
+								<td><input class="form-control decimal" name="#{attrCode}.decimal" /><span> ( 小数 ) </span></td>
+							</tr>
+							<tr name="一个单选框和一个公差" style="display:none">
+								<th class="info" rowspan="4" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="4" name="#{attrCode}.code"></th>
+								<th class="info" rowspan="4" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="一个单选框和一个公差" style="display:none">
+								<th class="info">公称值</th>
+								<td><input class="form-control normal" name="#{attrCode}.normal" /><span> ( 整数或小数 ) </span></td>								
+							</tr>
+							<tr name="一个单选框和一个公差" style="display:none">
+								<th class="info">上偏差</th>
+								<td><input class="form-control upper" name="#{attrCode}.upper" />	<span> ( 整数或小数 ) </span></td>					
+							</tr>
+							<tr name="一个单选框和一个公差" style="display:none">
+								<th class="info">下偏差</th>
+								<td><input class="form-control down" name="#{attrCode}.down" /><span> ( 整数或小数 ) </span></td>								
+							</tr>							
+							<tr name="两个单选框和一个整数" style="display:none">
+								<th class="info" rowspan="3" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="3" name="#{attrCode}.code"></th>
+								<th class="info" rowspan="3" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="两个单选框和一个整数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="两个单选框和一个整数" style="display:none">
+								<th class="info">整数取值</th>
+								<td><input class="form-control integer" name="#{attrCode}.integer" /><span> ( 整数 ) </span></td>
+							</tr>
+							<tr name="两个单选框和一个小数" style="display:none">
+								<th class="info" rowspan="3" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="3" name="#{attrCode}.code"></th>
+								<th class="info" rowspan="3" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="两个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="两个单选框和一个小数" style="display:none">
+								<th class="info">小数取值</th>
+								<td><input class="form-control  {number:true} " value="" /><span> ( 小数 ) </span></td>
+							</tr>
+							<tr name="两个单选框和一个公差" style="display:none">
+								<th class="info" rowspan="5" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="5" name="#{attrCode}.code"></th>
+								<th class="info" rowspan="5" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="两个单选框和一个公差" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="两个单选框和一个公差" style="display:none">
+								<th class="info">公称值</th>
+								<td><input class="form-control normal" name="#{attrCode}.normal" /><span> ( 整数或小数 ) </span></td>								
+							</tr>
+							<tr name="两个单选框和一个公差" style="display:none">
+								<th class="info">上偏差</th>
+								<td><input class="form-control upper" name="#{attrCode}.upper" /><span> ( 整数或小数 ) </span></td>					
+							</tr>
+							<tr name="两个单选框和一个公差" style="display:none">
+								<th class="info">下偏差</th>
+								<td><input class="form-control down" name="#{attrCode}.down" /><span> ( 整数或小数 ) </span></td>								
+							</tr>
+							<tr name="三个单选框和一个整数" style="display:none">
+								<th class="info" rowspan="4" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="4" name="#{attrCode}.code"></th>
+								<th class="info" rowspan="4" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="三个单选框和一个整数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="三个单选框和一个整数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="三个单选框和一个整数" style="display:none">
+								<th class="info">整数取值</th>
+								<td><input class="form-control integer" name="#{attrCode}.integer" /><span> ( 整数 ) </span></td>
+							</tr>	
+							<tr name="三个单选框和一个小数" style="display:none">
+								<th class="info" rowspan="4" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="4" name="#{attrCode}.code"></th>
+								<th class="info" rowspan="4" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="三个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="三个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="三个单选框和一个小数" style="display:none">
+								<th class="info">小数取值</th>
+								<td><input class="form-control decimal" name="#{attrCode}.decimal" /><span> ( 小数 ) </span></td>
+							</tr>	
+							<tr name="四个单选框和一个整数" style="display:none">
+								<th class="info" rowspan="5" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="5" name="#{attrCode}.code"></th>
+								<th class="info" rowspan="5" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框和一个整数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框和一个整数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框和一个整数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框和一个整数" style="display:none">
+								<th class="info">整数取值</th>
+								<td><input class="form-control integer" name="#{attrCode}.integer" /><span> ( 整数 ) </span></td>
+							</tr>	
+							<tr name="四个单选框和一个小数" style="display:none">
+								<th class="info" rowspan="5" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="5" name="#{attrCode}.code"></th>
+								<th class="info" rowspan="5" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="四个单选框和一个小数" style="display:none">
+								<th class="info">小数取值</th>
+								<td><input class="form-control decimal" name="#{attrCode}.decimal" /><span> ( 小数 ) </span></td>
+							</tr>
+							<tr name="五个单选框和一个小数" style="display:none">
+								<th class="info" rowspan="6" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="6" name="#{attrCode}.code"></th>
+								<th class="info" rowspan="6" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="五个单选框和一个小数" style="display:none">
+								<th class="info">小数取值</th>
+								<td><input class="form-control decimal" name="#{attrCode}.decimal" /><span> ( 小数 ) </span></td>
+							</tr>
+							<tr name="六个单选框和一个小数" style="display:none">
+								<th class="info" rowspan="7" name="#{attrCode}.rowNo"></th>
+								<th class="info" rowspan="7" name="#{attrCode}.code"></th>
+								<th class="info" rowspan="7" name="#{attrCode}.name"></th>
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框和一个小数" style="display:none">
+								<th class="info" name="#{attrCode}.#{replyCode}.name"></th>
+								<td><div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.#{replyCode}" /> 
+										<span class="input-group-addon" onclick="$$('replyOffset').value=0;showModal(this); replyPagePaginate()"> ... </span>
+									</div>
+								</td>
+							</tr>
+							<tr name="六个单选框和一个小数" style="display:none">
+								<th class="info">小数取值</th>
+								<td><input class="form-control decimal" name="#{attrCode}.decimal" /><span> ( 小数 ) </span></td>
+							</tr>
+							<tr name="一个图纸" style="display:none">
+								<th class="info" name="#{attrCode}.rowNo"></th>
+								<th class="info" name="#{attrCode}.code"></th>
+								<th class="info" name="#{attrCode}.name"></th>
+								<th class="info">PNG图片名称</th>
+								<td>
+									<div class="input-group">								    
+										<input type="text" readonly="readonly" class="form-control" name="#{attrCode}.draw" /> 
+										<span class="input-group-addon" onclick="$('#drawModal').modal('show')"> ... </span>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+				<div class="panel-footer" id="step2">
+					<button type="button" class="btn btn-primary " onclick="applyCert();">
+						<span class="glyphicon glyphicon-ok"></span><span name="supplyItem.certStatus" function="createOrModCertIntoBtn">创建认证信息并返回</span>
+					</button>
+					<button type="button" class="btn btn-primary " onclick="saveDraft()">
+						<span class="glyphicon glyphicon-ok"></span><span name="supplyItem.certStatus" function="showOrHiddenSaveDraftButton">保存为草稿并返回</span>
+					</button>
+					<button type="button" class="btn btn-default ">
+						<span class="glyphicon glyphicon-remove"></span> 取消
+					</button>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<div id="supplierModal" class="modal fade in" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					选择供应商					
+				</div>
+				<div class="modal-header form-inline">
+					<div class="form-group">
+						<label for="" class="">供应商名称：</label> <input type="text" name="" id="nameLike" class="form-control" value="" />
+					</div>
+ 					<button class="btn btn-default btn-xs" onclick="$$('supplyOffset').value=0;_supplyCommit();supplyPaginate();">
+						<span class="glyphicon glyphicon-search"></span> 查询
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<table class="table" name="nones">
+						<tr name="mySupplyPageTemplate" style="display: none;">						      
+							<th style="width:50px;"><input type="radio" name="1" /></th>
+							<td id="id"><span name="id"></td>
+							<td id="supplyCode"><span name="code"></td>
+							<td id="supplyName"><span name="name"></td>
+						</tr>
+						
+					</table>
+					<input type="hidden" name="supplyTotal" id="supplyTotal" value=0>
+					<input type="hidden" name="supplyOffset" id="supplyOffset" value=0>
+				    <input type="hidden" name="supplyLimit" id="supplyLimit" value=3>
+				    <div class="row-fluid"> 
+						<div id="supplyPage-nav" style="padding: 18px;"></div> 
+					</div>
+   
+				</div>				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="supplyChoice()">选择</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+
+			</div>
+		</div>		
+	</div>
+
+	<div id="itemnamesModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					选择物项					
+				</div>
+				<div class="modal-header form-inline">
+					<div class="form-group">
+						<label for="" class="">物项名称：</label> <input type="text" name="" id="itemNameLike" class="form-control" value="" />
+					</div>
+					<button class="btn btn-default " onclick="$$('itemNameOffset').value=0;_itemNameCommit();itemNamePaginate();">
+						<span class="glyphicon glyphicon-search"></span> 查询
+					</button>
+				</div>
+				<div class="modal-body">
+					<table class="table" name="nones">
+						<thead>
+							<tr>
+								<td></td>							
+								<td>物项代码</td>
+								<td>物项名称</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="itemNamePageTemplate" style="display: none;">
+								<th style="width:50px;"><input type="radio" name="1" /></th>
+								<td id="itemCode"><span name="code"></span></td>
+								<td id="name"><span name="name"></span></td>
+							</tr>
+						</tbody>
+					 </table>
+					<input type="hidden" name="itemNameTotal" id="itemNameTotal" value=0>
+					<input type="hidden" name="itemNameOffset" id="itemNameOffset" value=0>
+				    <input type="hidden" name="itemNameLimit" id="itemNameLimit" value=3>
+				    <div class="row-fluid"> 
+						<div id="itemNamePage-nav" style="padding: 18px;"></div> 
+					</div>
+
+				</div>
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="itemNamePageChoice()">选择</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="replyModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					属性[<span id="currAttrName"></span>]的回复目录[<span id="currReplyName"></span>]选值					
+				</div>
+				<div class="modal-header form-inline">
+					<div class="form-group">
+						<label for="" class="">关键字模糊查询：</label> <input type="text" class="form-control" id="replyValLike" />
+					</div>
+					<button class="btn btn-default" type="button" onclick="pageTag='replyModalPageTag';paginateInit();_replyCommit();$$('replyOffset').value=0">
+						<span class="glyphicon glyphicon-search"></span> 查询
+					</button>
+				</div>
+				<div class="modal-body">
+					<table class="table table-hover table-condensed tablelist" name="nones">
+						<thead>
+							<tr>
+								<th></th>							
+								<th>回复目录值</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="replyPageTemplate" style="display:none;">
+								<th style="width:50px;"><input type="radio" name="val" /></th>
+								<td><span name="val"></span></td>
+							</tr>
+						</tbody>
+					 </table>
+					<input type="hidden" name="replyTotal" id="replyTotal" value=0>
+					<input type="hidden" name="replyOffset" id="replyOffset" value=0>
+				    <input type="hidden" name="replyLimit" id="replyLimit" value=3>
+				    <div class="row-fluid"> 
+						<div id="replyPage-nav" style="padding: 18px;"></div> 
+					</div>
+				</div>
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" onclick="setCurrentReplyVal(this);">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消并关闭</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	
+	<div id="drawModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					属性[<span id="currAttrName"></span>]的图纸回复选值					
+				</div>
+				<div class="modal-header form-inline">
+					<div class="form-group">
+						<label for="" class="">关键字模糊查询：</label> <input type="text" id="codeLike" class="form-control" />
+					</div>
+					<button class="btn btn-default " onclick="">
+						<span class="glyphicon glyphicon-search"></span> 查询
+					</button>
+				</div>
+				<div class="modal-body">
+					<ul  class="1L-MODE-REPLY  piclist">
+						<li name="drawPageTemplate"><img src="/iw/images/draw/AAA1341.png" class="popimg" name="code" function="drawValueTo"/></li>
+					</ul>
+					 <span id="drawModalPaginate"></span>
+
+				</div>
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" onclick="setCurrentDrawVal(this);">确定</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消并关闭</button>
+				</div>
+
+			</div>
+		</div>
+	</div>	
+	<div class="hint"></div>
+
+	<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+	<script type="text/javascript" src="/iw/js/jquery.autocomplete.js"></script>	
+	<script type="text/javascript" src="/iw/js/org/modelDetail.js"></script>
+	<script type="text/javascript" src="/iw/js/org/itemDetailInit.js" ></script>
+	
+</body>
+</html>

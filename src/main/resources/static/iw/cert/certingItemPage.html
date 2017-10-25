@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/cert/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><a href="#">认证管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">待认证</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<ul id="search-tabs" class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a  function="NamLikeValue(this)" data-toggle="tab">NSN码</a></li>
+				<li role="presentation"><a  function="NamLikeValue(this)" data-toggle="tab" value="nameLike">物项名称</a></li>
+				<li role="presentation"><a function="NamLikeValue(this)" data-toggle="tab" value="supplyNameLike">供应商名称</a></li>
+				<li role="presentation"><a function="NamLikeValue(this)" data-toggle="tab" value="partNoLike">供应商零件码</a></li>
+			</ul>
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="nsn">
+					<div class="form-group form-inline search-box" style="zoom:1;overflow:hidden;display:block;">
+						<input type="text" class="form-control" id="nameLike" />
+						<button type="button" class="btn btn-primary " onclick="_commit()">
+							<span class="glyphicon glyphicon-search"></span> 搜索
+						</button>
+					</div>
+
+				</div>
+			</div>
+			<table class="table formtable  ">
+				<tr>
+					<th width="100px">大小类：</th>
+					<td>
+						<div class="col-6">
+							<select style="width:95%;" id="grpCateCode">
+								<option name="grpCateAllTemplate" value="" function=grpCateAllOptionValueTo>请选择大类</option>
+							</select>
+						</div>
+						<div class="col-6">
+							<select style="width:95%;" id="cateCode">
+								<option name="cateAllByGrpIdTemplate" value="" function=cateAllOptionValueTo>请选择小类</option>
+							</select>
+						</div>
+
+					</td>
+				</tr>
+				<tr id="scretLvl">
+					<th width="100px" function= "scretLvlChoise()">密级：</th>
+					<td>
+						<div class="form-group">
+							<label class="checkbox-inline"><input type="checkbox" name="idSelected" value="公开" />核心</label> 
+							<label class="checkbox-inline"><input type="checkbox" name="idSelected" value="内部" />内部</label>
+							<label class="checkbox-inline"><input type="checkbox" name="idSelected" value="秘密" />秘密</label>
+						    <label class="checkbox-inline"><input type="checkbox" name="idSelected" value="机密" />机密</label>
+						    <label class="checkbox-inline"><input type="checkbox" name="idSelected" value="核心商密" />核心商密</label>
+						    <label class="checkbox-inline"><input type="checkbox" name="idSelected" value="一般商密" />一般商密</label>
+						    <label class="checkbox-inline"><input type="checkbox" name="idSelected" value="非密" />非密</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>认证状态：</th>
+					<td>
+						<div class="form-group">
+								<label class="checkbox-inline"><input type="checkbox" name="certStatus" value="已拒绝" />已拒绝</label> 
+								<label class="checkbox-inline"><input type="checkbox" name="certStatus" value="认证中" />认证中</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>供应商：</th>
+					<td>
+						<div class="form-group">
+							<label class="checkbox-inline"><input type="checkbox" name="supplyType" value="内部供应商" />内部供应商</label> <label class="checkbox-inline"><input type="checkbox" name="supplyType"
+								value="外部供应商" />外部供应商</label>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+			<!-- list -->
+			<div class="list-header form-inline">
+				<div class="btn-group">
+					<button type="button" class="btn btn-primary " id="upat" value="UPAT" name="upat" onclick="orderBy(this)">
+						<span class="glyphicon glyphicon-sort"  name="UPAT"></span> 创建时间
+					</button>
+					<button type="button" class="btn btn-default " id="allCode" value="CATECODE" name="allCode" onclick="orderBy(this)">
+						<span class="glyphicon glyphicon-sort"  name="CATECODE"></span> 大小类
+					</button>
+					<button type="button" class="btn btn-default " id="itemNameCode" name="itemNameCode"  value="ITEMNAMECODE" onclick="orderBy(this)">
+						<span class="glyphicon glyphicon-sort"  name="ITEMNAMECODE"></span> 物项名称代码
+					</button>
+				</div>
+
+			</div>
+
+
+			<table class="table table-hover  table-condensed">
+				<thead>
+					<tr class="">
+						<th>序号</th>
+						<th>名称</th>
+						<th>NSN码</th>
+						<th>大小类</th>
+						<th>供应商</th>
+						<th>密级</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					 <tr name="itemPageTemplate" style="display: none;">
+						<td><span name="rowNo"></sapn></td>
+						<td><a name="pageTypeAndNo" function="supplyItemDetailByPageType"><span name="name"></span></a></td>
+						<!-- <td><a href="itemNameDetail.html"><span name="nsn"></span></a></td> -->
+						<td><span name="nsn"></span></td>
+						<td><span name="cateGrpCode"></span></a></td>
+						<td><span name="supplyName"></span></td>
+						<td><span name="scretLvl"></span></td>
+						<td>
+							<button id="addSupply" class="btn btn-primary btn-xs" type="button" name="no" onclick="location='supplyItemDetail.html?no=#{no}'" >
+								<span class="glyphicon glyphicon-edit"></span> 去 认 证
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<input type="hidden" name="total" id="total" value=0> <input type="hidden" name="offset" id="offset" value=0> <input type="hidden" name="limit" id="limit" value=3>
+			<div class="row-fluid">
+				<div id="page-nav" style="padding: 18px;"></div>
+			</div>
+
+		</div>
+	</div>
+	<div id="addSupplierModal" class="modal fade in" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					添加供应商
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="">&times;</button>
+				</div>
+				<div class="form-inline modal-form">
+ 					<button class="btn btn-default" onclick="" style="margin-right:3px;">
+						<span class="glyphicon glyphicon-search"></span> 查询
+					</button>
+				</div>
+
+				<div class="modal-body">					
+					<table class="table" name="nones">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>ID</th>
+								<th>代码</th>
+								<th>供应商</th>
+							</tr>
+						</thead>
+						<tr name="mySupplyPageTemplate" style="display: none;">						      
+							<th style="width:50px;"><input type="radio" name="" /></th>
+							<td id="id"><span name="id"></span></td>
+							<td id="supplyCode"><span name="code"></span></td>
+							<td id="supplyName"><span name="name"></span></td>
+						</tr>
+					</table>
+					 <span id="supplyPaginate"></span>					 
+				</div>	
+				<hr/>
+				<div class="form-group form-inline modal-form">
+						<label for="" class="form-label">零件号：</label> <input type="text" name="partNumber" id="" class="form-control" value="" />
+				</div>  			
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="addSupplyToItem()">添加</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+
+			</div>
+		</div>		
+	</div>
+	
+	<div class="hint"></div>
+
+	<!--[if lte IE 9]>
+	<script type="text/javascript" src="/iw/css/bootstrap/js/html5shiv.js"></script>
+	<script type="text/javascript" src="/iw/css/bootstrap/js/respond.min.js"></script>
+<![endif]-->
+	<!--[if lte IE 6]>
+	<script type="text/javascript" src="/iw/js/bootstrap-ie.js"></script>
+<![endif]-->
+	<script type="text/javascript" src="/iw/js/cert/certingItemPage.js"></script>
+</body>
+</html>

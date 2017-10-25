@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simpleTree/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">供货管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">产品管理</li>
+			</ul>
+		</div>
+
+		<div class="body">
+		   <table style="width:100%;">
+		   	 <tr>
+		   	 	<td  style="width:200px;" valign="top" class="st_tree">
+		   	 		<ul>
+						<li class="folder open"><a href="#" ref="xtgl" haschild="true">军贸信息产 品</a></li>
+					    <ul show="true" style="display: block;">
+							<li><a href="#" ref="yhgl" haschild="false">陆空导弹产品</a></li>
+							<li class=""><a href="#" ref="rzck" haschild="false">陆基远程</a></li>
+						</ul>
+						<li class="folder open"><a href="#" ref="ckgl" haschild="true">反舰导弹产品</a></li>
+					    <ul style="display: block;" show="true">
+							<li class=""><a href="#" ref="kcgl" haschild="false">反舰导弹1</a></li>
+							<li class=""><a href="#" ref="shgl" haschild="false">反舰导弹2</a></li>
+							<li class="folder"><a href="#" ref="fhgl" haschild="true">反舰导弹3</a></li>
+					        <ul style="display: none;">
+					            <li><a href="#" ref="yhgl" haschild="false">反舰导弹3-1</a></li>
+					            <li><a href="#" ref="rzck" haschild="false">反舰导弹3-2</a></li>
+					        </ul>
+						</ul>
+					</ul>
+		   	 	
+		   	 	
+		   	 	</td>
+		   	 	<td width="auto" >
+		   	 		<div class="form-group form-inline search-box" style="zoom:1;overflow:hidden;display:block;">
+						<input type="text" class="form-control" id="nameLike" placeholder="按型号名称、主承包商名称、分类名称搜索"/>
+						<button type="button" class="btn btn-primary " onclick="">
+							<span class="glyphicon glyphicon-search"></span> 搜索
+						</button>
+						<button type="button" class="btn btn-default " onclick="window.location.reload(true)">
+							<span class="glyphicon glyphicon-refresh"></span> 刷新
+						</button>
+					</div>
+					<table class="table table-hover  table-condensed">
+						<thead>
+						    <tr>
+						    	<th colspan="6">信息列表</th>
+						    </tr>
+							<tr class="">
+								<th width="80px"># </th>
+								<th width="">型号</th>
+								<th width="">类型</th>
+								<th width="100px">研制国</th>
+								<th width="80px">主承包商</th>
+								<th width="100px">别名</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td><a href="/iw/model/salesAdvicePage.html?id=">型号1</a></td>
+								<td>类型</td>
+								<td>研制国</td>
+								<td>主承包商</td>
+								<td>别名</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td><a href="/iw/model/salesAdvicePage.html?id=">型号2</a></td>
+								<td>类型</td>
+								<td>研制国</td>
+								<td>主承包商</td>
+								<td>别名</td>
+							</tr>
+		
+		
+						</tbody>
+					</table>
+					<div class="row-fluid">
+						<div style="padding: 18px;" id="page-nav" class="light-theme simple-pagination">
+							<ul>
+								<li class="disabled"><span class="current prev">上一页</span></li>
+								<li class="actived"><span class="current">1</span></li>
+								<li><a class="page-link" href="#page-2">2</a></li>
+								<li><a class="page-link" href="#page-3">3</a></li>
+								<li><a class="page-link" href="#page-4">4</a></li>
+								<li><a class="page-link" href="#page-5">5</a></li>
+								<li><a class="page-link" href="#page-6">6</a></li>
+								<li><a class="page-link next" href="#page-2">下一页</a></li>
+							</ul>
+						</div>
+					</div>
+		   	 	
+		   	 	</td>
+		   	 </tr>
+		   </table>
+			
+
+		</div>
+	</div>
+	<div class="hint"></div>
+	<script type="text/javascript" src="/iw/js/simpleTree.js"></script>
+	<script type="text/javascript" src="/iw/js/supply/util.js"></script>
+</body>
+</html>>

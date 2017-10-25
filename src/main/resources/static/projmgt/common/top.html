@@ -1,0 +1,56 @@
+<div id="logo">
+	<a href="#">
+		<img src="/iw/images/cisic_logo.png">
+	</a>
+</div>
+<div class="topNav">
+	欢迎：【<span id="corpName" style="font-weight: 700;"></span>】 <span id="loginName"></span>
+	<a href="#">返回保障平台首页</a>
+	<a href="/">返回专有云</a>
+	[
+	<a href="#" onclick="logout()">注销 </a>
+	]
+</div>
+<div class="admin_nav">
+	<a style="cursor: pointer;" onclick="changerole(this,10000038770045);">个人中心</a>
+	<a class="active" style="cursor: pointer;">保障平台</a>
+	<a style="cursor: pointer;" onclick="changerole(this,10000159850047);">能力与资源</a>
+	<a style="cursor: pointer;" onclick="changerole(this,10000109770002);">协作配套</a>
+	<a style="cursor: pointer;" onclick="changerole(this,10000080080003);">众创空间</a>
+	<a style="cursor: pointer;" onclick="changerole(this,10000039650044);">企业管理</a>
+	<a style="cursor: pointer;" onclick="changerole(this,10000046950685);">在线运维</a>
+	<a style="cursor: pointer;" onclick="changerole(this,10000042870000);">监督管理</a>
+	<a style="cursor: pointer;" onclick="changerole(this,10000159850936);">数据分析平台</a>
+</div>
+
+<script>
+	$("#corpName").text($.cookie("corpName"));
+	
+	$("#loginName").text($.cookie("loginName"));
+	
+	function logout() {
+		$.ajax({
+			url : '/sessions/remove',
+			success : function(data) {
+				if (data != 'success') {
+					alert('注销失败')
+					return;
+				}
+				$.removeCookie('custId', {
+					path : "/"
+				}) // 对其生命周期进行管理，在所有此目录下cookie皆有效
+				$.removeCookie('loginName', {
+					path : "/"
+				});
+				$.removeCookie('corpId', {
+					path : "/"
+				});
+				$.removeCookie('corpName', {
+					path : "/"
+				})
+				location.href = 'http://172.16.20.6/iw/org/login.html'
+			}
+		})
+
+	}
+</script>

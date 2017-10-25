@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/js/handlebars.min.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+<script type="text/javascript" src="/iw/js/myUtil.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css"/>
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simpleTree/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home "></span> <a href="/iw/org/welcome.html">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="/iw/model/prodLibPage.html">设计产品库管理	</a></li>
+				<li class="split">&gt;</li>
+				<li class="active">创建设计产品</li>
+			</ul>
+		</div>
+		<!-- Main content -->
+		<div class="body">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="glyphicon glyphicon-plus"> </span> 创建设计产品
+				</div>
+				<div class="panel-body">
+						<table class="table">
+						<tr>
+							<th width="15%">  产品名称：<span class="must">*</span></th>
+							<td width="35%"><input id="name" type="text" name="prodLibDetail.name" class="form-control input-sm" /></td>
+							<th>产品代号/型号：<span class="must">*</span></th>
+							<td><input id="prodCode" type="text" name="prodLibDetail.prodCode" class="form-control input-sm" /></td>
+						</tr>						
+						<tr>
+							<th>所属机构：</th>
+							<td>
+								<div class="input-group ">
+								    <input type="hidden" name="prodLibDetail.orgId" id="corpId" onchange="javascript:abc()" value=""/>
+								    <input type="text" class="form-control" name="prodLibDetail.orgName" value="" id="corpName" readonly /> <span class="input-group-addon" data-target="#itemnamesModal" data-toggle="modal"  onclick="$$('offset').value=0;_commit();paginate();" data-toggle="modal"> ... </span>
+								</div>
+							</td>
+							<th>集团编码：</th>
+							<td><input id="grpCode" type="text" name="prodLibDetail.grpCode" class="form-control input-sm" /></td>							
+						</tr>
+						<tr>
+							<th>NSN大小类：</th>
+							<td><input id="nsnCateCode" type="text" name="nsnCateCode" class="form-control input-sm" />（4位	非中文）</td>
+							<th>NSN识别号：</th>
+							<td><input id="nsn" type="text" name="nsn" class="form-control input-sm" />（9位	非中文）</td>
+						</tr>
+						<tr>
+							<th>部件号：</th>
+							<td ><input id="partNo" type="text" name="prodLibDetail.partNo" class="form-control input-sm" /></td>
+							<th>产品规格：</th>
+							<td><input id="spec" type="text" name="prodLibDetail.spec" class="form-control input-sm" /></td>							
+						</tr>
+						<tr>
+							<th>产品版本代码：</th>
+							<td ><input id="verCode" type="text" name="prodLibDetail.verCode" class="form-control input-sm" /></td>
+							<th>产品代号类型：</th>
+							<td><input id="prodCodeTyp" type="text" name="prodLibDetail.prodCodeTyp" class="form-control input-sm" /></td>							
+						</tr>
+						<tr>
+						<th>计量单位：</th>
+						<td id="unit" colspan="3">
+								<label class="radio-inline"><input type="radio" name="unit"  value="件">件</label>
+								<label class="radio-inline"><input type="radio" name="unit"  value="个" >个</label>
+								<label class="radio-inline"><input type="radio" name="unit"  value="台" >台</label>
+								<label class="radio-inline"><input type="radio" name="unit"  value="发" >发</label>
+								<label class="radio-inline"><input type="radio" name="unit"  value="艘" >艘</label>
+								<label class="radio-inline"><input type="radio" name="unit"  value="卷" >卷</label>
+								<label class="radio-inline"><input type="radio" name="unit"  value="套" >套</label>
+								<label class="radio-inline"><input type="radio" name="unit"  value="门" >门</label>
+								<label class="radio-inline"><input type="radio" name="unit"  value="包" >包</label>
+								<label class="radio-inline"><input type="radio" name="unit"  value="桶" >桶</label>
+								<label class="radio-inline"><input type="radio" name="unit"  value="自定义" >自定义</label>
+								<input type="text" class="form-control" value="" name="custom">
+							</td>
+						</tr>
+						
+						
+						
+						<tr>
+							<th>发布日期：</th>
+							<td><input id="newat" type="date" name="prodLibDetail.newat" class="form-control input-sm"  readonly="readonly"/></td>
+							<th>集团分类名称：</th>
+							<td><input id="grpCate" type="text" name="prodLibDetail.grpCate" class="form-control input-sm" /></td>
+						</tr>
+						
+						<tr>
+							<th>采用标准：</th>
+							<td><input id="standard" type="text" name="prodLibDetail.standard" class="form-control input-sm" /></td>
+							<th>类型：<span class="must">*</span></th>
+							<td colspan="3">
+							    <label><input type="radio" name="prodLibDetail.typ" value="自制件" /> 自制件</label>
+							    <label><input type="radio" name="prodLibDetail.typ" value="采购件" /> 采购件 </label>
+							    <label><input type="radio" name="prodLibDetail.typ" value="标准件" /> 标准件</label>							    
+							 </td>
+						</tr>
+						<tr>
+							<th>密级：<span class="must">*</span></th>
+							<td>
+							    <label><input type="radio" name="prodLibDetail.scretLvl" value="机密" /> 机密 </label>
+							    <label><input type="radio" name="prodLibDetail.scretLvl" value="秘密" /> 秘密</label>
+							    <label><input type="radio" name="prodLibDetail.scretLvl" value="内部" /> 内部</label>
+							    <label><input type="radio" name="prodLibDetail.scretLvl" value="非密" /> 非密</label>									    
+							 </td>
+							<th width="15%">  状态:</th>
+							<td width="35%">
+								<label><input type="radio" name="prodLibDetail.status" value="有效"  disabled="disabled"/>有效 </label>
+							    <label><input type="radio" name="prodLibDetail.status" value="无效"  disabled="disabled" /> 无效  </label>
+							</td>
+							
+						</tr>
+						<tr>
+							<th>主要参数描述：</th>
+							<td colspan="3"><textarea class="form-control" id="features" name="prodLibDetail.features"   style="width:100%;height:100px;"></textarea></td>							
+						</tr>
+						<tr>
+							<th>简介：</th>
+							<td colspan="3"><textarea class="form-control" id="descr" name="prodLibDetail.descr"  style="width:100%;height:100px;"></textarea></td>							
+						</tr>
+					</table>
+				</div>
+				<div class="panel-footer" style="text-align:center;">
+					<button type="button" onclick="makeProdLib()" class="btn btn-primary" ><span class="glyphicon glyphicon-ok"></span> 提交</button>
+					<button type="button" class="btn btn-default" onclick="history.back(-1)"><span class="glyphicon glyphicon-remove"></span> 取消</button>				
+				</div>														
+
+			</div>
+
+
+		</div>
+	</div>
+<div id="itemnamesModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					选择机构					
+				</div>
+				<div class="modal-header form-inline">
+					<div class="form-group">
+						<label for="" class="">机构名称：</label> <input type="text" name="" id="findCorpName" class="form-control" value="" />
+					</div>
+					<button class="btn btn-default " onclick="$$('offset').value=0;_commit();paginate();">
+						<span class="glyphicon glyphicon-search"></span> 查询
+					</button>
+				</div>				
+				<div class="modal-body">
+					<table class="table" name="nones">
+						<thead>
+							<tr>
+								<td></td>							
+								<td>机构代码</td>
+								<td>机构名称</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="orgPageTemplate" style="display: none;">
+								<th style="width:50px;"><input type="radio" name="1" /></th>
+								<td id="id" style="display: none;"><span name="id"></span></td>
+								<td id="code"><span name="code"></span></td>
+								<td id="name"><span name="name"></span></td>
+							</tr>
+						</tbody>
+					 </table>
+					<input type="hidden" name="total" id="total" value=0>
+					<input type="hidden" name="offset" id="offset" value=0>
+				    <input type="hidden" name="limit" id="limit" value=3>
+				    <div class="row-fluid"> 
+						<div id="page-nav" style="padding: 18px;"></div> 
+					</div>
+
+				</div>
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="corpChoice()">选择</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+
+			</div>
+		</div>
+</div>
+
+	<div class="hint"></div>	
+	<script type="text/javascript" src="/iw/js/model/prodLibDetail.js"></script>
+</body>
+</html>

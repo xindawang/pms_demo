@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+    <title>武器装备保障平台</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/projmgt/js/common/env.js"></script>
+    <script type="text/javascript" src="/projmgt/js/common/simplePaginationEnv.js"></script>
+    <script type="text/javascript" src="/projmgt/js/common/table.js"></script>
+    <script type="text/javascript" src="/projmgt/js/plan/compilation/planOverview.js"></script>
+    <script type="text/javascript" src="/iw/js/org/core.js"></script>
+    <script type="text/javascript" src="/projmgt/js/common/dateTimePicker.js"></script>
+
+</head>
+<body>
+<div id="top" class="top"></div>
+
+<div id="left" class="left"></div>
+
+<div class="content">
+    <div class="content-header">
+        <ul class="breadcrumb">
+            <li><span class="glyphicon glyphicon-home"></span> <a href="/iw/org/welcome.html">首页</a></li>
+            <li class="split">&gt;</li>
+            <li><a href="#">项目管理</a></li>
+            <li class="split">&gt;</li>
+            <li class="active">计划列表</li>
+        </ul>
+    </div>
+
+
+    <div class="content-header">
+        <span class="glyphicon glyphicon-search">计划查询</span>
+    </div>
+    <form id="searchCondition" class="form-horizontal panel-body" role="form">
+        <div class="container-fluid">
+            <div class="form-group">
+                <div class="col-md-3">
+                    <select id="searchType" name="searchType" class="form-control">
+                        <option value="code">计划代号</option>
+                        <option value="name">计划名称</option>
+                        <option value="state">计划说明</option>
+                    </select>
+                </div>
+                <div class="col-md-5">
+                    <input id="keyWord" name="keyWord" type="text" class=" search-box form-control"
+                           placeholder="请输入关键词">
+                </div>
+                <div class="col-md-2">
+                    <button id="submit" class="btn btn-primary" type="button">搜索</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <span class="col-md-1" style="vertical-align: middle">计划状态</span>
+                <label class="radio-inline"> <input type="radio" name="planStatus" value=""
+                                                    checked="checked">全部状态</label>
+                <label class="radio-inline"> <input type="radio" name="planStatus" value="MAKE">编制中</label>
+                <label class="radio-inline"> <input type="radio" name="planStatus" value="APPROVE">审批中</label>
+                <label class="radio-inline"> <input type="radio" name="planStatus" value="EXECUTE">进行中</label>
+                <label class="radio-inline"> <input type="radio" name="planStatus" value="COMPLETE">已完成</label>
+
+            </div>
+            <div class="form-group">
+                <span class="col-md-1" style="vertical-align: middle">编制时间</span>
+                <div class="input-daterange input-group" id="datepicker">
+                    <input type="text" class="input-sm form-control" name="start" readonly />
+                    <span class="input-group-addon">至</span>
+                    <input type="text" class="input-sm form-control" name="end" readonly />
+                </div>
+
+            </div>
+
+        </div>
+    </form>
+
+    <div class="table-box">
+        <div class="content-header">
+            <button id="addPlanByModel" type="button" class="btn btn-primary" data-toggle="modal"
+                    data-target="#addPlanByModelModal">
+                <span>根据计划模板创建新计划</span>
+            </button>
+            <!--<button id="addPlanByOthers" type="button" class="btn btn-primary">
+                <span>根据产品树、任务模板创建新计划</span>
+            </button>-->
+            <button type="button" class="btn btn-primary " id="addPlan" onclick="location.href='createPlan.html'">
+                <span>创建新计划</span>
+            </button>
+
+        </div>
+        <div id="plansTable" class="body">
+            <table class="table table-hover  table-condensed">
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<!-- 计划删除的模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">温馨提示</h4>
+            </div>
+            <div id="confirmDeleteInfo" class="modal-body"></div>
+            <div class="modal-footer">
+
+                <button id="confirmDelete" type="button" class="btn btn-primary">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+
+<!-- 根据计划模板创建计划模态框（Modal） -->
+
+<div class="modal fade bs-example-modal-lg" id="addPlanByModelModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h5 class="modal-title">请输入以下信息：</h5>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal panel-body" id="addPlanByModelForm" method="post" role="form">
+                    <div class="container-fluid">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">计划模板</label>
+                            <div class="col-sm-5">
+                                <select id="universalSchedule" class="form-control" multiple
+                                        style="overflow-y: scroll; height: 150px; width: 400px">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button id="confirm" type="button" class="btn btn-primary">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+</body>
+</html>

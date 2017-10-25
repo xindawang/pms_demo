@@ -1,0 +1,300 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/myUtil.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">物项认证</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">物项搜索</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="panel panel-default">
+				<div class="panel-heading">范围搜索</div>
+				<table class="table">
+					<tr>
+						<th width="100px">大类：</th>
+						<td width="500px"><select id="cat" style="width:500px">
+							<option value="1">全部</option>
+						</select></td>
+						<th width="100px">小类：</th>
+						<td width="500px"><select id="cat1" style="width:500px">
+							<option value="1">全部</option>
+						</select></td>
+					</tr>
+				</table>
+				<ul id="search-tabs" class="nav nav-tabs" >
+					<li class="active"><a href="#num">流水号</a></li>
+					<li ><a href="#namecode">名称代码</a></li>
+					<li ><a href="#numcode">编码号代码</a></li>
+					<li ><a href="#name">名称</a></li>
+					<li ><a href="#procode">产品代号</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="num">
+						<input type="text" id="num"/>
+						<button type="button" class="btn btn-primary " onclick="$$('offset').value=0;_commit();paginate();">
+							<span class="glyphicon glyphicon-search"></span> 搜索
+						</button>
+					</div>
+					<div class="tab-pane" id="namecode">
+						<input type="text" id="namecode" />
+						<button type="button" class="btn btn-primary " onclick="$$('offset').value=0;_commit();paginate();">
+							<span class="glyphicon glyphicon-search"></span> 搜索
+						</button>
+					</div>
+					<div class="tab-pane" id="numcode">
+						<input type="text" id="numcode" />
+						<button type="button" class="btn btn-primary " onclick="$$('offset').value=0;_commit();paginate();">
+							<span class="glyphicon glyphicon-search"></span> 搜索
+						</button>
+					</div>
+					<div class="tab-pane" id="name">
+						<input type="text" id="name" />
+						<button type="button" class="btn btn-primary " onclick="$$('offset').value=0;_commit();paginate();">
+							<span class="glyphicon glyphicon-search"></span> 搜索
+						</button>
+					</div>
+					<div class="tab-pane" id="procode">
+						<input type="text" id="procode" />
+						<button type="button" class="btn btn-primary " onclick="$$('offset').value=0;_commit();paginate();">
+							<span class="glyphicon glyphicon-search"></span> 搜索
+						</button>
+					</div>
+				</div>
+				<div class="form-group form-inline" style="margin-bottom: 0;">
+					<label>认证类型：</label>
+					<label>
+						<input type="checkbox"  name="idSelected" value="完整描述" /> 完整描述(1-1)
+					</label>		
+					<label>
+						<input type="checkbox"  name="idSelected" value="完整描述   参考号" /> 完整描述   参考号(K-1A)
+					</label>		
+					<label>
+						<input type="checkbox" name="idSelected" value="完整描述   参考号描述"/> 完整描述   参考号描述(L-1B)
+					</label>
+					<label>
+						<input type="checkbox" name="idSelected" value="部分描述"/> 部分描述(4-4)
+					</label>
+					<label>
+						<input type="checkbox" name="idSelected" value="部分描述   参考号"/> 部分描述   参考号(M-4A)
+					</label>
+					<label>
+						<input type="checkbox" name="idSelected" value="部分描述   参考号描述"/> 部分描述   参考号描述(N-4B)
+					</label>
+					<label>
+						<input type="checkbox" name="idSelected" value="参考号"/> 参考号(2-2)
+					</label>
+					<label>
+						<input type="checkbox" name="idSelected" value="未认证"/> 未认证
+					</label>
+				</div>
+				<div  class="panel-heading">
+					<label></label>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">属性搜索</div>
+				<table class="table">
+					<tr>
+						<th width="100px">关系</th>
+						<th width="100px">MRC</th>
+						<th width="100px">回复表</th>
+						<th width="100px">条件</th>
+						<th width="500px">值</th>
+						<th width="100px">操作</th>
+					</tr>
+					<tr>
+						<td></td>
+						<td><label>AKDJ</label></td>
+						<td><select id="rep">
+							<option value="1">AG27</option>
+							<option value="2">值</option>
+						</select></td>
+						<td><select id="condition">
+							<option value="1">等于</option>
+							<option value="2">不等于</option>
+							<option value="3">包含</option>
+							<option value="4">属于</option>
+							<option value="5">相似</option>
+						</select></td>
+						<td><label>AA</label></td>
+						<td>
+							<button type="button" class="btn btn-primary"><span class="icon-plus"></span></button>
+							<button type="button" class="btn btn-primary"><span class="icon-minus"></span></button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox"  name="relation" value="" />或
+						</td>
+						<td><label>AKDJ</label></td>
+						<td><select id="rep">
+							<option value="1">AG27</option>
+							<option value="2">值</option>
+						</select></td>
+						<td><select id="condition">
+							<option value="1">等于</option>
+							<option value="2">不等于</option>
+							<option value="3">包含</option>
+							<option value="4">属于</option>
+							<option value="5">相似</option>
+						</select></td>
+						<td><label>1.10</label></td>
+						<td>
+							<button type="button" class="btn btn-primary"><span class="icon-plus"></span></button>
+							<button type="button" class="btn btn-primary"><span class="icon-minus"></span></button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox"  name="relation" value="" />或
+						</td>
+						<td><label>CCBL</label></td>
+						<td><select id="rep">
+							<option value="1">AN47</option>
+							<option value="2">值</option>
+						</select></td>
+						<td><select id="condition">
+							<option value="1">等于</option>
+							<option value="2">不等于</option>
+							<option value="3">包含</option>
+							<option value="4">属于</option>
+							<option value="5">相似</option>
+						</select></td>
+						<td><label>AACS</label></td>
+						<td>
+							<button type="button" class="btn btn-primary"><span class="icon-plus"></span></button>
+							<button type="button" class="btn btn-primary"><span class="icon-minus"></span></button>
+						</td>
+					</tr>
+				</table>
+				<div  class="panel-heading">
+					<label>
+						<button type="button" class="btn btn-primary">确定</button>
+					</label>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">搜索结果</div>
+				<div  class="list-header form-inline">
+					<div class="left">
+						<label>排列顺序</label>
+						<button  type="button" class="btn btn-primary" onclick="orderBy(this)">
+							<span class="glyphicon glyphicon-sort"></span>流水号
+						</button>
+						<button  type="button" class="btn btn-primary" onclick="orderBy(this)">
+							<span class="glyphicon glyphicon-sort"></span>大类+小类
+						</button>
+						<button  type="button" class="btn btn-primary" onclick="orderBy(this)">
+							<span class="glyphicon glyphicon-sort"></span>名称代号
+						</button>
+					</div>
+					<div  class="right">
+						<select class="form-control">
+							<option>20个/页</option>
+							<option>40个/页</option>
+							<option>60个/页</option>
+						</select>
+					</div>
+				</div>
+				<table class="table table-hover  table-condensed">
+					<thead>
+						<tr class="">
+							<th width="80px">序号</th>
+							<th width="">流水号</th>
+							<th width="">名称代码</th>
+							<th width="">编码局代码</th>
+							<th width="100px">大类+小类</th>
+							<th width="400px">名称</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>1513001</td>
+							<td>3058</td>
+							<td>00</td>
+							<td>3130</td>
+							<td>滚动轴承</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>1012401</td>
+							<td>3704</td>
+							<td>00</td>
+							<td>5905</td>
+							<td>电阻器</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>4</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+				<input type="hidden" name="total" id="total" value=0>
+				<input type="hidden" name="offset" id="offset" value=0>
+			    <input type="hidden" name="limit" id="limit" value=10>
+		    	<div class="row-fluid"> 
+					<div id="page-nav" style="padding: 18px;"></div> 
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="/iw/js/supply/util.js"></script>
+</body>
+</html>
+>

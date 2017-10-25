@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js" ></script>
+<script type="text/javascript" src="/iw/js/model.js" ></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.min.css"/>
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css"/>
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home "></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">公共管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active">用户管理</li>
+			</ul>
+		</div>
+		<!-- Main content -->
+		<div class="body">
+			<div id="form1" role="form">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<span class="glyphicon glyphicon-plus"> </span> 用户基本信息
+					</div>
+					<div class="panel-body">
+					<input id="id" type="hidden" name="detail.id" value=0 class="form-control input-sm" />
+					<input id="no" type="hidden" name="detail.no" value=0 class="form-control input-sm" />
+						<table class="table">
+							<tr>
+								<th>身份证号：<span class="must">*</span></th>
+								<td><input id="idNo" type="text" name="detail.idNo" class="form-control input-sm" required="true" /></td>
+								<th>姓名：<span class="must">*</span></th>
+								<td><input id="name" type="text" name="detail.name" class="form-control input-sm" /></td>
+							</tr>
+							<tr>
+								<th>密级：</th>
+								<td><select name="detail.scretLvl" id="scretLvl" class="form-control input-sm">
+										<option value="核心">核心</option>
+										<option value="内部">内部</option>
+										<option value="秘密">秘密</option>
+										<option value="机密">机密</option>
+										<option value="核心商密">核心商密</option>
+										<option value="一般商密">一般商密</option>
+										<option value="非密">非密</option>
+								</select></td>
+								<th>所属机构：</th>
+								<td><input id="" name="" class="form-control input-sm" readonly="readonly" disabled /></td>
+							</tr>
+							<tr>
+								<th>状态：</th>
+								<td>
+								<select name="detail.status" id="status" class="form-control input-sm">
+										<option value="正常">正常</option>
+										<option value="锁定">锁定</option>
+										<option value="已禁用">已禁用</option>
+								</select>		
+								</td>
+								<th>性别：</th>
+								<td><select name="detail.gender" id="gender" class="form-control input-sm">
+										<option value="男">男</option>
+										<option value="女">女</option>
+								</select></td>
+							</tr>
+							<tr>
+								<th>初始注册日期：</th>
+								<td colspan="3"><input id="textbox1" name="" class="form-control input-sm" value="2016-10-10" readonly="readonly" disabled /></td>
+							</tr>
+						</table>
+					</div>
+					<div class="panel-heading">
+						<span class="glyphicon glyphicon-plus"> </span> 用户联系信息
+					</div>
+					<div class="panel-body">
+						<table class="table">
+							<tr>
+								<th>手机：</th>
+								<td><input id="phones" type="text" name="detail.phones" class="form-control input-sm" /></td>
+
+							</tr>
+							<tr>
+								<th>电子邮件：</th>
+								<td colspan="3"><input id="email" type="text" name="detail.email" class="form-control input-sm" /></td>
+							</tr>
+
+						</table>
+					</div>
+					<div class="panel-footer" style="text-align:center;">
+						<button type="button" class="btn btn-primary btn-xs" onclick="makeCust()"><span class="glyphicon glyphicon-ok"></span> 保存</button>
+						<button type="button" class="btn btn-default btn-xs" onclick="location.href='custPage.html';"><span class="glyphicon glyphicon-arrow-left"></span> 返回</button>
+					</div>
+				</div>
+
+				
+			</div>
+		</div>
+		<div class="hint"></div>
+	</div>
+	<script type="text/javascript" src="/iw/js/three/custDetail.js"></script>
+</body>
+</html>

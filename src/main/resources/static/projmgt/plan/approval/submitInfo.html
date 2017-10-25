@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<title>武器装备保障平台</title>
+<meta charset="UTF-8">
+<script type="text/javascript" src="/projmgt/js/common/env.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/projmgt/js/common/simplePaginationEnv.js"></script>
+<script type="text/javascript" src="/projmgt/js/common/table.js"></script>
+<script type="text/javascript" src="/projmgt/js/plan/approval/submitInfo.js"></script>
+
+</head>
+<body>
+	<div id="top" class="top"></div>
+
+	<div id="left" class="left"></div>
+
+	<div class="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="/iw/org/welcome.html">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">项目管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active">提交审批</li>
+			</ul>
+		</div>
+
+		<div class="content-header">	
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span>计划概览</li>
+			</ul>
+		</div>
+
+		<div class="panel-body" role="form">
+            <table class="formtable">
+                 <tbody>
+                   <tr>
+                   	<th>代号</th><td><input id="code" name="" placeholder="计划代号" class="form-control" disabled="disabled"></td>
+                   	</tr>
+
+                   <tr><th>名称</th><td><input id="name" name="" placeholder="计划的名称" class="form-control" disabled="disabled"></td></tr> 
+                   
+                   <tr>
+                   	<th>说明</th><td rowspan="2"><textarea id="state" class="form-control" disabled="disabled" style="overflow-y:scroll;width:400px;height:200px;resize: none"></textarea></td>
+                   </tr>
+                                  
+                 </tbody>
+            </table>
+             
+            <div class="content-header">            	                 
+				<button id="submit" type="button" class="btn btn-primary " style="margin-left:20px"><span>提交审批</span></button>		
+			</div>
+			
+			<form class="form-horizontal panel-body editForm" id="submitInfoForm" method="post" role="form">
+                   
+                <div class="form-group">
+					<label class="col-md-3 control-label">审批</label>
+					<div class="col-md-5">
+						<select  id="approverId" name="approverId" class="form-control">
+							<option>--请选择--</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-md-3 control-label">附加信息</label>
+					<div class="col-md-5">
+						<textarea id="extras" name="extras" class="form-control edit" style="overflow-y: scroll; resize: none" rows="3"></textarea>
+					</div>
+				</div>
+                                                  
+            </form>	
+				
+        </div>
+		
+	</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!-- 外方询价单 -->
+<table style="width: 700px" class="table">
+	<thead>
+		<tr class="">
+			<th width="40px">#</th>
+			<th width="100px">询价单号</th>
+			<th width="80px">甲方</th>
+			<th width="100px">甲方联系人</th>
+			<th width="80px">乙方</th>
+			<th width="100px">乙方联系人</th>
+			<th width="80px">状态</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr name="inquiryPageTemplate" style="display:none;">
+			<td name="RN"></td>
+			<td name="no"><a href="outInquiryDetail.html"></a></td>
+			<td name="aParty"></td>
+			<td name="aManager"></td>
+			<td name="corpName"></td>
+			<td name="name"></td>
+			<td name="status"></td>
+		</tr>
+	</tbody>
+</table>
+<input type="hidden" name="total" id="total" value=0>
+<input type="hidden" name="inquiryOffset" id="inquiryOffset" value=0>
+<input type="hidden" name="inquiryLimit" id="inquiryLimit" value=10>
+<div class="row-fluid"> 
+	<div id="inquiryPage-nav" style="padding: 18px;"></div> 
+</div>

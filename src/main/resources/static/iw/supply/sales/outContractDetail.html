@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/myUtil.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+<script type="text/javascript" src="/iw/js/ajaxfileupload.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">供货管理</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">销售管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">出口合同</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="top-actions">
+				<button type="button" class="btn btn-primary" onclick="makeContract()">
+					<span class="glyphicon glyphicon-ok"></span><span name="" function="">保存</span>
+				</button>
+				<button type="button" class="btn btn-default " onclick="history.go(-1);">
+					<span class="icon-undo">返回</span>
+				</button>
+				<button type="button" class="btn btn-primary " onclick="goToOutInquiryDetail();">
+					<span class="icon-plus"></span> 添加询价单
+				</button>
+				<button type="button" class="btn btn-primary " onclick=""  data-target="#outContractSignModal" data-toggle="modal">
+					<span class="icon-key"></span> 签订
+				</button>
+				<button type="button" class="btn btn-primary " onclick="" data-target="#witnessModal" data-toggle="modal">
+					<span class="icon-key"></span> 集团鉴证
+				</button>
+				<button type="button" class="btn btn-primary " onclick="" data-target="#auditModal" data-toggle="modal">
+					<span class="icon-upload"></span> 报科工局
+				</button>
+				<button type="button" class="btn btn-primary " onclick="location.href='/projmgt/common/universalSchedule.html?category=1&sourceId=';">
+					<span class="icon-plan"></span> 履约计划
+				</button>
+				<button type="button" class="btn btn-primary " onclick="innerContractDetail()">
+					<span class="icon-plus"></span> 创建内部合同
+				</button>
+				<button type="button" class="btn btn-primary " onclick="">
+					<span class="icon-stop"></span> 终止
+				</button>
+				
+			</div>
+			<ul class="nav nav-tabs" id="myproj">
+				<li class="active"><a href="#projbasic">项目基本资料</a>
+				<li><a href="#basic">出口合同基本资料</a></li>
+				<li><a href="#inquiry">外方询价单列表</a></li>
+				<li><a href="#salebill">合同销售清单</a></li>
+				<li><a href="#innerContract">内部合同清单</a></li>
+				<li><a href="#supplybill">合同供应清单</a></li>
+				<li><a href="#plan">合同履约</a></li>
+				
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="projbasic">
+					<div class="includeHtml" data-url="../tpl/projShow.html?pid="></div>
+				</div>
+				<div class="tab-pane" id="basic">
+					<div class="includeHtml" data-url="../tpl/outContractDetail.html"></div>
+				</div>
+				<div class="tab-pane" id="inquiry">
+					<div class="includeHtml" data-url="../tpl/outContractInquiryPage.html"></div>
+				</div>				
+				<div class="tab-pane " id="salebill">
+					<div class="includeHtml" data-url="../tpl/outContractBillDetail.html"></div>
+				</div>
+				<div class="tab-pane " id="innerContract">
+					<div class="includeHtml" data-url="../tpl/innerContractList.html"></div>
+				</div>
+				<div class="tab-pane " id="supplybill">
+					<div class="includeHtml" data-url="../tpl/outContractSupplyBillDetail.html"></div>
+				</div>
+				<div class="tab-pane " id="plan">
+					<!-- <div class="includeHtml" data-url="../tpl/outContractPlan.html"></div> -->
+					<iframe style="width:100%;height:500px;border:1px solid #ccc;" src="/projmgt/common/agreedPlan.html?category=1&sourceId="></iframe>
+					<!-- <div class="includeHtml" data-url=""></div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="includeHtml" data-url="../tpl/outContractSignModal.html" data-callback="callback()"></div>
+	<div class="includeHtml" data-url="../tpl/fileModal.html" ></div>
+	<div class="includeHtml" data-url="../tpl/userModal.html" ></div>
+	<div class="includeHtml" data-url="../tpl/modelModal.html" ></div>
+	<div class="includeHtml" data-url="../tpl/respondedModal.html" ></div>
+	<div class="includeHtml" data-url="../tpl/witnessModal.html" ></div>
+	<div class="includeHtml" data-url="../tpl/createSalesListModal.html" ></div>
+	<div class="includeHtml" data-url="../tpl/createInnerSalesListModal.html" ></div>
+	
+	<script type="text/javascript" src="/iw/js/supply/util.js"></script>
+	<script type="text/javascript" src="/iw/js/supply/sales/outContractDetail.js"></script>
+</body>
+</html>

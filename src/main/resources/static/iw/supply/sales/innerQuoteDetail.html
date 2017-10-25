@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/js/handlebars.min.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+<script type="text/javascript" src="/iw/js/myUtil.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/model/salesAdviceDetail.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home "></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">供货管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active">内部报价</li>
+			</ul>
+		</div>
+		<!-- Main content -->
+		<div class="body">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="right">
+						<span class="icon-collapse"></span>
+					</div>
+					内部询价单基本信息
+				</div>
+				<div class="panel-body includeHtml" data-url="../tpl/innerInquiryDetail.html" data-callback="callback()"  style="padding: 5px; display: none;"></div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+
+					<span class="icon-th"></span> 报价信息
+				</div>
+				<div class="panel-body">
+
+					<table class="table tableform">
+						<tr>
+							<th>报价单号：<span class="must">*</span></th>
+							<td><input type="text" class="form-control" id="quoteNum"/></td>
+						</tr>
+						<tr>
+							<th>折扣：<span class="must">*</span></th>
+							<td><input type="text" class="form-control" id="discount" />%</td>
+						</tr>
+						<tr>
+							<th>有效期：</th>
+							<td><input type="text" class="form-control" id="validTo" placeholder='2017-05-02' /></td>
+						</tr>
+						<tr>
+							<th>总价：</th>
+							<td>20,000</td>
+						</tr>
+						<tr>
+							<th>折后价：</th>
+							<td>20,000</td>
+						</tr>
+						<tr>
+							<th>指定审批人：<span class="must">*</span></th>
+							<td>
+								<div class="input-group ">
+									<input type="hidden" name="" id="aCorpId" value="" /> <input type="text" class="form-control" name="" value="" id="aCorpName" readonly /> <span class="input-group-addon" data-target="#userModal" onclick="" data-toggle="modal"> ... </span> <span class="must"> 审批人只能从指定角色的用户中选</span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>审批状态：</th>
+							<td><input type="text" class="form-control" name="" value="" id="modelName" readonly /> <span class="must">新建时不显示审批状态</span></td>
+						</tr>
+					</table>
+				</div>
+				<div class="panel-heading"><span class="icon-th"></span> 报价产品</div>
+				<table id="productTree" class="table  treelist">
+					<thead>
+						<tr class="">
+							<th>#</th>
+							<th>名称</th>
+							<th>NSN</th>
+							<th>零件号</th>
+							<th style="width: 60px;">数量</th>
+							<th>单位</th>
+							<th style="width: 120px;">单价</th>
+							<th>报价</th>
+						</tr>
+					</thead>
+					<tbody name="configChildrenTemplate"  style="display: none;">
+						<tr class="tree-node-selected" data-id="1" data-parent="0" data-hasreq="0">
+							<td>
+								<input type="checkbox" />
+								<input type="hidden" name="id"/>
+								<input type="hidden" name="aSalerId"/>
+								<input type="hidden" name="numTemp"/>
+								<input type="hidden" name="proposalId"/>
+								<input type="hidden" name="rootConfigId" function="outRootConfigIdValueTo"/>
+							</td>
+							<td>
+								<div class="tree-node tree-root-one tree node-last">
+									<span class="tree-hit tree-collapsed"></span>
+									<span class="tree-icon tree-folder"></span> 
+									<span class="tree-title" name="configName"></span> 
+								</div>
+							</td>
+							<td name="NSN"></td>
+							<td name="partNo"></td>
+							<td><input type="text" class="form-control xxs" name="num"/></td>
+							<td name="unit"></td>							
+							<td></td>
+							<td></td>
+						</tr>
+						<tr name="detailTemplate" style="display: none;">
+							<td>
+								<input type="checkbox" />
+								<input type="hidden" name="id" function="salesIdValueTo"/>
+								<input type="hidden" name="parentId" function="salesParentIdValueTo"/>
+								<input type="hidden" name="aSalerId"/>
+							</td>
+							<td>
+								<div class="tree-node tree-root-one tree node-last ">
+							        <input type="hidden" name="lvl" function="salesLvlValueTo"/>
+									<span class="tree-hit tree-expanded"></span> 
+									<span class="tree-icon tree-folder tree-folder-open"></span>  
+							        <input type="hidden" name="leafed" function="salesLeafedValueTo"/>
+									<span class="tree-title" name="configName"></span>
+								</div>
+							</td>
+							<td name="NSN"></td>
+							<td name="partNo"></td>
+							<input type="hidden" name="typ" function="InnerQuoteTypValueTo"/>
+							<td><input type="text" class="form-control xxs" name="num" onchange="numChangeTo(this)"/></td>
+							<td name="unit"></td>							
+							<input type="hidden" name="saleLeafed" function="InnerQuoteSaleLeafedValueTo"/>
+							<td><input type="text" class="form-control xs" value=""  name="price" onchange="numPriceTo(this)"></td>
+							<td><span name="totalPrice"></span></td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr name="InquiryProdPageTemplate" style="display: none;">
+						    <td>
+						    	<input type="checkbox"/>
+						    	<input type="hidden" name="id"/>
+						    	<input type="hidden" name="aSalerId"/>
+						    </td>
+							<td name="prodLibName"></td>
+							<td name="nsn"></td>
+							<td name="partNo"></td>
+							<td><input type="text" class="form-control xxs" name="num" onchange="numChangeTo(this)" /></td>
+							<td name="unit"></td>							
+							<td><input type="text" class="form-control xs" value="" name="price" onchange="numPriceTo(this)"></td>
+							<td><span name="totalPrice"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="panel-footer">
+				<button type="button" class="btn btn-primary" onclick="makeInnerQuote();">
+					<span class="icon-ok"></span> 报价
+				</button>
+				<button class="btn btn-danger ">
+					<span class="icon-stop"></span> 拒绝报价
+				</button>
+			</div>
+
+
+			<div class="panel panel-default">
+				<div class="panel-heading">报价草案信息</div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>报价单号</th>
+							<th>甲方</th>
+							<th>总价</th>
+							<th>折扣</th>
+							<th>折后价</th>
+							<th>币种</th>
+							<th>有效期</th>
+							<th>审批状态</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr name="custPageTemplate" style="display: hidden;">
+							<td>1</td>
+							<td><a href="innerQuoteShow.html?id=">1234567</a></td>
+							<td>华腾</td>							
+							<td>100,000,000</td>
+							<td>100%</td>
+							<td>100,000,000</td>
+							<td>RMB</td>
+							<td>2017/12/10</td>
+							<td>未审批</td>							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="includeHtml" data-url="../tpl/auditModal.html"></div>
+	<div class="includeHtml" data-url="../tpl/userModal.html"></div>
+	<script type="text/javascript" src="/iw/js/supply/util.js"></script>
+	<script type="text/javascript" src="/iw/js/supply/sales/innerQuoteDetail.js"></script>
+</body>
+</html>

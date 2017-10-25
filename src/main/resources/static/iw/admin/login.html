@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/unslider.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<!-- <script type="text/javascript" src="/iw/js/PIE.js"></script> -->
+
+
+<link rel="stylesheet" type="text/css" href="/iw/css/login.css">
+</head>
+<body>
+	<div id="header" class="header">
+		<div class="header-layout">
+			<h1 id="logo" class="logo">
+				<a href="/iw/">武器装备保障平台</a>
+			</h1>
+			<h2 class="logo-title">武器装备保障平台<span class="sub">(技术人员配置后台)</span></h2>
+			<ul class="header-nav">
+				<li class="nav-first"><a href="#">平台首页</a></li>
+				<li><a href="#">帮助文档</a></li>
+			</ul>
+		</div>
+
+	</div>
+	<div class="content">
+		<div id="swipe">
+			<ul>
+				<li><img src="/iw/images/slide1.bmp" /></li>
+				<li><img src="/iw/images/slide1.bmp" /></li>
+				<li><img src="/iw/images/slide1.bmp" /></li>
+			</ul>		
+		</div>
+
+		<div id="login" >
+			<table>
+				<tr>
+					<td colspan="2">身份证号码 :</td>					
+				</tr>
+				<tr>
+					<td  colspan="2"><input type="text" name="idNo" id="idNo" value="" class="form-control" placeholder="用户名"/></td>
+				</tr>
+				<tr>
+					<td  colspan="2">密码 :</td>					
+				</tr>
+				<tr>
+					<td  colspan="2"><input type="password" name="password" id="pass" value="" class="form-control" placeholder="用户密码"/></td>
+				</tr>
+				<tr>
+					<td  colspan="2">验证码 :</td>
+				</tr>
+				<tr>
+					<td><input type="text" name="chkcode" id="chkcode" value="" class="form-control vcode-control" placeholder="验证码"/> </td>
+					<td><img src="/iw/images/org/vcode.jpg" id="captchaImg" class="vcode" onclick="refreshChaptchImg()" /></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input id="fm-login-submit" type="button" name="" value="登录" class="fm-button" onclick="login()" />
+					</td>
+				</tr>
+				
+			</table>
+		
+		</div>
+
+	</div>
+	<div class="hint"></div>
+
+	<div id="service">
+		<div class="service-layout">			
+			<div class="list-help">
+				<table class="right-text">
+					<tr>
+						<td width="50px"><img src="/iw/images/tel.gif" alt="" width="50px" /></td>
+						<td width="200px">
+							<div class="left" style="padding-left:20px;">
+								<div class="title">咨询</div>
+								<div class="desc">021-63579914</div>
+							</div>
+					    </td>
+						<td>
+							<div class="right" style="padding-left:90px;">
+								<p class="list">全方位咨询</p>
+								<p class="list">灵活的方案</p>
+								<p class="list">贴心服务</p>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+	</div>
+	<div id="footer">
+		<div class="copyright">
+			<p>&copy; 2016  ~  中国航天科工集团上海浦东开发中心 版权所有</p>
+		</div>
+
+	</div>
+    <script type="text/javascript" src="/iw/js/admin/login.js"></script>
+</body>
+</html>

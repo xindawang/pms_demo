@@ -1,0 +1,1 @@
+document.write('<script type="text/javascript" src="/projmgt/plugin/suggest/bootstrap-suggest.min.js"></script>')

@@ -1,0 +1,123 @@
+<div id="salesAdviceModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden='true'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header modal-primary">
+				<span class="icon-key"></span> 从销售建议清单库选择
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+
+			<div class="modal-body">
+				<table class="table" style="width: 700px;">
+					<tbody>
+						<tr>
+							<th>型号：</th>
+							<td>
+								<div class="input-group ">
+									<input type="hidden" name="" id="modelId" onchange="javascript:abc()" value="" /> <input type="text" class="form-control xs" name="proposal.modelName" value="" id="modelName" readonly /> <span class="input-group-addon" data-target="#modelModal" data-toggle="modal"> ... </span>
+								</div>
+							</td>
+							<th>关联型号配置：<span class="must">*</span></th>
+							<td>
+								<div class="input-group ">
+									<input type="hidden" value="" onchange="javascript:abc()" id="configId" name=""> <input type="text" readonly="" id="configName" value="" name="proposal.rootConfigName" class="form-control xs"> <span data-toggle="modal" data-target="#configModal" class="input-group-addon">
+										... </span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>销售建议清单名称：<span class="must">*</span></th>
+							<td><input type="text" class="form-control xs" value="" id="proposalName" name="proposal.name"></td>
+							<th>状态：</th>
+							<td><label>
+									<input type="radio" checked="checked" value="有效" name="proposal.status">有效
+								</label> <label>
+									<input type="radio" value="失效" name="proposal.status">失效
+								</label></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td class="center" colspan="4">
+								<button type="button" class="btn btn-primary" data-dismiss="modal">
+									<span class="icon-search"></span> 搜索
+								</button>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+
+			<div class="modal-body">
+				<table id="productTree" class="table  treelist">
+				<thead>
+					<tr class="">
+						<th>#</th>
+						<th width="35%;">名称</th>
+						<th>NSN</th>
+						<th>零件号</th>						
+						<th width="100px">单价</th>				
+						<th width="120px">数量</th>
+						<th width="80px">单位</th>
+						<th width="80px">状态</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="tree-node-selected" data-id="1" data-parent="0" >
+						<td><input type="checkbox" value="" /></td>						
+						<td>
+							<div class="tree-node tree-root-one tree node-last ">
+								<span class="tree-hit tree-expanded"></span> <span class="tree-icon tree-folder tree-folder-open"></span> <span class="tree-title">000001</span> <a href="bomDetail.html?id=100"><span class="tree-title">导弹</span></a>
+							</div>
+						</td>
+						<td>1101-00-1234567</td>
+						<td>123</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr  data-id="2" data-parent="1" >
+						<td><input type="checkbox" value="" /></td>						
+						<td>
+							<div class="tree-node tree-root-one tree node-last ">
+								<span class="tree-indent"></span> <span class="tree-hit tree-collapsed"></span> <span class="tree-icon tree-folder"></span> <span class="tree-title">000002</span> <span class="tree-title">制导舱</span>
+							</div>
+						</td>
+						<td>1101-00-1234567</td>
+						<td>123</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr  data-id="21" data-parent="2" >
+						<td><input type="checkbox" value="" /></td>						
+						<td>
+							<div class="tree-node tree-root-one tree node-last ">
+								<span class="tree-indent"></span> <span class="tree-indent"></span> <span class="tree-indent"></span> <span class="tree-icon tree-file"></span> <span class="tree-title">000003</span> <span class="tree-title">卡环</span>
+							</div>
+						</td>
+						<td>1101-00-1234567</td>
+						<td>123</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					
+
+				</tbody>
+			</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">
+					<span class="icon-ok"></span> 选择
+				</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					<span class="glyphicon glyphicon-remove icon-remove"></span> 关闭
+				</button>
+			</div>
+
+		</div>
+	</div>
+</div>

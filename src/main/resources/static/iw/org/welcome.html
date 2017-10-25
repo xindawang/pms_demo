@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="/iw/org/welcome.html">首页</a></li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="rightColumn">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						早上好！<span class="username">张三</span>
+					</div>
+					<table class="table">
+						<thead>
+							<tr>
+								<th width="50px" style="font-size: 15px; padding-left: 10px;">今天是2017/02/21 <span style="float: right; padding-right: 10px;"> 星期一</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="work">待办工作: <span class="workNumber"><a href="#" class="mywork">11</a>个</span></td>
+							</tr>
+							<tr>
+								<td class="work">我的项目: <span class="workNumber"><a href="../supply/market/marketPage.html" class="mywork">11</a>个</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="work">我的合同:<span class="workNumber"><a href="../supply/sales/salesPage.html" class="mywork">11</a>个</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="work">我的询价:<span class="workNumber"><a href="../supply/sales/myInquiryQuotePage.html" class="mywork">11</a>个</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="work">我的报价:<span class="workNumber"><a href="../supply/sales/myQuote.html" class="mywork">11</a>个</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+
+
+
+				<table class="table" style="margin-top: 20px;">
+					<thead>
+						<tr>
+							<th class="categoryTitle">最新公告 <a class="more" href="#"> 更多 &gt;&gt;</a></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="news"><a href="#">综保中心启动会在京召开...</a></td>
+						</tr>
+						<tr>
+							<td class="news"><a href="#">军贸分中心启动会在京召开...</a></td>
+						</tr>
+						<tr>
+							<td class="news"><a href="#">综保专家组调研中国商飞...</a></td>
+						</tr>
+						<tr>
+							<td class="news"><a href="#">综保专家组调研中国商飞...</a></td>
+						</tr>
+						<tr>
+							<td class="news"><a href="#">综保专家组调研中国商飞...</a></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<table class="table" style="margin-top: 20px;">
+					<thead>
+						<tr>
+							<th class="categoryTitle">我的邮件 <a class="more" href="#"> 更多 &gt;&gt;</a></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="news"><a href="#">FD2000合同执行进度月报...</a></td>
+						</tr>
+						<tr>
+							<td class="news"><a href="#">六月份军贸项目计划</a></td>
+						</tr>
+						<tr>
+							<td class="news"><a href="#">六月份军贸项目计划</a></td>
+						</tr>
+						<tr>
+							<td class="news"><a href="#">六月份军贸项目计划</a></td>
+						</tr>
+						<tr>
+							<td class="news"><a href="#">六月份军贸项目计划</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="leftColumn">
+				<div class="includeHtml" data-url="../supply/tpl/block/myWork.html"></div>
+				
+				<div class="includeHtml" data-url='../supply/tpl/block/myProj.html' style="margin-top:20px;"></div>
+				<div class="includeHtml" data-url='../supply/tpl/block/myContract.html'></div>
+				<iframe style="width:100%;min-height:1200px; border: 1px solid #ccc;" src="/projmgt/plan/impl/unfinished.html"></iframe>
+			</div>
+		</div>
+	</div>
+	<div class="hint"></div>
+	<script type="text/javascript" src="/iw/js/supply/util.js"></script>
+	<script type="text/javascript" src="/iw/js/org/welcome.js"></script>
+</body>
+</html>

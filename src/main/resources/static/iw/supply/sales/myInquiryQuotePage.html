@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">供货管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">我的询报价单</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="icon-th"></span> 待处理询价单列表
+				</div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>序号</th>	
+							<th>出口询价单号</th>
+							<th>内部询价单号</th>						
+							<th>项目经理</th>
+							<th>分配时间</th>
+							<th>状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr name="allPendInnerInquiryTemplate" style="display: none">
+							<input type="hidden" name="outInquiryId"/>
+							<td><span name="RN">2</span></td>
+							<td><a  name="id" href="outInquiryShow.html?=#{id}"><span name="outInquiryNum"></span></a></td>
+							<td name="innerInquiryNum"></td>
+							<td name="managerName"></td>
+							<td name="newat"></td>
+							<td>未询价</td>
+							<td>
+								<button class="btn btn-primary btn-xs" onclick="innerInquiryDetail(this)">
+									<span class="glyphicon glyphicon-plus"></span> 生成内部询价单
+								</button>
+								
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<span class="icon-th"></span> 已处理报价单列表
+				</div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>序号</th>	
+							<th>出口询价单号</th>
+							<th>内部询价单号</th>						
+							<th>项目经理</th>
+							<th>分配时间</th>
+							<th>状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr name="pendInnerInquiryPageTemplate" style="display: none">
+							<input type="hidden" name="outInquiryId"/>
+							<td><span name="RN">2</span></td>
+							<td><a  name="id" href="outInquiryShow.html?=#{id}"><span name="outInquiryNum"></span></a></td>
+							<td name="innerInquiryNum"></td>
+							<td name="managerName"></td>
+							<td name="newat"></td>
+							<td>未询价</td>
+							<td>
+								<button class="btn btn-primary btn-xs" onclick="innerInquiryDetail(this)">
+									<span class="glyphicon glyphicon-plus"></span> 生成内部询价单
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<input type="hidden" name="total" id="total" value=0> 
+				<input type="hidden" name="offset" id="offset" value=0> 
+				<input type="hidden" name="limit" id="limit" value=10>
+				<div class="row-fluid">
+					<div id="page-nav" style="padding: 18px;"></div>
+				</div>
+				
+			</div>
+
+		</div>
+	</div>
+	<script type="text/javascript" src="/iw/js/supply/util.js"></script>
+	<script type="text/javascript" src="/iw/js/supply/sales/myInquiryQuotePage.js"></script>
+</body>
+</html>

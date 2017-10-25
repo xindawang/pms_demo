@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>武器装备保障平台</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+<script type="text/javascript" src="/iw/js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="/iw/js/model.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/iw/js/util.js"></script>
+<script type="text/javascript" src="/iw/js/myUtil.js"></script>
+<script type="text/javascript" src="/iw/js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="/iw/js/org/core.js"></script>
+<script type="text/javascript" src="/iw/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iw/js/jquery.simplePagination.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/simplePagination.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/hint.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/bootstrap-ie6.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/ie.css"/>
+<link rel="stylesheet" type="text/css" href="/iw/css/bootstrap/css/non-responsive.css"/>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/iw/css/three/style.css" />
+<link rel="stylesheet" type="text/css" href="/iw/css/style.css" />
+</head>
+<body>
+	<div id="top"></div>
+	<div id="left"></div>
+	<div id="content">
+		<div class="content-header">
+			<ul class="breadcrumb">
+				<li><span class="glyphicon glyphicon-home"></span> <a href="#">首页</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">供货管理</a></li>
+				<li class="split">&gt;</li>
+				<li><a href="#">销售管理</a></li>
+				<li class="split">&gt;</li>
+				<li class="active" name="dual" function="supplyItemPageTitle">创建出口合同</li>
+			</ul>
+		</div>
+
+		<div class="body">
+			<div class="top-actions">				
+				<button type="button" class="btn btn-primary" onclick="makeContract()">
+					<span class="glyphicon glyphicon-ok"></span><span name="" function="">保存</span>
+				</button>
+				<button type="button" class="btn btn-default " onclick="history.go(-1);">
+					<span class="icon-undo">返回</span>
+				</button>				
+				
+			</div>
+			<ul class="nav nav-tabs" id="myproj">
+				<li ><a href="#projbasic">项目基本资料</a>
+				<li class="active"><a href="#basic">出口合同基本资料</a></li>
+				
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane" id="projbasic">
+					<div class="includeHtml" data-url="../tpl/projShow.html?pid=" data-callback="callback()"></div>
+				</div>
+				<div class="tab-pane active" id="basic">
+					<div class="includeHtml" data-url="../tpl/outContractNew.html"></div>
+				</div>	
+			</div>
+		</div>
+	</div>
+	<div class="hint"></div>
+	<div class="includeHtml" data-url="../tpl/fileModal.html" ></div>
+	<div class="includeHtml" data-url="../tpl/userModal.html" ></div>
+	<div class="includeHtml" data-url="../tpl/modelModal.html" ></div>
+	<div class="includeHtml" data-url="../tpl/respondedModal.html" ></div>
+	<div class="includeHtml" data-url="../tpl/witnessModal.html" ></div>
+	<script type="text/javascript" src="/iw/js/supply/util.js"></script>
+	<script type="text/javascript" src="/iw/js/supply/sales/outContractNew.js"></script>
+</body>
+</html>
